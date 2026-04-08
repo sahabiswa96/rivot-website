@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Privacy Policy | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000;
+      color: white;
+      min-height: 100vh;
+    }
+    p {
+      color: #FFFFFF;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .main-menu ul li a[href="privacypolicy.html"] {
+      color: #FF9010;
+    }
+    .terms-content {
+      max-width: 1450px;
+      margin: 0 auto;
+      padding: 150px 20px 100px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 1.5s ease-out;
+    }
+    .terms-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .terms-section {
+      margin-bottom: 80px;
+    }
+    .section-title {
+      font-size: 40px;
+      font-weight: 500;
+      color: #CE6723;
+      margin-bottom: 65px;
+      text-align: center;
+    }
+    .terms-section h3 {
+      font-size: 26px;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+    .terms-section p, .terms-section li {
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .terms-section ul {
+      padding-left: 20px;
+    }
+    .terms-section li {
+      list-style-type: disc;
+    }
+
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+
+      .menu-toggle2.open::before {
+        content: '✕';
+      }
+
+      .menu-toggle2:not(.open)::before {
+        content: '☰';
+      }
+
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        width: 90%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-menu2 li {
+        position: relative;
+      }
+
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+
+
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .submenu2 li {
+        margin: 0;
+      }
+
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+
+      .has-submenu2 {
+        position: relative;
+      }
+
+      .has-submenu2 > a {
+        padding-right: 40px;
+        display: block;
+      }
+
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+        line-height: 1;
+      }
+
+      .submenu-toggle::before {
+        content: '+';
+      }
+
+      .submenu-toggle.active::before {
+        content: '−';
+      }
+      .nav-menu2 li:last-child a {
+	border: 0;
+}
+ 
+.nav-menu2 li:last-child ul li {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .content-box {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      .content-box {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      height: 330px;
+      position: relative;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+    @media (max-width: 991px) {
+      .section-title { font-size: 32px; }
+      .terms-section h3 { font-size: 22px; }
+      .terms-section p, .terms-section li { font-size: 14px; }
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 28px; }
+      .terms-section h3 { font-size: 20px; }
+      .footer-content { flex-direction: column; gap: 30px; }
+      .footer-column { min-width: 100%; }
+      .footer-text { max-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header> 
+  <div class="terms-content">
+    <div class="terms-section">
+      <h2 class="section-title">Privacy Policy</h2>
+      <p>RIVOT MOTORS India Private Limited, a private limited company, incorporated and existing under the laws of India and having its Registered Address at Fifth Floor, Oneness, 1st Cross, 1st Main, Sadashivnagar, Belagavi, Karnataka - 590001 and Corporate Identification Number is (CIN) U34300KA2019PTC125176 (hereinafter referred to as “RIVOT”, “We”, “Us”, “Company” or “Our”) is concerned about the privacy of the users (hereinafter referred to as “You”, “Your” or “User”) of its website or other RIVOT applications/services (“Website”) and has provided this privacy policy statement (the “Privacy Policy”) to familiarize You with: the manner in which Company collects, uses, stores and discloses Your information collected through the Website.</p><br>
+
+      <h3>1. Purpose</h3>
+      <p><strong>Summary:</strong> All your personal data will be kept secure and safe, and we will not use it or share it illegally.</p>
+      <p>The purpose of this policy is to ensure that the information of/provided by any Users visiting the Website is stored in accordance with the applicable laws. The information stored in such manner shall be protected by RIVOT via a secure server software, which is the industry standard and among the best software available today for secure transactions.</p>
+      <p>Company’s Privacy Policy explains:</p>
+      <ul>
+        <li>What information is collected and why such information is collected.</li>
+        <li>How such information is used.</li>
+        <li>How such information can be accessed and updated.</li>
+      </ul>
+      <p>Company has tried to keep the Privacy Policy as simple as possible. We value the trust You place in Us. That is the reason why We insist upon the highest standards for secure transactions and customer information privacy. Please read the following statement to learn about Our information gathering and dissemination practices.</p><br>
+
+      <h3>2. Information We Collect</h3>
+      <p><strong>Summary:</strong> You will have to share some of your personal details with us to help us provide you a better experience and, so you can use certain functions on the Website. This data will be protected but, in some cases, shared with third party vendors for functions like storage and processing payments. Please ensure that it is accurate and up to date.</p>
+      <p>Depending upon the activity you wish to carry out on the Website, the information provided to Us shall be identified either as mandatory or voluntary. An activity which requires information to be mandatorily provided shall not be engaged if You abstain from providing such information.</p>
+      <p><strong>Personal Information:</strong> This includes the information that can be used to uniquely identify or contact You. In order to avail the services provided by Us, We may collect a variety of Personal Information, including but not limited to, Your name, postal address, phone number, email address, contact preferences, etc. The term “Account” as referred to in this Privacy Policy shall mean and include the Account held by the User with Company (administered by a password) for using the services as provided by Company.</p>
+      <p>The Personal Information is collected from You in a voluntary fashion when You provide your credentials on the Website managed by Us.</p>
+      <p>You are required to ensure that Your contact information and preferences are accurate, complete and up to date by logging into Your Account. We shall also make reasonable efforts to provide You with the opportunity to request correction of data relating to Your Personal Information if the same is inaccurate or delete the data. Further, We may decline to process requests which We find to be contrary to the terms laid down under this Privacy Policy, Our terms and conditions (“Terms and Conditions”) or any applicable laws, require disproportionate technical effort, jeopardize the privacy of others or are extremely impractical.</p>
+      <p>Your Personal Information will be kept confidential to the maximum possible extent and used to support Your relationship with Company, to clarify any discrepancies which may arise on Your placing of an order or request, and other related functions provided by Company.</p>
+      <p>By using this Website, You agree and You also acknowledge that with respect to certain activities, the collection, transfer, storage and processing of Your information may be undertaken by trusted third party vendors or agents of Company such as credit card processors, web hosting providers, communication services, and web analytic providers etc., to help facilitate Us in providing certain functions.</p>
+      <p><strong>Non-Personal Information:</strong> Non-Personal Information is any information that does not reveal Your specific identity, such as, browser information, information collected through Cookies (defined below), pixel tags and other technologies, demographic information, etc. As is true with most websites, Our Website gathers some information automatically when You visit the URL/use applications of the Website and stores it in log files. When You use the Website and the services provided, We may collect certain information about Your computer to facilitate, evaluate and verify Your use of the Website, and the products and the services available on the Website. For example, We may store environmental variables, such as browser type, operating system, speed of the central processing unit (CPU), referring or exit web pages, click patterns and the internet protocol (IP) address of Your computer. This information is generally collected in aggregate form, without identifying any user individually.</p>
+      <p><strong>Cookies:</strong> Cookies are pieces of information that are stored on a User’s PC when the User accesses a website. The Website may use temporary cookies to help you access some of the special functions within the database driven areas of the Website. Once you leave our Website, these cookies expire. Cookies do not collect personal identifying information about the user.</p><br>
+
+      <h3>3. Information Security</h3>
+      <p><strong>Summary:</strong> Your data is safe with us and we do not share it with anyone, including employees and contractors unless it is absolutely critical to process any services you might have requested from us or for business, professional or technical support.</p>
+      <p>We work hard to protect You from unauthorized access to or unauthorized alteration, disclosure, or destruction of information we hold. Pursuant to the same, we:</p>
+      <ul>
+        <li>Encrypt our services using secure server software, which is the industry standard and among the best software available today for secure transactions.</li>
+        <li>Review our information collection, storage and processing practices, including physical security measures to guard against unauthorized access to systems.</li>
+      </ul>
+      <p>Company does not rent, sell or share Your Personal Information with third parties or non-affiliated companies except to provide the services You have requested. We limit the disclosure of Personal Information to Our employees, independent contractors including vendors, affiliates, consultants, business associates, service providers and distributors of Our services, on a “need-to-know” basis, and only if the disclosure will enable that entity to provide Us with business, professional, or technical support or fulfill Your request.</p><br>
+
+      <h3>4. Information We Share</h3>
+      <p><strong>Summary:</strong> We will only disclose your personal information if required by the authorities, or to protect and improve our operations or with certain affiliates who provide services like data security, customer service and more.</p>
+      <p>Company may disclose any information provided by You on the Website as may be deemed to be necessary or appropriate:</p>
+      <ul>
+        <li>under applicable law, including laws outside Your country of residence;</li>
+        <li>to comply with legal process;</li>
+        <li>to respond to requests from public and government authorities including public and government authorities outside Your country of residence;</li>
+        <li>to enforce Our Terms of Use;</li>
+        <li>to protect Our operations or those of any of Our affiliates;</li>
+        <li>to protect Our rights, privacy, safety or property, and/or that of Our affiliates, You or others;</li>
+        <li>to allow Us to pursue available remedies or limit the damages that We may sustain.</li>
+      </ul>
+      <p>We may share Personal Information with other corporate entities and affiliates to:</p>
+      <ul>
+        <li>Help detect and prevent identity theft, fund and other potentially illegal acts.</li>
+        <li>Correlate related or multiple accounts to prevent abuse of Our services;</li>
+        <li>Facilitate joint or co-branded services that You request for where such services are provided by more than one corporate entity.</li>
+      </ul>
+      <p>We may disclose Personal Information to:</p>
+      <ul>
+        <li>Third parties in good faith, and such disclosure shall be reasonably necessary to enforce Our Terms of Use or the Privacy Policy, or to respond to claims of violation of third-party rights through advertisements, postings, or other content.</li>
+        <li>Company’s third-party providers who provide goods/services such as contact information verification, payment processing, order fulfillment, customer service, website hosting, data analysis, infrastructure provision, IT services, auditing services and other similar services to enable them to provide the relevant services.</li>
+      </ul><br>
+
+      <h3>5. Retention</h3>
+      <p><strong>Summary:</strong> Personal information will be retained for as long as necessary for the Company's purposes identified in the Privacy Policy/contracts/agreements at the time of collection or as subsequently authorized by the data subjects.</p>
+      <p>Personal information will be erased if their storage violates any of the data protection rules. Additionally, RIVOT has the right to retain the personnel information for legal and regulatory purposes and as per applicable data privacy laws.</p><br>
+
+      <h3>6. Your Rights</h3>
+      <p><strong>Summary:</strong> You have the following rights, and you can request for it by filling the following <a href="#">DSR Form</a>.</p>
+      <p>You have the right to:</p>
+      <ul>
+        <li>request what information we are holding of yours, how and for what purpose we are processing it.</li>
+        <li>request for an update of data we are holding that is inaccurate and incomplete.</li>
+        <li>request to delete the data we are holding of yours, but only in specific cases were provided by law.</li>
+        <li>object at any time to the processing of your personal data for direct marketing purposes.</li>
+      </ul><br>
+
+      <h3>7. Change in Privacy Policy</h3>
+      <p><strong>Summary:</strong> We will give you a heads up if we make significant changes to the Privacy policy but in case you use the Website despite not reading it, we will assume you have consented to the changes.</p>
+      <p>The User acknowledges that becoming a User of the Website and its services signifies their assent to this Privacy Policy. Company may update this Privacy Policy at any time, with or without advance notice. In the event there are significant changes in the way Company treats User's personally identifiable information, Company will display a notice on the Website or send Users an email, as provided for above. Unless stated otherwise, Company’s current Privacy Policy applies to all information that Company has about Users and their accounts. Notwithstanding the above, Company shall not be required to notify the Users of any changes made to the Privacy Policy. If a User uses the services after notice of changes has been sent to such User or published on the Website, such User hereby provides his/her/its consent to the changed practices.</p><br>
+
+      <h3>8. Advertisements</h3>
+      <p><strong>Summary:</strong> We are not responsible for third party advertisements and the data they collect of you.</p>
+      <p>Some of the advertisements You see on the Website are selected and delivered by third parties, such as ad networks, advertising agencies, advertisers, and audience segment providers. These third parties may collect information about You and Your online activities, either on the Website or on other websites, through cookies, web beacons, and other technologies in an effort to understand Your interests and deliver to You advertisements that are tailored to Your interests.</p>
+      <p>Please remember that the Company does not have access to, or control over, the information these third parties may collect. The information practices of these third parties are not covered by this Privacy Policy.</p><br>
+
+      <h3>9. Choice/Opt-Out</h3>
+      <p><strong>Summary:</strong> You are free to unsubscribe from any notifications at any point.</p>
+      <p>Company provides all its Users the right to opt-out of receiving non-essential (promotional, marketing-related) communications from Us or on behalf of Our partners after setting up an Account.</p>
+      <p>If You want to remove Your contact information from all Our lists and newsletters, please write to us at <a href="mailto:unsubscribe@rivotmotors.com">unsubscribe@rivotmotors.com</a> with “unsubscribe” as the subject.</p><br>
+
+      <h3>10. Questions</h3>
+      <p><strong>Summary:</strong> Any questions?</p>
+      <p>In case of any complaint or grievance, the User may contact the following:</p>
+      <p>Grievance Officer: C/o Mrs. Smita Koujalgi, RIVOT MOTORS India Private Ltd. Fifth Floor, Oneness, 1st Cross, 1st Main, Sadashivnagar, Belagavi, Karnataka - 590001</p>
+      <p>Time: 10AM – 5PM</p>
+      <p>Email: <a href="mailto:legal@rivotmotors.com">legal@rivotmotors.com</a></p>
+      <p>The Grievance Officer shall expeditiously redress the grievances, but within reasonable time as may be provided in applicable laws.</p><br>
+
+      <h3>11. Disclaimer</h3>
+      <p><strong>Summary:</strong> Don’t accept the policy if you disagree with how we will use your personal data.</p>
+      <p>Company shall not be liable for any loss or damage sustained by reason of any disclosure (inadvertent or otherwise) of any information concerning the User's account and/or their verification process and particulars nor for any error, omission or inaccuracy with respect to any information so disclosed and used whether or not in pursuance of a legal process or otherwise. The terms in this agreement may be changed by the Company at any time. Company is free to offer its services to any client/prospective client without restriction.</p>
+      <p>By registering or by using this Website, you explicitly accept, without limitation or qualification, the collection, use and transfer of the Personal Information provided by you in the manner described in this Privacy Policy.</p>
+      <p>Please read this Privacy Policy carefully as it affects your rights and liabilities under law. If you do not accept the Privacy Policy stated herein or disagree with the way we collect and process personal information collected on the Website, please do not use it.</p>
+
+      <h3>12. Miscellaneous</h3>
+      <p>The laws of India shall govern this privacy statement, and the courts of Bangalore, India shall have exclusive authority to hear and determine any issues relating thereto. Any applicable data protection legislation shall govern this Privacy Policy.</p>
+    </div>
+  </div>
+
+  <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      const termsContent = document.querySelector('.terms-content');
+
+      // Trigger animation immediately on mobile
+      if (window.innerWidth <= 768) {
+        termsContent.classList.add('visible');
+      } else {
+        // Use IntersectionObserver for desktop
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        if (termsContent) {
+          observer.observe(termsContent);
+        }
+      }
+
+      function showStoryOverlay() {
+        console.log("Story overlay requested");
+      }
+
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          window.location.href = $(this).attr('href');
+        }
+      });
+
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

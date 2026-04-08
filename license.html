@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>License | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000;
+      color: white;
+      min-height: 100vh;
+    }
+    p {
+      color: #FFFFFF;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .main-menu ul li a[href="license.html"] {
+      color: #FF9010;
+    }
+    .terms-content {
+      max-width: 1450px;
+      margin: 0 auto;
+      padding: 150px 20px 100px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 1.5s ease-out;
+    }
+    .terms-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .terms-section {
+      margin-bottom: 80px;
+    }
+    .section-title {
+      font-size: 40px;
+      font-weight: 500;
+      color: #CE6723;
+      margin-bottom: 65px;
+      text-align: center;
+    }
+    .terms-section h3 {
+      font-size: 26px;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+    .terms-section p, .terms-section li {
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .terms-section ul {
+      padding-left: 20px;
+    }
+    .terms-section li {
+      list-style-type: disc;
+    }
+
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+
+      .menu-toggle2.open::before {
+        content: '✕';
+      }
+
+      .menu-toggle2:not(.open)::before {
+        content: '☰';
+      }
+
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        width: 90%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-menu2 li {
+        position: relative;
+      }
+
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .submenu2 li {
+        margin: 0;
+      }
+
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+
+      .has-submenu2 {
+        position: relative;
+      }
+
+      .has-submenu2 > a {
+        padding-right: 40px;
+        display: block;
+      }
+
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+        line-height: 1;
+      }
+
+      .submenu-toggle::before {
+        content: '+';
+      }
+
+      .submenu-toggle.active::before {
+        content: '−';
+      }
+
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+    
+      .nav-menu2 li:last-child ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .content-box {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      .content-box {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      height: 330px;
+      position: relative;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+    @media (max-width: 991px) {
+      .section-title { font-size: 32px; }
+      .terms-section h3 { font-size: 22px; }
+      .terms-section p, .terms-section li { font-size: 14px; }
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 28px; }
+      .terms-section h3 { font-size: 20px; }
+      .footer-content { flex-direction: column; gap: 30px; }
+      .footer-column { min-width: 100%; }
+      .footer-text { max-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+<!-- Header -->
+  <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  <!-- License Content -->
+  <div class="terms-content">
+    <div class="terms-section">
+      <h2 class="section-title">License Agreement</h2>
+      <p>RIVOT MOTORS India Private Limited, a company incorporated under the Companies Act, 1956 and having its registered address at Fifth Floor, Oneness, 1st Cross, 1st Main, Sadashivnagar, Belagavi, Karnataka - 590001 (hereinafter referred to as “RIVOT®” or “We” or “Our” or “Us”) provides this License Agreement (“Agreement”) governing the use of RIVOT branded electric two-wheeled vehicles (“Vehicle”) and associated software, services, and documentation (collectively, the “Product”) to customers (hereinafter referred to as “Customer” or “You” or “Your”).</p>
+      <p>Please read and understand this Agreement carefully. By using the Product, You agree to be bound by the terms of this Agreement. If You do not agree with these terms, do not use the Product. Your use of the Product constitutes acceptance of this Agreement and any applicable policies published by RIVOT on its website (from time to time).</p><br>
+
+      <h3>1. Grant of License</h3>
+      <p>Subject to the terms of this Agreement, RIVOT grants You a limited, non-exclusive, non-transferable, revocable license to use the Product solely for personal, non-commercial purposes in accordance with its intended functionality and applicable laws.</p>
+      <ul>
+        <li>You may not modify, reverse engineer, decompile, or disassemble any part of the Product, including its software or hardware components, except as expressly permitted by applicable law.</li>
+        <li>The license does not grant You ownership of the Product or any intellectual property rights associated with it. All rights, title, and interest in the Product remain with RIVOT.</li>
+        <li>You may not sublicense, rent, lease, or otherwise distribute the Product or any portion thereof to third parties without prior written consent from RIVOT.</li>
+        <li>Any unauthorized use of the Product will terminate the license granted herein and may result in legal action by RIVOT.</li>
+      </ul><br>
+
+      <h3>2. Restrictions on Use</h3>
+      <ul>
+        <li>You agree to use the Product only for lawful purposes and in compliance with all applicable local, national, and international laws, rules, and regulations.</li>
+        <li>You shall not use the Product in any manner that could damage, disable, overburden, or impair RIVOT’s systems or networks, or interfere with any other party’s use of the Product.</li>
+        <li>You are prohibited from using the Product in a way that infringes upon the intellectual property rights of RIVOT or any third party, including but not limited to trademarks, patents, or copyrights.</li>
+        <li>Any modifications or alterations to the Vehicle’s hardware or software without RIVOT’s prior approval may void warranties and terminate this license.</li>
+      </ul><br>
+
+      <h3>3. Updates and Maintenance</h3>
+      <p>RIVOT may, at its discretion, provide updates, patches, or upgrades to the Product’s software or hardware to improve functionality, security, or performance. Such updates are subject to the terms of this Agreement unless otherwise specified.</p>
+      <ul>
+        <li>You agree to install any mandatory updates provided by RIVOT to ensure the Product’s safe and proper operation.</li>
+        <li>RIVOT is not obligated to provide updates or maintenance unless explicitly stated in a separate service agreement or warranty.</li>
+        <li>Failure to install updates may result in reduced functionality or termination of support services for the Product.</li>
+      </ul><br>
+
+      <h3>4. Termination</h3>
+      <p>This Agreement is effective until terminated. RIVOT may terminate this Agreement immediately if You breach any of its terms. Upon termination, You must cease all use of the Product and destroy any copies of associated software in Your possession.</p>
+      <p>RIVOT reserves the right to suspend or discontinue access to any software or services associated with the Product at its sole discretion, with or without notice.</p>
+    </div>
+  </div>
+
+  <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+
+  <!-- Scripts -->
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      const termsContent = document.querySelector('.terms-content');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      if (termsContent) {
+        observer.observe(termsContent);
+      }
+
+      function showStoryOverlay() {
+        console.log("Story overlay requested");
+      }
+
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          window.location.href = $(this).attr('href');
+        }
+      });
+
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

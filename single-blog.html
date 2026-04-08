@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Blog Post | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #00000000;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .main-menu ul li a[href="blog.html"] {
+      color: #FF9010;
+    }
+
+    /* Single Blog Styles */
+    .single-blog-container {
+      margin-top: 100px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .blog-title {
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 700;
+      color: #fd7e14;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      color: #ccc;
+      font-size: 16px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .blog-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .blog-featured-image {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+
+    .blog-excerpt {
+      font-size: 20px;
+      color: #CE6723;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .blog-content {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #FFFFFF;
+    }
+
+    .blog-content h3 {
+      color: #e1e1e1;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .blog-content p {
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .blog-content ul {
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    .blog-content li {
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+
+    .back-to-blog {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid #333;
+    }
+
+    .back-btn {
+      background: linear-gradient(45deg, #CE6723, #CE6723);
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 1px;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      color: white;
+      text-decoration: none;
+    }
+
+    .loading-container {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .error-container {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .error-container h2 {
+      color: #CE6723;
+      margin-bottom: 20px;
+    }
+
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+
+      .menu-toggle2.open::before {
+        content: '✕';
+      }
+
+      .menu-toggle2:not(.open)::before {
+        content: '☰';
+      }
+
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        width: 90%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-menu2 li {
+        position: relative;
+      }
+
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .submenu2 li {
+        margin: 0;
+      }
+
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+
+      .has-submenu2 {
+        position: relative;
+      }
+
+      .has-submenu2 > a {
+        padding-right: 40px;
+        display: block;
+      }
+
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+        line-height: 1;
+      }
+
+      .submenu-toggle::before {
+        content: '+';
+      }
+
+      .submenu-toggle.active::before {
+        content: '−';
+      }
+
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+
+      .nav-menu2 li:last-child ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+
+      .blog-meta {
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .blog-content {
+        font-size: 16px;
+      }
+
+      .blog-content h3 {
+        font-size: 24px;
+      }
+    }
+
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      height: 330px;
+      position: relative;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .footer-column {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-menu">
+    <div id="header-sticky" class="main-menu-area">
+      <div class="container-fluid">
+        <div class="topheader">
+          <div class="row">
+            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+              <div class="logo">
+                <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+              </div>
+            </div>
+            <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+              <div class="main-menu">
+                <nav>
+                  <ul class="navbar-collapse">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li><a href="products.html">Products</a>
+                      <ul class="submenu">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Buy</a>
+                      <ul class="submenu">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="community.html">Community</a>
+                      <ul class="submenu">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="#">Reach us</a>
+                      <ul class="submenu">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="col-12">
+              <nav class="navbar2">
+                <div class="menu-toggle2"></div>
+                <ul class="nav-menu2">
+                  <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                  <li class="has-submenu2">
+                    <a href="products.html">Products</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="classic.html">Classic</a></li>
+                      <li><a href="pro.html">Pro</a></li>
+                      <li><a href="max.html">Max</a></li>
+                      <li><a href="sports.html">Sports</a></li>
+                      <li><a href="offlander.html">Offlander</a></li>
+                      <li><a href="compare.html">Compare Models</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu2">
+                    <a href="#">Buy</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="testride.html">Test Ride</a></li>
+                      <li><a href="booknow.html">Book Now</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu2">
+                    <a href="community.html">Community</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="blog.html">Blog</a></li>
+                      <li><a href="forum.html">Forum</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="merchandise.html">Merchandise</a></li>
+                  <li><a href="careers.html">Careers</a></li>
+                  <li class="has-submenu2">
+                    <a href="#">Reach us</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="connect.html">Connect</a></li>
+                      <li><a href="support.html">Support</a></li>
+                      <li><a href="where.html">Where</a></li>
+                      <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div class="loading-container" id="loadingContainer">
+    <i class="fas fa-spinner fa-spin fa-3x text-secondary"></i>
+    <p class="text-secondary mt-3">Loading blog post...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-container" id="errorContainer" style="display: none;">
+    <h2>Blog Post Not Found</h2>
+    <p class="text-secondary">The blog post you're looking for doesn't exist or has been removed.</p>
+    <a href="blog.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+      Back to Blog
+    </a>
+  </div>
+
+  <!-- Blog Content -->
+  <div class="single-blog-container" id="blogContainer" style="display: none;">
+    <article>
+      <div class="blog-header">
+        <h1 class="blog-title" id="blogTitle"></h1>
+        <div class="blog-meta" id="blogMeta">
+          <!-- Meta information will be inserted here -->
+        </div>
+      </div>
+
+      <img id="blogImage" class="blog-featured-image" alt="" />
+
+      <div class="blog-excerpt" id="blogExcerpt"></div>
+
+      <div class="blog-content" id="blogContent">
+        <!-- Blog content will be inserted here -->
+      </div>
+    </article>
+
+    <div class="back-to-blog">
+      <a href="blog.html" class="back-btn">
+        Back to Blog
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h5 class="footer-heading">Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="refundpolicy.html">Refund Policy</a></li>
+          <li><a href="subscriptions.html">Subscriptions</a></li>
+          <li><a href="license.html">License</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h5 class="footer-heading">Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+          <li><a href="privacypolicy.html">Privacy Policy</a></li>
+          <li><a href="cancellation.html">Cancellation/Refund</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+      </div>
+      <div class="footer-column">
+        <h5 class="footer-heading">Social</h5>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+  <link rel="stylesheet" href="css/meanmenu.css" />
+
+  <script>
+    $(document).ready(function() {
+      // Mobile menu functionality
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          window.location.href = $(this).attr('href');
+        }
+      });
+
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+
+      function showStoryOverlay() {
+        document.getElementById('storyOverlayFull').style.display = 'block';
+        document.getElementById('storyFrame').src = 'story.html';
+        document.getElementById('storyCloseBtn').style.opacity = '1';
+        document.getElementById('storyCloseBtn').style.pointerEvents = 'auto';
+      }
+
+      // Load blog post
+      function loadBlogPost() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const blogId = urlParams.get('id');
+
+        if (!blogId) {
+          showError();
+          return;
+        }
+
+        fetch(`/api/blogs.php?id=${blogId}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              displayBlogPost(data.data);
+            } else {
+              showError();
+            }
+          })
+          .catch(error => {
+            console.error('Error loading blog post:', error);
+            showError();
+          })
+          .finally(() => {
+            hideLoading();
+          });
+      }
+
+      function displayBlogPost(post) {
+        document.getElementById('blogTitle').textContent = post.title;
+        document.getElementById('blogExcerpt').textContent = post.excerpt;
+        document.getElementById('blogContent').innerHTML = post.content;
+
+        const blogImage = document.getElementById('blogImage');
+        blogImage.src = post.image_url;
+        blogImage.alt = post.title;
+
+        const blogMeta = document.getElementById('blogMeta');
+        blogMeta.innerHTML = `
+          <span>
+            <i class="fas fa-user"></i>
+            ${post.author}
+          </span>
+          <span>
+            <i class="fas fa-calendar"></i>
+            ${post.created_at}
+          </span>
+        `;
+
+        // Update page title
+        document.title = `${post.title} | RIVOT`;
+
+        document.getElementById('blogContainer').style.display = 'block';
+      }
+
+      function showError() {
+        document.getElementById('errorContainer').style.display = 'block';
+      }
+
+      function hideLoading() {
+        document.getElementById('loadingContainer').style.display = 'none';
+      }
+
+      // Load blog post on page load
+      loadBlogPost();
+    });
+  </script>
+
+  <!-- Story Overlay -->
+  <div id="storyOverlayFull" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.95); z-index: 4000;">
+    <iframe id="storyFrame" src="story.html" style="width: 100%; height: 100%; border: none;"></iframe>
+    <button id="storyCloseBtn" style="position: absolute; top: 20px; right: 30px; font-size: 32px; color: white; background: none; border: none; cursor: pointer; z-index: 10001; pointer-events: auto;">×</button>
+  </div>
+</body>
+</html>

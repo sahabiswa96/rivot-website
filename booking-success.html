@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Successful - RIVOT Motors</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #000;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .success-container {
+            text-align: center;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .success-icon i {
+            display: inline-block;
+            background: linear-gradient(45deg, #4CAF50, #049104);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
+        }
+
+        h1 {
+            color: #CE6723;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .message {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .payment-details {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .payment-details h3 {
+            color: #CE6723;
+            margin-bottom: 15px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #999;
+        }
+
+        .detail-value {
+            color: white;
+            font-weight: 500;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 10px;
+            background: #CE6723;
+            color: white;
+            text-decoration: none;
+            border-radius: 1px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e07a3a;
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid #CE6723;
+        }
+
+        .btn.secondary:hover {
+            background: #CE6723;
+        }
+
+        .loading {
+            color: #CE6723;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                margin: 5px 0;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Booking Successful!</h1>
+        <p class="message">
+            Thank you for booking your RIVOT nx100! Your payment has been processed successfully
+            and your booking is confirmed. You will receive a confirmation email shortly with all the details.
+        </p>
+
+        <div class="payment-details">
+            <h3>Booking Details</h3>
+            <div class="detail-row">
+                <span class="detail-label">Payment ID:</span>
+                <span class="detail-value loading" id="paymentId">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Order ID:</span>
+                <span class="detail-value loading" id="orderId">Loading...</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Amount Paid:</span>
+                <span class="detail-value" id="amount">₹499</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status:</span>
+                <span class="detail-value" id="status" style="color: #4CAF50;">Confirmed</span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="index.html" class="btn">Back to Home</a>
+            <a href="products.html" class="btn secondary">View Products</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Get order_id from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order_id');
+
+            console.log('=== BOOKING SUCCESS PAGE DEBUG ===');
+            console.log('Order ID from URL:', orderId);
+            console.log('Full URL:', window.location.href);
+
+            if (!orderId) {
+                console.error('ERROR: No order ID in URL');
+                document.getElementById('paymentId').textContent = 'Error: No order ID';
+                document.getElementById('orderId').textContent = 'Error: No order ID';
+                alert('No order ID provided in URL. Please contact support.');
+                return;
+            }
+
+            // Function to fetch booking details with retry
+            function fetchBookingDetails(retryCount) {
+                retryCount = retryCount || 0;
+
+                // Construct API URL
+                const apiUrl = '/get-booking-details.php?order_id=' + encodeURIComponent(orderId);
+                console.log('Fetching from:', apiUrl, '(Attempt ' + (retryCount + 1) + ')');
+
+                // Fetch booking details
+                fetch(apiUrl)
+                .then(function(response) {
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+
+                    if (!response.ok) {
+                        throw new Error('HTTP error! status: ' + response.status);
+                    }
+
+                    return response.text();
+                })
+                .then(function(text) {
+                    console.log('Raw response text:', text);
+
+                    // Try to parse JSON
+                    let data;
+                    try {
+                        data = JSON.parse(text);
+                    } catch (e) {
+                        console.error('JSON parse error:', e);
+                        throw new Error('Invalid JSON response: ' + text.substring(0, 200));
+                    }
+
+                    console.log('Parsed data:', data);
+
+                    if (!data.success) {
+                        throw new Error(data.message || 'Booking not found');
+                    }
+
+                    const booking = data.booking;
+                    console.log('Booking data:', booking);
+
+                    // AGGRESSIVELY UPDATE ALL FIELDS
+                    const paymentIdEl = document.getElementById('paymentId');
+                    const orderIdEl = document.getElementById('orderId');
+                    const amountEl = document.getElementById('amount');
+                    const statusEl = document.getElementById('status');
+
+                    if (paymentIdEl) {
+                        paymentIdEl.textContent = booking.payment_id || 'N/A';
+                        paymentIdEl.className = 'detail-value';
+                        console.log('SET Payment ID to:', booking.payment_id);
+                    }
+
+                    if (orderIdEl) {
+                        orderIdEl.textContent = booking.order_id || 'N/A';
+                        orderIdEl.className = 'detail-value';
+                        console.log('SET Order ID to:', booking.order_id);
+                    }
+
+                    if (amountEl && booking.amount) {
+                        amountEl.textContent = '₹' + booking.amount;
+                        console.log('SET Amount to:', booking.amount);
+                    }
+
+                    if (statusEl && booking.status) {
+                        statusEl.textContent = booking.status;
+                        console.log('SET Status to:', booking.status);
+                    }
+
+                    // Add additional details
+                    const detailsContainer = document.querySelector('.payment-details');
+
+                    if (booking.first_name || booking.last_name) {
+                        const row = document.createElement('div');
+                        row.className = 'detail-row';
+                        row.innerHTML = '<span class="detail-label">Customer Name:</span><span class="detail-value">' +
+                            (booking.first_name || '') + ' ' + (booking.last_name || '') + '</span>';
+                        detailsContainer.appendChild(row);
+                    }
+
+                    if (booking.model) {
+                        const row = document.createElement('div');
+                        row.className = 'detail-row';
+                        row.innerHTML = '<span class="detail-label">Model:</span><span class="detail-value">' +
+                            booking.model + '</span>';
+                        detailsContainer.appendChild(row);
+                    }
+
+                    if (booking.color) {
+                        const row = document.createElement('div');
+                        row.className = 'detail-row';
+                        row.innerHTML = '<span class="detail-label">Color:</span><span class="detail-value">' +
+                            booking.color + '</span>';
+                        detailsContainer.appendChild(row);
+                    }
+
+                    if (booking.email) {
+                        const row = document.createElement('div');
+                        row.className = 'detail-row';
+                        row.innerHTML = '<span class="detail-label">Email:</span><span class="detail-value">' +
+                            booking.email + '</span>';
+                        detailsContainer.appendChild(row);
+                    }
+
+                    if (booking.phone) {
+                        const row = document.createElement('div');
+                        row.className = 'detail-row';
+                        row.innerHTML = '<span class="detail-label">Phone:</span><span class="detail-value">' +
+                            booking.phone + '</span>';
+                        detailsContainer.appendChild(row);
+                    }
+
+                    if (booking.address || booking.city || booking.pincode) {
+                        const addressParts = [];
+                        if (booking.address) addressParts.push(booking.address);
+                        if (booking.city) addressParts.push(booking.city);
+                        if (booking.pincode) addressParts.push(booking.pincode);
+
+                        const row = document.createElement('div');
+                        row.className = 'detail-row';
+                        row.innerHTML = '<span class="detail-label">Address:</span><span class="detail-value">' +
+                            addressParts.join(', ') + '</span>';
+                        detailsContainer.appendChild(row);
+                    }
+
+                    if (booking.created_at) {
+                        const date = new Date(booking.created_at);
+                        const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+
+                        const row = document.createElement('div');
+                        row.className = 'detail-row';
+                        row.innerHTML = '<span class="detail-label">Booking Date:</span><span class="detail-value">' +
+                            formattedDate + '</span>';
+                        detailsContainer.appendChild(row);
+                    }
+
+                    console.log('=== UPDATE COMPLETE ===');
+                })
+                .catch(function(error) {
+                    console.error('FETCH ERROR (Attempt ' + (retryCount + 1) + '):', error);
+
+                    // Retry up to 3 times with increasing delays
+                    if (retryCount < 3) {
+                        const delay = (retryCount + 1) * 1000; // 1s, 2s, 3s
+                        console.log('Retrying in ' + delay + 'ms...');
+                        setTimeout(function() {
+                            fetchBookingDetails(retryCount + 1);
+                        }, delay);
+                    } else {
+                        // After 3 retries, show error
+                        document.getElementById('paymentId').textContent = 'Error loading';
+                        document.getElementById('orderId').textContent = 'Error loading';
+                        alert('Error loading booking details after 3 attempts: ' + error.message + '\n\nPlease refresh the page or contact support.');
+                    }
+                });
+            }
+
+            // Wait 500ms before first fetch to ensure page is fully loaded
+            setTimeout(function() {
+                fetchBookingDetails(0);
+            }, 500);
+        })();
+    </script>
+</body>
+</html>

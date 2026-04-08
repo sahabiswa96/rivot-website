@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Support | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    p {
+      color: #FFFFFF;
+    }
+    .support-container {
+      padding-top: 80px;
+      flex: 1;
+      background: #000; /* Changed from gradient to solid black */
+      position: relative;
+      overflow: hidden;
+    }
+    .support-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(206, 103, 35, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 30% 70%, rgba(206, 103, 35, 0.08) 0%, transparent 50%);
+      z-index: 1;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-section {
+      text-align: center;
+      padding: 4rem 0;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    .hero-title {
+      font-size: 56px;
+      font-weight: 300;
+      margin-bottom: 20px;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+    }
+    .hero-title .highlight {
+      color: #CE6723;
+      font-weight: 500;
+    }
+    .hero-subtitle {
+      font-size: 20px;
+      color: #ccc;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .support-card {
+      background: r#000;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+    .support-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #CE6723, #e07a3a);
+    }
+    .support-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(206, 103, 35, 0.2);
+      border-color: #CE6723;
+    }
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(206, 103, 35, 0.1);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .card-icon i {
+      color: #CE6723;
+      font-size: 30px;
+    }
+    .card-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #FFFFFF;
+    }
+    .card-description {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .card-contact {
+      font-size: 18px;
+      font-weight: 600;
+      color: #CE6723;
+      margin-bottom: 0.5rem;
+      border-top: 1px solid #333;
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+    .card-contact a {
+      color: #CE6723;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .card-contact a:hover {
+      color: #e07a3a;
+      text-decoration: underline;
+    }
+    .card-hours {
+      font-size: 14px;
+      color: #aaa;
+    }
+    .form-section {
+      background: rgba(30, 30, 30, 0.7);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 3rem;
+      margin-bottom: 4rem;
+      backdrop-filter: blur(10px);
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    .section-title .highlight {
+      color: #CE6723;
+      font-weight: 500;
+    }
+    .section-subtitle {
+      font-size: 18px;
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .form-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.7rem;
+      color: #fff;
+      font-weight: 500;
+      font-size: 15px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #444;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #CE6723;
+      box-shadow: 0 0 5px rgba(206, 103, 35, 0.5);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-group select {
+      background: rgba(255, 255, 255, 0.1) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat;
+      background-position: right 15px center;
+      background-size: 20px;
+      appearance: none;
+      padding-right: 40px;
+    }
+    .form-group select option {
+      background: #000;
+      color: white;
+    }
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, #CE6723 0%, #e07a3a 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 2rem auto 0;
+      box-shadow: 0 5px 15px rgba(206, 103, 35, 0.3);
+    }
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(206, 103, 35, 0.4);
+    }
+    .success-message {
+      display: none;
+      background: linear-gradient(135deg, rgba(46, 204, 113, 0.2) 0%, transparent 100%);
+      border: 1px solid #2ecc71;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-bottom: 2rem;
+      color: #2ecc71;
+      font-weight: 500;
+      text-align: center;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .main-menu ul li a[href="support.html"] {
+      color: #FF9010;
+    }
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+    @media screen and (max-width: 768px) {
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 42px;
+      }
+      .hero-subtitle {
+        font-size: 18px;
+      }
+      .section-title {
+        font-size: 30px;
+      }
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+      .menu-toggle2.open::before {
+        content: '✕';
+      }
+      .menu-toggle2:not(.open)::before {
+        content: '☰';
+      }
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        width: 90%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+      .nav-menu2 li {
+        position: relative;
+      }
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .submenu2 li {
+        margin: 0;
+      }
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+      .has-submenu2 {
+        position: relative;
+      }
+      .has-submenu2 > a {
+        padding-right: 40px;
+        display: block;
+      }
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+        line-height: 1;
+      }
+      .submenu-toggle::before {
+        content: '+';
+      }
+      .submenu-toggle.active::before {
+        content: '−';
+      }
+      .main-menu {
+        display: none;
+      }
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+      .nav-menu2 li:last-child ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+    }
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+      padding-bottom: 40px;
+    }
+    .footer-content .footer-column:nth-child(2),
+    .footer-content .footer-column:nth-child(3) {
+      margin-left: 10px;
+    }
+    .footer-content .footer-column:first-child,
+    .footer-content .footer-column:last-child {
+      margin-right: 30px;
+    }
+    .footer-content .footer-column:nth-child(3) {
+      margin-right: 40px;
+    }
+    #storyCloseBtn {
+      display: none !important;
+    }
+
+    .header-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+
+  /* Ensure header stays visible when scrolling */
+  #header-sticky {
+    position: relative;
+    transform: translateY(0) !important;
+  }
+
+  /* Override any potential header hiding behavior */
+  .header-menu.hidden {
+    transform: translateY(0) !important;
+  }
+
+  /* Fix for autofill styling on input fields */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus,
+.form-group input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Fix for autofill styling on select dropdowns */
+.form-group select:-webkit-autofill,
+.form-group select:-webkit-autofill:hover,
+.form-group select:-webkit-autofill:focus,
+.form-group select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 15px center !important;
+    background-size: 20px !important;
+}
+
+/* Fix for autofill styling on textarea */
+.form-group textarea:-webkit-autofill,
+.form-group textarea:-webkit-autofill:hover,
+.form-group textarea:-webkit-autofill:focus,
+.form-group textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Additional fix for select options to maintain dark theme */
+.form-group select option {
+    background-color: #000 !important;
+    color: white !important;
+}
+
+/* Ensure consistent styling for all form elements */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+  </style>
+</head>
+<body>
+  <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+  <div class="support-container">
+    <div class="container">
+      <div class="hero-section">
+        <h1 class="hero-title">Customer <span class="highlight">Support</span></h1>
+        <p class="hero-subtitle">Dedicated to exceptional service for your RIVOT scooter. Reach out anytime we are here to ensure your ride remains effortless and exceptional.</p>
+      </div>
+      
+      <div class="support-grid">
+        <div class="support-card">
+          <div class="card-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3 class="card-title">Helpline Number</h3>
+          <p class="card-description">Our dedicated customer support team is available 24/7 to assist you with any inquiries or technical support.</p>
+          <div class="card-contact">
+            <a href="tel:8988984646 ">+91 898-898-4646 </a>
+          </div>
+          <div class="card-hours">Available 24/7</div>
+        </div>
+        
+        <div class="support-card">
+          <div class="card-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3 class="card-title">WhatsApp Support</h3>
+          <p class="card-description">Connect with us instantly on WhatsApp for quick responses to your questions and support needs.</p>
+          <div class="card-contact">
+            <a href="https://wa.me/918988984646" target="_blank">+91 898-898-4646</a>
+          </div>
+          <div class="card-hours">Mon-Sat: 9AM-8PM</div>
+        </div>
+        
+        <div class="support-card">
+          <div class="card-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3 class="card-title">Email Support</h3>
+          <p class="card-description">Send us a detailed email about your inquiry and our team will respond within 24 hours with a solution.</p>
+          <div class="card-contact">
+            <a href="mailto:support@rivotmotors.com">support@rivotmotors.com</a>
+          </div>
+          <div class="card-hours">Response within 24 hours</div>
+        </div>
+        
+        <div class="support-card">
+          <div class="card-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3 class="card-title">Visit Our Showroom</h3>
+          <p class="card-description">Experience our electric scooters firsthand at our flagship showroom and service center in Bengaluru.</p>
+          <div class="card-contact">PLANT1, Plot No. 1340-1341 <br> KHB Layout, Auto Nagar</div>
+          <div class="card-hours">Belagavi, Karnataka - 590015</div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h2 class="section-title">Send us a <span class="highlight">Message</span></h2>
+        <p class="section-subtitle">Fill out the form below and our support team will get back to you as soon as possible.</p>
+        
+        <div class="form-container">
+          <div class="success-message" id="formSuccess">
+            Thank you for contacting RIVOT Support! We'll get back to you within 24 hours.
+          </div>
+          
+          <form id="supportForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject *</label>
+                <select id="subject" name="subject" required>
+                  <option value="">Select a topic</option>
+                  <option value="technical">Technical Support</option>
+                  <option value="billing">Billing & Payments</option>
+                  <option value="warranty">Warranty Claims</option>
+                  <option value="service">Service Center</option>
+                  <option value="general">General Inquiry</option>
+                  <option value="feedback">Feedback</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Please describe your issue or question in detail..." required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+      </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+  
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/meanmenu.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Toggle mobile menu
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+      
+      // Handle navigation on menu item click for mobile
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          window.location.href = $(this).attr('href');
+        }
+      });
+      
+      // Toggle submenu and icon when clicking the "+" or "−" icon
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+        
+        // Close all other submenus
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+        
+        // Toggle current submenu
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+      
+      // Close menu when clicking outside
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+      
+      // Handle form submission
+      $('#supportForm').submit(function(e) {
+        e.preventDefault();
+        console.log('Support form submitted');
+
+        const submitBtn = $(this).find('button[type="submit"]');
+        const originalText = submitBtn.text();
+        console.log('Button text:', originalText);
+        submitBtn.text('Sending...').prop('disabled', true);
+
+        const formData = new FormData(this);
+        formData.append('formType', 'support');
+        console.log('Sending to /send_contact_email.php with formType: support');
+
+        fetch('/send_contact_email.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          console.log('Response status:', response.status);
+          return response.json();
+        })
+        .then(data => {
+          console.log('Response data:', data);
+          submitBtn.text(originalText).prop('disabled', false);
+
+          if (data.success) {
+            console.log('Success! Showing success message');
+            // Show success message
+            $('#formSuccess').fadeIn();
+
+            // Reset form
+            $('#supportForm')[0].reset();
+
+            // Scroll to success message
+            $('html, body').animate({
+              scrollTop: $('#formSuccess').offset().top - 100
+            }, 500);
+
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+              $('#formSuccess').fadeOut();
+            }, 5000);
+          } else {
+            alert('Failed to send message: ' + (data.message || 'Please try again later.'));
+          }
+        })
+        .catch(error => {
+          submitBtn.text(originalText).prop('disabled', false);
+          console.error('Error:', error);
+          alert('Failed to send message. Please try again later.');
+        });
+      });
+    });
+    
+    // Story overlay function
+    function showStoryOverlay() {
+      const overlay = document.getElementById('storyOverlayFull') || document.createElement('div');
+      if (!document.getElementById('storyOverlayFull')) {
+        overlay.id = 'storyOverlayFull';
+        overlay.style.cssText = 'display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.95); z-index: 4000;';
+        overlay.innerHTML = `
+          <iframe id="storyFrame" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+          <button id="storyCloseBtn" style="position: absolute; top: 20px; right: 30px; font-size: 32px; color: white; background: none; border: none; cursor: pointer; z-index: 10001; pointer-events: auto; opacity: 0;">×</button>
+        `;
+        document.body.appendChild(overlay);
+      }
+      overlay.style.display = 'block';
+      document.getElementById('storyFrame').src = 'story.html';
+      document.getElementById('storyCloseBtn').style.opacity = '1';
+      document.getElementById('storyCloseBtn').style.pointerEvents = 'auto';
+    }
+
+
+
+    // Phone number validation - limit to 10 digits
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneInput = document.getElementById('phone');
+    
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            // Remove any non-digit characters
+            this.value = this.value.replace(/\D/g, '');
+            
+            // Limit to 10 digits
+            if (this.value.length > 10) {
+                this.value = this.value.slice(0, 10);
+            }
+        });
+        
+        // Prevent paste of non-digit characters
+        phoneInput.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+            const sanitizedData = pastedData.replace(/\D/g, '').slice(0, 10);
+            document.execCommand('insertText', false, sanitizedData);
+        });
+    }
+});
+  </script>
+</body>
+</html>

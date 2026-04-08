@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Payment Failed | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    /* Enhanced scrollbar hiding for all browsers */
+    html {
+      scrollbar-width: none; /* Firefox */
+      overflow-y: auto;
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    html::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    /* Additional scrollbar hiding for all elements */
+    *::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000000 !important; /* Changed to pure black */
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      height: 100%;
+      touch-action: pan-y;
+    }
+    /* Ensure all elements have black background */
+    * {
+      background-color: inherit;
+    }
+    .terms-content {
+      background-color: #000000 !important;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    p {
+      color: #e0e0e0;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: #000000 !important;
+    }
+    .main-menu ul li a[href="privacypolicy.html"] {
+      color: #FF9010;
+    }
+    .main-menu ul li a[href="#"] {
+      color: #ffffff;
+    }
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+    @media screen and (max-width: 768px) {
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+      .menu-toggle2.open::before {
+        content: '✕';
+      }
+      .menu-toggle2:not(.open)::before {
+        content: '☰';
+      }
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #000000 !important; /* Black background for mobile menu */
+        width: 90%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+      .nav-menu2 li {
+        position: relative;
+      }
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #000000 !important; /* Black background for submenu */
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .submenu2 li {
+        margin: 0;
+      }
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+      .has-submenu2 {
+        position: relative;
+      }
+      .has-submenu2 > a {
+        padding-right: 40px;
+        display: block;
+      }
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+      .nav-menu2 li:last-child ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+        line-height: 1;
+      }
+      .submenu-toggle::before {
+        content: '+';
+      }
+      .submenu-toggle.active::before {
+        content: '−';
+      }
+    }
+    .thank-you-section {
+      text-align: center;
+      padding: 255px 75px;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background-color: #000000 !important; /* Black background for section */
+    }
+    .thank-you-title {
+      color: #CE6723;
+      font-size: 18 px;
+      margin-bottom: 0px;
+      margin-top: 15px;;
+      letter-spacing: 1.2 px;
+      font-family: "Montserrat", sans-serif;
+      position: relative;
+      display: inline-block;
+      font-weight: 400 !important;
+    }
+    .confirmation-message {
+      margin-top: 70px;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      position: relative;
+      background-color: #000000 !important; /* Black background for message */
+    }
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-10px);
+      }
+    }
+    .confirmation-message h2 {
+      color: #e0e0e09e;
+      font-size: 25px;;
+      margin-bottom: 25px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 150 !important;
+    }
+    .confirmation-message h3 {
+      color: #e0e0e0db;
+      font-size: 24px;
+      font-weight: 300;
+      margin-bottom: 10px;
+      background: rgba(197 62 62 / 13%);
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 8px solid #e74c3c;
+    }
+    .confirmation-message h4 {
+      color: #e0e0e0;
+      font-size: 16px;
+      margin-top: 1 px;
+      opacity: 0.85;
+      position: relative;
+      padding-top: 20px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 120!important;
+    }
+    
+    .back-home-btn {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 15px 40px;
+      background: #CE6723;
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .back-home-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .back-home-btn:hover {
+      transform: translateY(-3px);
+    }
+    .back-home-btn:hover::after {
+      left: 100%;
+    }
+    .floating-bike {
+      position: absolute;
+      width: 120px;
+      opacity: 0.1;
+      z-index: -1;
+      animation: float 12s infinite ease-in-out;
+    }
+    .bike-1 {
+      top: 20%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    .bike-2 {
+      bottom: 15%;
+      right: 5%;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+    }
+    footer {
+      width: 100%;
+      background-color: #000000 !important; /* Black background for footer */
+      color: #fff;
+      padding: 40px 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      position: relative;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+      background-color: #000000 !important; /* Black background for footer content */
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+      background-color: #000000 !important; /* Black background for footer column */
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+      background-color: #000000 !important; /* Black background for footer bottom */
+    }
+    @media (max-width: 991px) {
+      .thank-you-title {
+        font-size: 44px;
+      }
+      .confirmation-message h2 {
+        font-size: 26px;
+      }
+      .confirmation-message h3 {
+        font-size: 22px;
+      }
+    }
+    @media (max-width: 768px) {
+      .thank-you-section {
+        padding: 80px 15px;
+      }
+      .thank-you-title {
+        font-size: 28px;
+      }
+      .confirmation-message h2 {
+        font-size: 18px;
+      }
+      .confirmation-message h3 {
+        font-size: 17px;
+      }
+      .confirmation-message h4 {
+        font-size: 14px;
+      }
+      .back-home-btn {
+        display: block;
+        margin: 15px auto;
+        width: 80%;
+        max-width: 250px;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-column {
+        min-width: 100%;
+      }
+      .footer-text {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="refundpolicy.html">Refund Policy</a></li>
+                          <li><a href="subscriptions.html">Subscriptions</a></li>
+                          <li><a href="license.html">License</a></li>
+                          <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+                          <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                          <li><a href="cancellation.html">Cancellation/Refund</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="refundpolicy.html">Refund Policy</a></li>
+                        <li><a href="subscriptions.html">Subscriptions</a></li>
+                        <li><a href="license.html">License</a></li>
+                        <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a href="cancellation.html">Cancellation/Refund</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  <div class="terms-content">
+    <div class="thank-you-section">
+      <img src="img/motorcycle-silhouette.png" class="floating-bike bike-1" alt="Motorcycle">
+      <img src="img/motorcycle-silhouette.png" class="floating-bike bike-2" alt="Motorcycle">
+      <h1 class="thank-you-title">Payment Failed <span style="color: #ffffff;">|</span> RIVOT Motors</h1>
+      <div class="confirmation-message">
+        <h2>Your booking for the <span style="color: #ff8d0b;">nx100</span> could not be completed!</h2>
+        <h3>Your transaction was unsuccessful.</h3>
+        <h4>We apologize for the inconvenience. Please check your payment details and try again or contact our support team for assistance.</h4>
+        <div>
+          <a href="index.html" class="back-home-btn">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+      <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved <span colour white| Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    $(document).ready(function () {
+      const termsContent = document.querySelector('.terms-content');
+      if (window.innerWidth <= 768) {
+        termsContent.classList.add('visible');
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        if (termsContent) {
+          observer.observe(termsContent);
+        }
+      }
+      function showStoryOverlay() {
+        console.log("Story overlay requested");
+      }
+      $('.menu-toggle2').click(function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const $this = $(this);
+        const $submenu = $this.siblings('.submenu2');
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active');
+      });
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+      $('.nav-menu2').click(function(e) {
+        e.stopPropagation();
+      });
+      document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+      });
+    });
+  </script>
+</body>
+</html>

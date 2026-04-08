@@ -1,0 +1,37 @@
+/* assets/css/styles.css */
+:root {
+  --sidebar-width: 240px;
+}
+body {
+  background: #f6f8fb;
+}
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+}
+.sidebar .nav-link {
+  color: rgba(255,255,255,0.85);
+  border-radius: 12px;
+}
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+.table-actions .btn {
+  margin-right: .25rem;
+}
+.card {
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+.btn {
+  border-radius: 10px;
+}
+.form-control, .form-select {
+  border-radius: 10px;
+}
+.dataTables_wrapper .dataTables_filter input {
+  border-radius: 8px;
+}

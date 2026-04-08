@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Models | RIVOT</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+
+  <!-- Inline CSS -->
+  <style>
+    body, html {
+      font-family: sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      scrollbar-width: thin;
+    }
+
+    html::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    html::-webkit-scrollbar-track {
+      background: #333;
+    }
+
+    html::-webkit-scrollbar-thumb {
+      background: #CE6723;
+      border-radius: 4px;
+    }
+
+    /* Header Styles */
+    .main-menu ul li a {
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    .main-menu ul li a[href="models.html"] {
+      color: #CE6723;
+    }
+
+    .main-menu ul li a:hover {
+      color: #CE6723;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding-top: 80px;
+      min-height: calc(100vh - 100px);
+      background: #000;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Header Section */
+    .products-header {
+      text-align: center;
+      padding: 2rem 0 1rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .products-header h1 {
+      font-size: 48px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .products-header h1 .highlight {
+      color: #CE6723;
+    }
+
+    .products-header p {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    /* Models Grid */
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .model-card {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .model-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .model-card:hover {
+      border-color: #CE6723;
+      transform: translateY(-4px);
+    }
+
+    .product-badge {
+    position: absolute;
+    top: 15px;
+    right: 7px;
+    background: #CE6723;
+    color: #fff;
+    padding: 6px 13px;
+    border-radius: 17px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 0;
+    }
+
+    .model-image {
+      width: 177%;
+      height: 246px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .model-name {
+      font-size: 24px;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: -9px;
+      margin-left: 50px;
+    }
+
+    .product-series {
+      font-size: 0.9rem;
+      color: #CE6723;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-left: 50px;
+    }
+
+    .product-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.8rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .spec-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #CE6723;
+      margin-bottom: -7px;
+    }
+
+    .spec-label {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-buttons {
+      display: flex;
+      gap: 6px;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .product-button {
+      flex: 1;
+      padding: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .primary-button {
+      background: #CE6723;
+      color: #fff;
+      border: none;
+    }
+
+    .primary-button:hover {
+      background: #e07a3a;
+      transform: translateY(-2px);
+    }
+
+    .secondary-button {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #CE6723;
+    }
+
+    .secondary-button:hover {
+      background: rgba(206, 103, 35, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Footer Styles */
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      height: 330px;
+      position: relative;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: sans-serif;
+    }
+
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .footer-content .footer-column:nth-child(2),
+    .footer-content .footer-column:nth-child(3) {
+      margin-left: 10px;
+    }
+
+    .footer-content .footer-column:first-child,
+    .footer-content .footer-column:last-child {
+      margin-right: 30px;
+    }
+
+    .footer-content .footer-column:nth-child(3) {
+      margin-right: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-column {
+        min-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .footer-text {
+        max-width: 100%;
+      }
+      .models-grid {
+        grid-template-columns: 1fr;
+        gap: 110px;
+      }
+      .products-header h1 {
+        font-size: 36px;
+      }
+      .products-header p {
+        font-size: 16px;
+      }
+      .model-name {
+        font-size: 20px;
+      }
+    }
+
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      /* Menu Icon for Mobile */
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        right: 22px !important;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+
+      .menu-toggle2.open::before {
+        content: '✕'; /* Close icon (X) */
+      }
+
+      .menu-toggle2:not(.open)::before {
+        content: '☰'; /* Hamburger icon */
+      }
+
+      /* Menu Styling */
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%; /* Center the menu */
+        transform: translateX(-50%); /* Center the menu */
+        background-color: #333;
+        width: 90%;
+        max-width: 300px; /* Optional: Limit the width for better appearance */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease; /* Only opacity transition */
+      }
+
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-menu2 li {
+        position: relative;
+      }
+
+      .nav-menu2 a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      display: block;
+      border-bottom: 1px solid #444;
+    }
+
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+
+      .nav-menu2 li:last-child ul li {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+ 
+      /* Submenu Styling */
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .submenu2 li {
+        margin: 0;
+      }
+
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+
+      /* Submenu Indicator */
+      .has-submenu2 {
+        position: relative;
+      }
+
+      .has-submenu2 > a {
+        padding-right: 40px; /* Space for the + icon */
+        display: block;
+      }
+
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10; /* Ensure clickable */
+        line-height: 1; /* Ensure consistent vertical alignment */
+      }
+
+      .submenu-toggle::before {
+        content: '+'; /* Plus icon by default */
+      }
+
+      .submenu-toggle.active::before {
+        content: '−'; /* Minus icon when submenu is active */
+      }
+    }
+
+    /* Content Area - Box Type Design for Mobile */
+    .content {
+      padding: 20px;
+    }
+
+    .content-box {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      .content-box {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+
+    #storyCloseBtn {
+      display: none !important;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/slick.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="products-header">
+      <h1><span class="highlight" style="color: #CE6723;">nx100</span> Models</h1>
+      <p>Experience the future of urban mobility with our premium lineup of electric scooters, designed for performance, style, and sustainability.</p>
+    </div>
+
+    <div class="container">
+      <div class="models-grid" role="grid">
+        <!-- Classic -->
+        <div class="model-card" role="button" tabindex="0" aria-label="Select Classic">
+          <div class="product-badge">Best Seller</div>
+          <img class="model-image" src="greenscooty/0001.webp" alt="Classic" loading="lazy" />
+          <div class="model-name">CLASSIC</div>
+          <div class="product-series">Urban Commuter</div>
+          <div class="product-specs">
+            <div class="spec-item">
+              <div class="spec-value">100 km</div>
+              <div class="spec-label">Range</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">100 km/h</div>
+              <div class="spec-label">Top Speed</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">1.92 kWh</div>
+              <div class="spec-label">Battery</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">₹89,000</div>
+              <div class="spec-label">Starting At</div>
+            </div>
+          </div>
+          <div class="product-buttons">
+            <a href="classic.html" class="product-button primary-button">Explore</a>
+            <a href="booknow.html" class="product-button secondary-button">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Pro -->
+        <div class="model-card" role="button" tabindex="0" aria-label="Select Pro">
+          <div class="product-badge">Extended Range</div>
+          <img class="model-image" src="grayscooty/0001.webp" alt="Pro" loading="lazy" />
+          <div class="model-name">PRO</div>
+          <div class="product-series">Performance Edition</div>
+          <div class="product-specs">
+            <div class="spec-item">
+              <div class="spec-value">200 km</div>
+              <div class="spec-label">Range</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">110 km/h</div>
+              <div class="spec-label">Top Speed</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">3.84 kWh</div>
+              <div class="spec-label">Battery</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">₹1,29,000</div>
+              <div class="spec-label">Starting At</div>
+            </div>
+          </div>
+          <div class="product-buttons">
+            <a href="pro.html" class="product-button primary-button">Explore</a>
+            <a href="booknow.html" class="product-button secondary-button">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Max -->
+        <div class="model-card" role="button" tabindex="0" aria-label="Select Max">
+          <div class="product-badge">Long Range</div>
+          <img class="model-image" src="greenscooty/0001.webp" alt="Max" loading="lazy" />
+          <div class="model-name">MAX</div>
+          <div class="product-series">Extended Edition</div>
+          <div class="product-specs">
+            <div class="spec-item">
+              <div class="spec-value">300 km</div>
+              <div class="spec-label">Range</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">110 km/h</div>
+              <div class="spec-label">Top Speed</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">5.7 kWh</div>
+              <div class="spec-label">Battery</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">₹1,59,000</div>
+              <div class="spec-label">Starting At</div>
+            </div>
+          </div>
+          <div class="product-buttons">
+            <a href="max.html" class="product-button primary-button">Explore</a>
+            <a href="booknow.html" class="product-button secondary-button">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Sports -->
+        <div class="model-card" role="button" tabindex="0" aria-label="Select Sports">
+          <div class="product-badge">Sport Edition</div>
+          <img class="model-image" src="grayscooty/0001.webp" alt="Sports" loading="lazy" />
+          <div class="model-name">SPORTS</div>
+          <div class="product-series">Performance Focused</div>
+          <div class="product-specs">
+            <div class="spec-item">
+              <div class="spec-value">200 km</div>
+              <div class="spec-label">Range</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">110 km/h</div>
+              <div class="spec-label">Top Speed</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">3.84 kWh</div>
+              <div class="spec-label">Battery</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">₹1,39,000</div>
+              <div class="spec-label">Starting At</div>
+            </div>
+          </div>
+          <div class="product-buttons">
+            <a href="sports.html" class="product-button primary-button">Explore</a>
+            <a href="booknow.html" class="product-button secondary-button">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Offlander -->
+        <div class="model-card" role="button" tabindex="0" aria-label="Select Offlander">
+          <div class="product-badge">Adventure Ready</div>
+          <img class="model-image" src="greenscooty/0001.webp" alt="Offlander" loading="lazy" />
+          <div class="model-name">OFFLANDER</div>
+          <div class="product-series">Rugged Terrain</div>
+          <div class="product-specs">
+            <div class="spec-item">
+              <div class="spec-value">300 km</div>
+              <div class="spec-label">Range</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">110 km/h</div>
+              <div class="spec-label">Top Speed</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">5.7 kWh</div>
+              <div class="spec-label">Battery</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-value">₹1,89,000</div>
+              <div class="spec-label">Starting At</div>
+            </div>
+          </div>
+          <div class="product-buttons">
+            <a href="offlander.html" class="product-button primary-button">Explore</a>
+            <a href="booknow.html" class="product-button secondary-button">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+      <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+      </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+           <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+
+  <!-- Scripts -->
+  <script>
+    $(document).ready(function() {
+      // Toggle mobile menu
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+
+      // Handle navigation on menu item click for mobile
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          // Navigate to the href directly without preventing default
+          window.location.href = $(this).attr('href');
+        }
+      });
+
+      // Toggle submenu and icon when clicking the "+" or "−" icon
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+
+        // Close all other submenus
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+
+        // Toggle current submenu
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+
+      // Close menu when clicking outside
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+
+      // Animation on page load
+      const cards = document.querySelectorAll('.model-card');
+      cards.forEach((card, index) => {
+        card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, index * 100);
+      });
+    });
+
+    function showStoryOverlay() {
+      console.log("Story overlay requested");
+    }
+  </script>
+</body>
+</html>

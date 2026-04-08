@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Forum | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000;
+      color: white;
+      min-height: 100vh;
+    }
+    p {
+      color: #FFFFFF;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .main-menu ul li a[href="forum.html"] {
+      color: #FF9010;
+    }
+    /* Forum Hero Section */
+    .forum-hero {
+      width: 100%;
+      min-height: 60vh;
+      position: relative;
+      background-image: url('Story_page/23.webp');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .forum-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .forum-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .forum-hero h1 {
+      font-size: clamp(40px, 8vw, 80px);
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .forum-hero p {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+    /* Forum Content */
+    .forum-content {
+      max-width: 1200px;
+      margin: 70px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .forum-section {
+      margin-bottom: 60px;
+    }
+    .section-title {
+      font-size: 40px;
+      font-weight: 500;
+      color: #CE6723;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .forum-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    .forum-category {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #CE6723;
+    }
+    .forum-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .forum-category h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #FFFFFF;
+    }
+    .forum-category p {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .forum-category-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .forum-stat {
+      text-align: center;
+    }
+    .forum-stat-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: #CE6723;
+    }
+    .forum-stat-label {
+      font-size: 14px;
+      color: #ccc;
+      text-transform: uppercase;
+    }
+    /* Forum Topics */
+    .forum-topics {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .forum-topics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background: rgba(206, 103, 35, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .forum-topics-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .forum-topics-filter {
+      display: flex;
+      gap: 10px;
+    }
+    .filter-button {
+      padding: 8px 15px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+    .filter-button:hover, .filter-button.active {
+      background: #CE6723;
+      color: white;
+      border-color: #CE6723;
+    }
+    .forum-topic {
+      display: flex;
+      padding: 20px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.3s ease;
+    }
+    .forum-topic:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .forum-topic:last-child {
+      border-bottom: none;
+    }
+    .forum-topic-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(206, 103, 35, 0.2);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+    /* Fix for FontAwesome icons */
+    .forum-topic-icon i {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-size: 20px;
+      color: #CE6723;
+    }
+    /* Fallback icon styling */
+    .forum-topic-icon::before {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      font-size: 20px;
+      color: #CE6723;
+    }
+    .forum-topic-content {
+      flex: 1;
+    }
+    .forum-topic-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #FFFFFF;
+    }
+    .forum-topic-meta {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+    .forum-topic-meta span {
+      font-size: 14px;
+      color: #ccc;
+    }
+    .forum-topic-meta i {
+      margin-right: 5px;
+      color: #CE6723;
+    }
+    .forum-topic-excerpt {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+    .forum-topic-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      margin-left: 20px;
+    }
+    .forum-topic-replies {
+      font-size: 24px;
+      font-weight: 600;
+      color: #CE6723;
+      margin-bottom: 5px;
+    }
+    .forum-topic-views {
+      font-size: 14px;
+      color: #ccc;
+    }
+    /* Mobile Menu Styles */
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+    @media screen and (max-width: 768px) {
+      /* Menu Icon for Mobile */
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+      .menu-toggle2.open::before {
+        content: '✕'; /* Close icon (X) */
+      }
+      .menu-toggle2:not(.open)::before {
+        content: '☰'; /* Hamburger icon */
+      }
+      /* Menu Styling */
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%; /* Center the menu */
+        transform: translateX(-50%); /* Center the menu */
+        background-color: #333;
+        width: 90%;
+        max-width: 300px; /* Optional: Limit the width for better appearance */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease; /* Only opacity transition */
+      }
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+      .nav-menu2 li {
+        position: relative;
+      }
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+      /* Submenu Styling */
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .submenu2 li {
+        margin: 0;
+      }
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+      /* Submenu Indicator */
+      .has-submenu2 {
+        position: relative;
+      }
+      .has-submenu2 > a {
+        padding-right: 40px; /* Space for the + icon */
+        display: block;
+      }
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10; /* Ensure clickable */
+        line-height: 1; /* Ensure consistent vertical alignment */
+      }
+      .submenu-toggle::before {
+        content: '+'; /* Plus icon by default */
+      }
+      .submenu-toggle.active::before {
+        content: '−'; /* Minus icon when submenu is active */
+      }
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+      .nav-menu2 li:last-child ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+    }
+    /* Responsive Styles */
+    @media (max-width: 991px) {
+      .forum-hero h1 {
+        font-size: clamp(30px, 6vw, 60px);
+      }
+      .forum-hero p {
+        font-size: 18px;
+      }
+      .section-title {
+        font-size: 32px;
+      }
+      .forum-categories {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+    @media (max-width: 768px) {
+      .forum-hero {
+        min-height: 50vh;
+      }
+      .forum-hero h1 {
+        font-size: clamp(24px, 5vw, 48px);
+      }
+      .forum-hero p {
+        font-size: 16px;
+      }
+      .section-title {
+        font-size: 28px;
+      }
+      .forum-categories {
+        grid-template-columns: 1fr;
+      }
+      .forum-topic {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .forum-topic-icon {
+        margin-bottom: 15px;
+      }
+      .forum-topic-stats {
+        flex-direction: row;
+        padding-left: 0;
+        margin-left: 0;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 15px;
+        padding-top: 15px;
+        justify-content: space-around;
+      }
+    }
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      height: 330px;
+      position: relative;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+    .footer-content .footer-column:nth-child(2),
+    .footer-content .footer-column:nth-child(3) {
+      margin-left: 10px;
+    }
+    .footer-content .footer-column:first-child,
+    .footer-content .footer-column:last-child {
+      margin-right: 30px;
+    }
+    .footer-content .footer-column:nth-child(3) {
+      margin-right: 40px;
+    }
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-column {
+        min-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .footer-text {
+        max-width: 100%;
+      }
+    }
+    .counter {
+      display: inline-block;
+    }
+    #storyCloseBtn {
+      display: none !important;
+    }
+
+    /* Loading and button styles */
+    .loading-placeholder {
+      color: #ccc;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .btn-outline-primary {
+      background: #CE6723;
+      border: 2px solid #CE6723;
+      color: #fcfcfc;
+    }
+
+    .btn-outline-primary:hover {
+      background: #cf7539;
+      color: white;
+    }
+
+    .loading-placeholder p {
+      margin: 0;
+    }
+
+    /* Header fix to prevent hiding on scroll */
+    .header-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    /* Ensure header stays visible when scrolling */
+    #header-sticky {
+      position: relative !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Override any potential header hiding behavior */
+    .header-menu.hidden {
+      transform: translateY(0) !important;
+    }
+
+    /* Update the load more button container */
+    #loadMoreContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+
+    /* Style the load more button to match testride page */
+    #loadMoreBtn {
+      padding: 15px 30px;
+      background: #CE6723;
+      color: white;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-family: "Montserrat", sans-serif;
+      text-transform: none;
+      width: auto;
+      min-width: 200px;
+    }
+
+    #loadMoreBtn:hover {
+      background: #e07a3a;
+    }
+
+    #loadMoreBtn:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(206, 103, 35, 0.5);
+    }
+
+    /* Remove the existing btn styles that might conflict */
+    #loadMoreBtn.btn {
+      background: #CE6723;
+      border: none;
+      padding: 15px 30px;
+    }
+
+    #loadMoreBtn.btn-outline-primary {
+      background: #CE6723;
+      border: none;
+    }
+
+    #loadMoreBtn.btn-outline-primary:hover {
+      background: #e07a3a;
+      border: none;
+    }
+
+    /* Adjust icon spacing */
+    #loadMoreBtn i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+    <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- Forum Hero Section -->
+  <div class="forum-hero">
+    <div class="forum-hero-content">
+      <h1>Community Forum</h1>
+      <p>Connect with fellow riders, share experiences, and discuss all things electric mobility</p>
+    </div>
+  </div>
+
+  <!-- Forum Content -->
+  <div class="forum-content">
+    <!-- Forum Categories -->
+    <div class="forum-section">
+      <h2 class="section-title">Forum Categories</h2>
+      <div class="forum-categories" id="forumCategories">
+        <!-- Categories will be loaded dynamically -->
+        <div class="loading-placeholder text-center" style="grid-column: 1 / -1;">
+          <i class="fas fa-spinner fa-spin fa-2x text-secondary"></i>
+          <p class="text-secondary mt-2">Loading categories...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Topics -->
+    <div class="forum-section">
+      <h2 class="section-title">Recent Topics</h2>
+      <div class="forum-topics">
+        <div class="forum-topics-header">
+          <div class="forum-topics-title">Latest Discussions</div>
+          <div class="forum-topics-filter">
+            <button class="filter-button active" data-filter="recent">Recent</button>
+            <button class="filter-button" data-filter="popular">Popular</button>
+            <button class="filter-button" data-filter="unanswered">Unanswered</button>
+          </div>
+        </div>
+
+        <div id="forumTopics">
+          <!-- Topics will be loaded dynamically -->
+          <div class="loading-placeholder text-center p-4">
+            <i class="fas fa-spinner fa-spin fa-2x text-secondary"></i>
+            <p class="text-secondary mt-2">Loading topics...</p>
+          </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-4" id="loadMoreContainer" style="display: none;">
+          <button id="loadMoreBtn" aria-label="Load More Topics">
+            Load More Topics
+          </button>
+        </div>
+
+        <!-- No Topics Message -->
+        <div class="text-center py-5" id="noTopicsMessage" style="display: none;">
+          <i class="fas fa-comments fa-3x text-secondary mb-3"></i>
+          <h5>No topics found</h5>
+          <p class="text-secondary">Be the first to start a discussion!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+
+  <!-- Scripts -->
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <script>
+    $(document).ready(function() {
+      // Toggle mobile menu
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+      // Handle navigation on menu item click for mobile
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          // Navigate to the href directly without preventing default
+          window.location.href = $(this).attr('href');
+        }
+      });
+      // Toggle submenu and icon when clicking the "+" or "−" icon
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+        // Close all other submenus
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+        // Toggle current submenu
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+      // Close menu when clicking outside
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+
+      // Filter buttons functionality
+      $('.filter-button').click(function() {
+        const filter = $(this).data('filter');
+        if (filter === currentFilter) return;
+
+        $('.filter-button').removeClass('active');
+        $(this).addClass('active');
+
+        currentFilter = filter;
+        currentOffset = 0;
+        loadForumTopics(false);
+      });
+
+      // Load More button
+      $('#loadMoreBtn').click(function() {
+        currentOffset += topicsPerPage;
+        loadForumTopics(true);
+      });
+
+      // Forum topic click
+      $(document).on('click', '.forum-topic', function() {
+        const postId = $(this).data('post-id');
+        if (postId) {
+          window.location.href = `forum-post.html?id=${postId}`;
+        }
+      });
+
+      // Load initial data
+      loadForumCategories();
+      loadForumTopics(false);
+    });
+
+    // Keep header visible when scrolling
+    $(window).scroll(function() {
+      // Keep header visible at all times
+      $('.header-menu').removeClass('hidden');
+      $('#header-sticky').css({
+        'position': 'fixed',
+        'top': '0',
+        'transform': 'translateY(0)'
+      });
+    });
+
+    function showStoryOverlay() {
+      document.getElementById('storyOverlayFull').style.display = 'block';
+      document.getElementById('storyFrame').src = 'story.html';
+      document.getElementById('storyCloseBtn').style.opacity = '1';
+      document.getElementById('storyCloseBtn').style.pointerEvents = 'auto';
+    }
+
+    // Forum management variables (global scope)
+    let currentFilter = 'recent';
+    let currentOffset = 0;
+    const topicsPerPage = 5;
+    let isLoading = false;
+    const DEBUG_MODE = false; // Set to true for debugging
+
+    // Forum data loading functions
+    function loadForumCategories() {
+      if (DEBUG_MODE) console.log('Loading forum categories...');
+      fetch('/api/forum.php?type=categories')
+        .then(response => {
+          if (DEBUG_MODE) console.log('Categories response status:', response.status);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (DEBUG_MODE) console.log('Categories data:', data);
+          if (data.success) {
+            displayForumCategories(data.data);
+          } else {
+            console.error('Categories API returned error:', data.error);
+            showCategoriesError();
+          }
+        })
+        .catch(error => {
+          console.error('Error loading categories:', error);
+          showCategoriesError();
+        });
+    }
+
+    function displayForumCategories(categories) {
+      const container = document.getElementById('forumCategories');
+      container.innerHTML = '';
+
+      if (categories.length === 0) {
+        container.innerHTML = '<div class="text-center py-5"><h5>No categories available</h5></div>';
+        return;
+      }
+
+      categories.forEach(category => {
+        const categoryElement = createCategoryElement(category);
+        container.appendChild(categoryElement);
+      });
+    }
+
+    function createCategoryElement(category) {
+      const div = document.createElement('div');
+      div.className = 'forum-category';
+      div.innerHTML = `
+        <h3>${category.name}</h3>
+        <p>${category.description}</p>
+        <div class="forum-category-stats">
+          <div class="forum-stat">
+            <div class="forum-stat-value">${category.topics_count}</div>
+            <div class="forum-stat-label">Topics</div>
+          </div>
+          <div class="forum-stat">
+            <div class="forum-stat-value">${category.posts_count}</div>
+            <div class="forum-stat-label">Posts</div>
+          </div>
+        </div>
+      `;
+      return div;
+    }
+
+    function showCategoriesError() {
+      const container = document.getElementById('forumCategories');
+      container.innerHTML = '<div class="text-center py-5"><h5>Error loading categories</h5><p class="text-secondary">Please try again later.</p></div>';
+    }
+
+    function loadForumTopics(append = false) {
+      if (isLoading) return;
+      isLoading = true;
+
+      const offset = append ? currentOffset : 0;
+      const url = `/api/forum.php?type=posts&filter=${currentFilter}&limit=${topicsPerPage}&offset=${offset}`;
+      if (DEBUG_MODE) console.log('Loading forum topics from:', url);
+
+      fetch(url)
+        .then(response => {
+          if (DEBUG_MODE) console.log('Response status:', response.status);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (DEBUG_MODE) console.log('Forum topics data:', data);
+          if (data.success) {
+            displayForumTopics(data.data, append);
+            updateLoadMoreButton(data.meta);
+          } else {
+            console.error('API returned error:', data.error);
+            showTopicsError();
+          }
+        })
+        .catch(error => {
+          console.error('Error loading topics:', error);
+          showTopicsError();
+        })
+        .finally(() => {
+          isLoading = false;
+          hideTopicsLoading();
+        });
+    }
+
+    function displayForumTopics(topics, append = false) {
+      const container = document.getElementById('forumTopics');
+      if (DEBUG_MODE) console.log('Displaying topics:', topics.length, 'append:', append);
+
+      if (!append) {
+        container.innerHTML = '';
+        currentOffset = 0;
+      } else {
+        // Remove loading placeholder if it exists
+        const placeholder = container.querySelector('.loading-placeholder');
+        if (placeholder) {
+          placeholder.remove();
+        }
+      }
+
+      if (topics.length === 0 && !append) {
+        if (DEBUG_MODE) console.log('No topics found, showing no topics message');
+        showNoTopicsMessage();
+        return;
+      }
+
+      topics.forEach(topic => {
+        const topicElement = createTopicElement(topic);
+        container.appendChild(topicElement);
+      });
+
+      hideNoTopicsMessage();
+      if (DEBUG_MODE) console.log('Topics displayed successfully');
+    }
+
+    function createTopicElement(topic) {
+      const div = document.createElement('div');
+      div.className = 'forum-topic';
+      div.setAttribute('data-post-id', topic.id);
+      div.style.cursor = 'pointer';
+      
+      // Ensure icon has a fallback class
+      const iconClass = topic.icon || 'fas fa-comments';
+      
+      div.innerHTML = `
+        <div class="forum-topic-icon">
+          <i class="${iconClass}"></i>
+        </div>
+        <div class="forum-topic-content">
+          <div class="forum-topic-title">${topic.title}</div>
+          <div class="forum-topic-meta">
+            <span><i class="fas fa-user"></i> ${topic.author}</span>
+            <span><i class="fas fa-clock"></i> ${topic.time_ago}</span>
+            <span><i class="fas fa-folder"></i> ${topic.category_name}</span>
+          </div>
+          <div class="forum-topic-excerpt">${topic.excerpt}</div>
+        </div>
+        <div class="forum-topic-stats">
+          <div class="forum-topic-replies">${topic.replies}</div>
+          <div class="forum-topic-views">${topic.views} views</div>
+        </div>
+      `;
+      return div;
+    }
+
+    function updateLoadMoreButton(meta) {
+      const loadMoreContainer = document.getElementById('loadMoreContainer');
+
+      if (meta.has_more) {
+        loadMoreContainer.style.display = 'block';
+      } else {
+        loadMoreContainer.style.display = 'none';
+      }
+    }
+
+    function hideTopicsLoading() {
+      const placeholder = document.querySelector('#forumTopics .loading-placeholder');
+      if (placeholder) {
+        placeholder.remove();
+      }
+    }
+
+    function showTopicsError() {
+      const container = document.getElementById('forumTopics');
+      container.innerHTML = '<div class="text-center py-5"><h5>Error loading topics</h5><p class="text-secondary">Please try again later.</p></div>';
+      document.getElementById('loadMoreContainer').style.display = 'none';
+    }
+
+    function showNoTopicsMessage() {
+      document.getElementById('noTopicsMessage').style.display = 'block';
+      document.getElementById('loadMoreContainer').style.display = 'none';
+    }
+
+    function hideNoTopicsMessage() {
+      document.getElementById('noTopicsMessage').style.display = 'none';
+    }
+
+    function timeAgo(dateString) {
+      const date = new Date(dateString);
+      const now = new Date();
+      const diffInSeconds = Math.floor((now - date) / 1000);
+
+      if (diffInSeconds < 60) return 'just now';
+      if (diffInSeconds < 3600) return Math.floor(diffInSeconds / 60) + ' minutes ago';
+      if (diffInSeconds < 86400) return Math.floor(diffInSeconds / 3600) + ' hours ago';
+      if (diffInSeconds < 2592000) return Math.floor(diffInSeconds / 86400) + ' days ago';
+      if (diffInSeconds < 31536000) return Math.floor(diffInSeconds / 2592000) + ' months ago';
+      return Math.floor(diffInSeconds / 31536000) + ' years ago';
+    }
+  </script>
+  <!-- Story Overlay -->
+  <div id="storyOverlayFull" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.95); z-index: 4000;">
+    <iframe id="storyFrame" src="story.html" style="width: 100%; height: 100%; border: none;"></iframe>
+    <button id="storyCloseBtn" style="position: absolute; top: 20px; right: 30px; font-size: 32px; color: white; background: none; border: none; cursor: pointer; z-index: 10001; pointer-events: auto;">×</button>
+  </div>
+</body>
+</html>

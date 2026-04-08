@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connect | RIVOT</title>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/meanmenu.css" />
+    <link rel="stylesheet" href="css/slick.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/meanmenu.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Inline CSS -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        font-family: "Montserrat", sans-serif;
+        background: #000;
+        color: #fff;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      html {
+        scrollbar-width: thin;
+      }
+
+      html::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      html::-webkit-scrollbar-track {
+        background: #111;
+      }
+
+      html::-webkit-scrollbar-thumb {
+        background: #ce6723;
+        border-radius: 4px;
+      }
+
+      /* Header Styles */
+      .main-menu ul li a {
+        color: #fff;
+        transition: color 0.3s ease;
+        font-weight: 500;
+      }
+
+      .main-menu ul li a[href="connect.html"] {
+        color: #ce6723;
+      }
+
+      .main-menu ul li a:hover {
+        color: #ce6723;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding-top: 80px;
+        min-height: calc(100vh - 100px);
+        background: #000;
+        position: relative;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Page Display Control */
+      [x-cloak] {
+        display: none !important;
+      }
+
+      .selection-page,
+      .form-page {
+        transition: all 0.5s ease;
+        background: #000;
+        animation: fadeInUp 1s ease-out forwards;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .selection-page[style*="display: none"],
+      .form-page[style*="display: none"] {
+        display: none !important;
+      }
+
+      /* Selection Page Styles - Matching Compare Page */
+      .selection-page {
+        padding: 3rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header {
+        margin-bottom: 4rem;
+      }
+
+      .header h1 {
+        font-size: 48px;
+        font-weight: 300;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .header h1 .highlight {
+        color: #ce6723;
+      }
+
+      .header p {
+        font-size: 18px;
+        color: #ccc;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .models-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+
+      .model-card {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid #444;
+        border-radius: 4px;
+        padding: 2rem 1.5rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .model-card:hover {
+        border-color: #ce6723;
+        transform: translateY(-4px);
+      }
+
+      .model-card.selected {
+        border-color: #ce6723;
+        background: rgba(206, 103, 35, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .model-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: rgba(206, 103, 35, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        color: #ce6723;
+      }
+
+      .model-name {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.8rem;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #ffffff;
+        margin-bottom: 0.3rem;
+      }
+
+      .model-description {
+        color: #aaa;
+        font-size: 16px;
+        margin-bottom: 1.5rem;
+        min-height: 50px;
+      }
+
+      .model-arrow {
+        font-size: 24px;
+        color: #ce6723;
+        transition: transform 0.3s ease;
+      }
+
+      .model-card:hover .model-arrow {
+        transform: translateX(5px);
+      }
+
+      /* Form Page Styles */
+      .form-page {
+        min-height: calc(100vh - 100px);
+        padding-top: 0;
+        position: relative;
+      }
+
+      .form-page::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 80% 20%, rgba(206, 103, 35, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 20% 80%, rgba(206, 103, 35, 0.05) 0%, transparent 50%);
+        z-index: 1;
+      }
+
+      .form-header {
+        text-align: center;
+        padding: 3rem 0 2rem 0;
+        border-bottom: 1px solid #333;
+        margin-bottom: 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .form-title {
+        font-size: 48px;
+        font-weight: 300;
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-title .highlight {
+        color: #ce6723;
+      }
+
+      .form-subtitle {
+        font-size: 18px;
+        color: #aaa;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .reselect-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #ce6723;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+        border: 1px solid #ce6723;
+        padding: 8px 16px;
+        border-radius: 4px;
+      }
+
+      .reselect-link:hover {
+        color: #fff;
+        background-color: #ce6723;
+        text-decoration: none;
+      }
+
+      .form-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .form-description {
+        font-size: 18px;
+        color: #ccc;
+        line-height: 1.6;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+      }
+
+      .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4rem;
+        align-items: flex-start;
+      }
+
+      .form-left-column {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .form-image {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .form-image::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        background: linear-gradient(135deg, rgba(206, 103, 35, 0.2) 0%, transparent 100%);
+        border-radius: 16px;
+        z-index: -1;
+      }
+
+      .form-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .form-image:hover img {
+        transform: scale(1.02);
+      }
+
+      .form-features {
+        background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(10, 10, 10, 0.9));
+        border: 1px solid #333;
+        border-radius: 12px;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-features h3 {
+        color: #ce6723;
+        margin-bottom: 1.5rem;
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .feature-list li {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+        font-size: 16px;
+        color: #ccc;
+      }
+
+      .feature-list li i {
+        color: #ce6723;
+        margin-right: 12px;
+        margin-top: 3px;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .form-container {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+      }
+
+      .form-group {
+        margin-bottom: 1.8rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.7rem;
+        color: #fff;
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #444;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        font-family: "Montserrat", sans-serif;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #ce6723;
+        box-shadow: 0 0 5px rgba(206, 103, 35, 0.5);
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .form-group select {
+        background: rgba(255, 255, 255, 0.1)
+          url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e")
+          no-repeat;
+        background-position: right 15px center;
+        background-size: 20px;
+        appearance: none;
+        padding-right: 40px;
+      }
+
+      .form-group select:disabled {
+        background-color: rgba(255, 255, 255, 0.05);
+        cursor: not-allowed;
+      }
+
+      .form-group select option {
+        background: #000;
+        color: white;
+      }
+
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 16px;
+      }
+
+      .file-upload {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .file-upload input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .file-upload-label {
+        display: block;
+        padding: 10px 15px;
+        border: 1px solid #444;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .file-upload-label:hover {
+        border-color: #ce6723;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .file-name {
+        margin-top: 8px;
+        font-size: 14px;
+        color: #aaa;
+      }
+
+      .submit-btn {
+        background: linear-gradient(135deg, #ce6723 0%, #e07a3a 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        box-shadow: 0 5px 15px rgba(206, 103, 35, 0.3);
+        margin-top: 1rem;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(206, 103, 35, 0.4);
+      }
+
+      /* Success Message */
+      .success-message {
+        display: none;
+        background: linear-gradient(135deg, rgba(46, 204, 113, 0.2) 0%, transparent 100%);
+        border: 1px solid #2ecc71;
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-bottom: 2rem;
+        color: #2ecc71;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      /* Mobile Menu Styles */
+      .menu-toggle2,
+      .nav-menu2 {
+        display: none;
+      }
+
+      .navbar2 {
+        position: relative;
+      }
+
+      @media screen and (max-width: 768px) {
+        .menu-toggle2 {
+          display: block;
+          font-size: 24px;
+          color: white;
+          cursor: pointer;
+          position: absolute;
+          right: 35px;
+          top: -45px;
+        }
+
+        .menu-toggle2.open::before {
+          content: "✕";
+        }
+
+        .menu-toggle2:not(.open)::before {
+          content: "☰";
+        }
+
+        .nav-menu2 {
+          list-style: none;
+          flex-direction: column;
+          position: absolute;
+          top: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #333;
+          width: 90%;
+          max-width: 300px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          border-radius: 8px;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        .nav-menu2.active {
+          display: flex;
+          opacity: 1;
+        }
+
+        .nav-menu2 li {
+          position: relative;
+        }
+
+        .nav-menu2 a {
+          color: white;
+          text-decoration: none;
+          font-size: 18px;
+          padding: 10px 15px;
+          display: block;
+          border-bottom: 1px solid #444;
+        }
+
+        .nav-menu2 a:hover {
+          background-color: #555;
+        }
+
+        .submenu2 {
+          position: static;
+          width: 100%;
+          background-color: #555;
+          display: none;
+          opacity: 0;
+          transform: translateX(20px);
+          transition: opacity 0.4s ease, transform 0.4s ease;
+          list-style: none;
+        }
+
+        .submenu2.active {
+          display: block;
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .submenu2 li {
+          margin: 0;
+        }
+
+        .submenu2 a {
+          padding: 10px;
+          font-size: 16px;
+          padding-left: 30px;
+        }
+
+        .has-submenu2 {
+          position: relative;
+        }
+
+        .has-submenu2 > a {
+          padding-right: 40px;
+          display: block;
+        }
+
+        .submenu-toggle {
+          position: absolute;
+          right: 15px;
+          top: 25px;
+          transform: translateY(-50%);
+          font-size: 14px;
+          color: white;
+          cursor: pointer;
+          padding: 10px;
+          z-index: 10;
+          line-height: 1;
+        }
+
+        .submenu-toggle::before {
+          content: "+";
+        }
+
+        .submenu-toggle.active::before {
+          content: "−";
+        }
+
+        .main-menu {
+          display: none;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        .models-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .form-row {
+          flex-direction: column;
+          gap: 3rem;
+          align-items: center;
+        }
+
+        .form-left-column,
+        .form-container {
+          max-width: 100%;
+          width: 100%;
+        }
+
+        .form-content {
+          padding: 0 1rem 4rem;
+        }
+
+        .header h1 {
+          font-size: 36px;
+        }
+
+        .header p {
+          font-size: 16px;
+        }
+
+        .form-title {
+          font-size: 36px;
+        }
+
+        .nav-menu2 li:last-child a {
+          border: 0;
+        }
+
+        .nav-menu2 li:last-child ul li {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      footer {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 40px 0 0;
+        border-top: 1px solid #333;
+        margin-top: auto;
+        height: 330px;
+        position: relative;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 20px;
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 20px;
+      }
+
+      .footer-logo {
+        width: 120px;
+        margin-bottom: 15px;
+      }
+
+      .footer-text {
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        max-width: 250px;
+      }
+
+      .footer-heading {
+        color: #ce6723;
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 14px;
+      }
+
+      .footer-links a:hover {
+        color: #ce6723;
+      }
+
+      .contact-info {
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .social-icons a {
+        color: #ccc;
+        font-size: 20px;
+        transition: color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: #ce6723;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        margin-top: 20px;
+        border-top: 1px solid #333;
+        color: #777;
+        font-size: 12px;
+      }
+
+      .footer-content .footer-column:nth-child(2),
+      .footer-content .footer-column:nth-child(3) {
+        margin-left: 10px;
+      }
+
+      .footer-content .footer-column:first-child,
+      .footer-content .footer-column:last-child {
+        margin-right: 30px;
+      }
+
+      .footer-content .footer-column:nth-child(3) {
+        margin-right: 40px;
+      }
+
+      #storyCloseBtn {
+        display: none !important;
+      }
+
+      .header-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+      }
+
+      /* Ensure header stays visible when scrolling */
+      #header-sticky {
+        position: relative;
+        transform: translateY(0) !important;
+      }
+
+      /* Override any potential header hiding behavior */
+      .header-menu.hidden {
+        transform: translateY(0) !important;
+      }
+
+      /* Fix for autofill styling on input fields */
+      .form-group input:-webkit-autofill,
+      .form-group input:-webkit-autofill:hover,
+      .form-group input:-webkit-autofill:focus,
+      .form-group input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset !important;
+        -webkit-text-fill-color: white !important;
+        transition: background-color 5000s ease-in-out 0s;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      /* Fix for autofill styling on select dropdowns */
+      .form-group select:-webkit-autofill,
+      .form-group select:-webkit-autofill:hover,
+      .form-group select:-webkit-autofill:focus,
+      .form-group select:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset !important;
+        -webkit-text-fill-color: white !important;
+        transition: background-color 5000s ease-in-out 0s;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 15px center !important;
+        background-size: 20px !important;
+      }
+
+      /* Additional fix for select options to maintain dark theme */
+      .form-group select option {
+        background-color: #000 !important;
+        color: white !important;
+      }
+
+      /* Ensure consistent styling for all form elements */
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+      }
+
+      /* ✅ Hash/anchor jump always from top (header offset) */
+      #career-opportunities {
+        scroll-margin-top: 110px; /* header height অনুযায়ী adjust */
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <script src="js/slick.min.js"></script>
+  </head>
+
+  <body>
+    <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"
+                    ><img class="img-fluid" src="img/logo.png" alt="Rivot Model"
+                  /></a>
+                </div>
+              </div>
+
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li>
+                        <a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li>
+                        <a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content" x-data="rivotConnect()" x-init="init()">
+      <div
+        class="selection-page"
+        x-show="currentPage === 'selection'"
+        x-transition:enter="transition ease-out duration-500"
+        x-transition:enter-start="opacity-0 transform translate-y-10"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 transform translate-y-0"
+        x-transition:leave-end="opacity-0 transform translate-y-10"
+        aria-label="Connection Type Selection Page"
+      >
+        <div class="container">
+          <div class="header">
+            <h1>Connect with <span class="highlight">RIVOT</span></h1>
+            <p>Select anyone option to explore partnership opportunity</p>
+          </div>
+
+          <div class="models-grid" role="grid">
+            <template x-for="connection in connections" :key="connection.id">
+              <div
+                class="model-card"
+                @click="goToForm(connection.id)"
+                @keydown.enter="goToForm(connection.id)"
+                tabindex="0"
+                role="button"
+                :aria-label="'Select ' + connection.name"
+              >
+                <div class="model-icon">
+                  <i :class="connection.icon"></i>
+                </div>
+                <div class="model-name" x-text="connection.name"></div>
+                <p class="model-description" x-text="connection.description"></p>
+                <div class="model-arrow">
+                  <i class="fas fa-arrow-right"></i>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vendor Form -->
+      <div class="form-page" x-show="currentPage === 'vendor'" x-transition aria-label="Vendor Partnership Form">
+        <div class="form-header">
+          <h1 class="form-title">Vendor <span class="highlight">Partnership</span></h1>
+          <p class="form-subtitle">
+            Join our network of trusted suppliers and become an integral part of the RIVOT ecosystem
+          </p>
+          <a href="#" class="reselect-link" @click.prevent="goBackToSelection()" aria-label="Back to selection">Back</a>
+        </div>
+        <div class="form-content">
+          <p class="form-description">
+            We're seeking quality suppliers who share our commitment to excellence and sustainability. Partner with us to build the future of electric mobility together.
+          </p>
+          <div class="form-row">
+            <div class="form-left-column">
+              <div class="form-image"><img src="Story_page/13.jpg" alt="Vendor Partnership" /></div>
+              <div class="form-features">
+                <h3>Benefits of Partnering with RIVOT</h3>
+                <ul class="feature-list">
+                  <li><i class="fas fa-check-circle"></i> Access to a rapidly growing electric mobility market</li>
+                  <li><i class="fas fa-check-circle"></i> Long-term partnership opportunities with stability</li>
+                  <li><i class="fas fa-check-circle"></i> Collaborative product development and innovation</li>
+                  <li><i class="fas fa-check-circle"></i> Shared commitment to sustainability and quality</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-container">
+              <div class="success-message" id="vendorSuccess">
+                Thank you for your vendor application! We'll review your information and get back to you soon.
+              </div>
+              <form id="vendorForm" @submit.prevent="submitForm('vendor')">
+                <div class="form-group">
+                  <label for="vendorCompany">Company Name *</label>
+                  <input type="text" id="vendorCompany" name="company" required />
+                </div>
+                <div class="form-group">
+                  <label for="vendorContact">Contact Person *</label>
+                  <input type="text" id="vendorContact" name="contact" required />
+                </div>
+                <div class="form-group">
+                  <label for="vendorEmail">Email Address *</label>
+                  <input type="email" id="vendorEmail" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="vendorPhone">Phone Number *</label>
+                  <input type="tel" id="vendorPhone" name="phone" required />
+                </div>
+                <div class="form-group">
+                  <label for="vendorCategory">Product Category *</label>
+                  <select id="vendorCategory" name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="batteries">Batteries</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="chassis">Chassis Components</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="vendorMessage">Tell us about your company</label>
+                  <textarea id="vendorMessage" name="message"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dealer Form -->
+      <div class="form-page" x-show="currentPage === 'dealer'" x-transition aria-label="Dealership Form">
+        <div class="form-header">
+          <h1 class="form-title">Dealership <span class="highlight">Opportunity</span></h1>
+          <p class="form-subtitle">
+            Become an authorized RIVOT dealer and bring the future of electric mobility to your community
+          </p>
+          <a href="#" class="reselect-link" @click.prevent="goBackToSelection()" aria-label="Back to selection">Back</a>
+        </div>
+        <div class="form-content">
+          <p class="form-description">
+            We're seeking passionate entrepreneurs who share our vision for sustainable transportation. Join us in revolutionizing the electric vehicle industry.
+          </p>
+          <div class="form-row">
+            <div class="form-left-column">
+              <div class="form-image"><img src="Story_page/12.webp" alt="Dealership Opportunity" /></div>
+              <div class="form-features">
+                <h3>Why Become a RIVOT Dealer?</h3>
+                <ul class="feature-list">
+                  <li><i class="fas fa-check-circle"></i> Exclusive dealership rights in your territory</li>
+                  <li><i class="fas fa-check-circle"></i> Comprehensive training and ongoing support</li>
+                  <li><i class="fas fa-check-circle"></i> Marketing and promotional materials</li>
+                  <li><i class="fas fa-check-circle"></i> Attractive margins and performance incentives</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-container">
+              <div class="success-message" id="dealerSuccess">
+                Thank you for your dealership application! Our team will review your information and contact you soon.
+              </div>
+              <form id="dealerForm" @submit.prevent="submitForm('dealer')">
+                <div class="form-group">
+                  <label for="dealerCompany">Business Name *</label>
+                  <input type="text" id="dealerCompany" name="company" required />
+                </div>
+                <div class="form-group">
+                  <label for="dealerOwner">Owner/Partner Name *</label>
+                  <input type="text" id="dealerOwner" name="owner" required />
+                </div>
+                <div class="form-group">
+                  <label for="dealerEmail">Email Address *</label>
+                  <input type="email" id="dealerEmail" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="dealerPhone">Phone Number *</label>
+                  <input type="tel" id="dealerPhone" name="phone" required />
+                </div>
+                <div class="form-group">
+                  <label for="dealerLocation">Preferred Location *</label>
+                  <input type="text" id="dealerLocation" name="location" required />
+                </div>
+                <div class="form-group">
+                  <label for="dealerExperience">Years in Automotive Business</label>
+                  <select id="dealerExperience" name="experience">
+                    <option value="">Select Experience</option>
+                    <option value="0-2">0-2 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="6-10">6-10 years</option>
+                    <option value="10+">10+ years</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="dealerInvestment">Investment Capacity</label>
+                  <select id="dealerInvestment" name="investment">
+                    <option value="">Select Range</option>
+                    <option value="10-25">₹10-25 Lakhs</option>
+                    <option value="25-50">₹25-50 Lakhs</option>
+                    <option value="50-100">₹50-100 Lakhs</option>
+                    <option value="100+">₹100+ Lakhs</option>
+                  </select>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Media Form -->
+      <div class="form-page" x-show="currentPage === 'media'" x-transition aria-label="Media Inquiry Form">
+        <div class="form-header">
+          <h1 class="form-title">Media <span class="highlight">Inquiry</span></h1>
+          <p class="form-subtitle">For press releases, interviews, and media resources, connect with our media relations team</p>
+          <a href="#" class="reselect-link" @click.prevent="goBackToSelection()" aria-label="Back to selection">Back</a>
+        </div>
+        <div class="form-content">
+          <p class="form-description">
+            We welcome media inquiries and are happy to provide information, interviews, and resources to support your coverage of RIVOT and the electric mobility industry.
+          </p>
+          <div class="form-row">
+            <div class="form-left-column">
+              <div class="form-image"><img src="Story_page/25.webp" alt="Media Inquiry" /></div>
+              <div class="form-features">
+                <h3>Media Resources</h3>
+                <ul class="feature-list">
+                  <li><i class="fas fa-check-circle"></i> Press releases and media kits</li>
+                  <li><i class="fas fa-check-circle"></i> High-resolution images and videos</li>
+                  <li><i class="fas fa-check-circle"></i> Executive interviews and expert commentary</li>
+                  <li><i class="fas fa-check-circle"></i> Product demonstration opportunities</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-container">
+              <div class="success-message" id="mediaSuccess">
+                Thank you for your media inquiry! Our team will respond to your request promptly.
+              </div>
+              <form id="mediaForm" @submit.prevent="submitForm('media')">
+                <div class="form-group">
+                  <label for="mediaName">Full Name *</label>
+                  <input type="text" id="mediaName" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="mediaOutlet">Media Outlet *</label>
+                  <input type="text" id="mediaOutlet" name="outlet" required />
+                </div>
+                <div class="form-group">
+                  <label for="mediaEmail">Email Address *</label>
+                  <input type="email" id="mediaEmail" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="mediaPhone">Phone Number</label>
+                  <input type="tel" id="mediaPhone" name="phone" />
+                </div>
+                <div class="form-group">
+                  <label for="mediaType">Media Type *</label>
+                  <select id="mediaType" name="type" required>
+                    <option value="">Select Type</option>
+                    <option value="print">Print</option>
+                    <option value="online">Online</option>
+                    <option value="tv">Television</option>
+                    <option value="radio">Radio</option>
+                    <option value="podcast">Podcast</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="mediaDeadline">Deadline (if applicable)</label>
+                  <input type="date" id="mediaDeadline" name="deadline" />
+                </div>
+                <div class="form-group">
+                  <label for="mediaMessage">Inquiry Details *</label>
+                  <textarea id="mediaMessage" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investor Form -->
+      <div class="form-page" x-show="currentPage === 'investor'" x-transition aria-label="Investor Inquiry Form">
+        <div class="form-header">
+          <h1 class="form-title">Investment <span class="highlight">Opportunity</span></h1>
+          <p class="form-subtitle">Join us in revolutionizing electric mobility with innovative technology and sustainable practices</p>
+          <a href="#" class="reselect-link" @click.prevent="goBackToSelection()" aria-label="Back to selection">Back</a>
+        </div>
+        <div class="form-content">
+          <p class="form-description">
+            RIVOT is at the forefront of electric mobility innovation. We invite qualified investors to join us in shaping the future of sustainable transportation.
+          </p>
+          <div class="form-row">
+            <div class="form-left-column">
+              <div class="form-image"><img src="Story_page/27.webp" alt="Investment Opportunity" /></div>
+              <div class="form-features">
+                <h3>Why Invest in RIVOT?</h3>
+                <ul class="feature-list">
+                  <li><i class="fas fa-check-circle"></i> Rapidly growing electric vehicle market with exponential potential</li>
+                  <li><i class="fas fa-check-circle"></i> Innovative technology and strong IP portfolio</li>
+                  <li><i class="fas fa-check-circle"></i> Experienced leadership team with proven track record</li>
+                  <li><i class="fas fa-check-circle"></i> Clear path to profitability and sustainable growth</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-container">
+              <div class="success-message" id="investorSuccess">
+                Thank you for your investment inquiry! Our team will review your information and contact you soon.
+              </div>
+              <form id="investorForm" @submit.prevent="submitForm('investor')">
+                <div class="form-group">
+                  <label for="investorName">Full Name *</label>
+                  <input type="text" id="investorName" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="investorCompany">Company/Fund Name *</label>
+                  <input type="text" id="investorCompany" name="company" required />
+                </div>
+                <div class="form-group">
+                  <label for="investorEmail">Email Address *</label>
+                  <input type="email" id="investorEmail" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="investorPhone">Phone Number *</label>
+                  <input type="tel" id="investorPhone" name="phone" required />
+                </div>
+                <div class="form-group">
+                  <label for="investorType">Investor Type *</label>
+                  <select id="investorType" name="type" required>
+                    <option value="">Select Type</option>
+                    <option value="angel">Angel Investor</option>
+                    <option value="vc">Venture Capital</option>
+                    <option value="private">Private Equity</option>
+                    <option value="corporate">Corporate Investor</option>
+                    <option value="institutional">Institutional Investor</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="investorRange">Investment Range *</label>
+                  <select id="investorRange" name="range" required>
+                    <option value="">Select Range</option>
+                    <option value="1-5">₹1-5 Crores</option>
+                    <option value="5-10">₹5-10 Crores</option>
+                    <option value="10-25">₹10-25 Crores</option>
+                    <option value="25-50">₹25-50 Crores</option>
+                    <option value="50+">₹50+ Crores</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="investorMessage">Tell us about your interest</label>
+                  <textarea id="investorMessage" name="message"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Careers Form -->
+      <div class="form-page" x-show="currentPage === 'careers'" x-transition aria-label="Careers Form">
+        <!-- ✅ anchor target এখানে -->
+        <div class="form-header" id="career-opportunities">
+          <h1 class="form-title">Career <span class="highlight">Opportunities</span></h1>
+          <p class="form-subtitle">Join our team and help shape the future of electric mobility</p>
+          <a href="#" class="reselect-link" @click.prevent="goBackToSelection()" aria-label="Back to selection">Back</a>
+        </div>
+
+        <div class="form-content">
+          <p class="form-description">
+            We're always looking for talented individuals who are passionate about sustainable transportation and innovation. Explore career opportunities at RIVOT.
+          </p>
+          <div class="form-row">
+            <div class="form-left-column">
+              <div class="form-image"><img src="Story_page/15.webp" alt="Career Opportunities" /></div>
+              <div class="form-features">
+                <h3>Why Work at RIVOT?</h3>
+                <ul class="feature-list">
+                  <li><i class="fas fa-check-circle"></i> Be part of a revolutionary team in electric mobility</li>
+                  <li><i class="fas fa-check-circle"></i> Competitive salary and benefits package</li>
+                  <li><i class="fas fa-check-circle"></i> Opportunities for professional growth and development</li>
+                  <li><i class="fas fa-check-circle"></i> Work in a dynamic and innovative environment</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-container">
+              <div class="success-message" id="careersSuccess">
+                Thank you for your application! We'll review your information and get back to you soon.
+              </div>
+              <form id="careersForm" @submit.prevent="submitForm('careers')">
+                <div class="form-group">
+                  <label for="careersName">Full Name *</label>
+                  <input type="text" id="careersName" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="careersEmail">Email Address *</label>
+                  <input type="email" id="careersEmail" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="careersPhone">Phone Number *</label>
+                  <input type="tel" id="careersPhone" name="phone" required />
+                </div>
+                <div class="form-group">
+                  <label for="careersPosition">Position Applying For *</label>
+                  <select id="careersPosition" name="position" required>
+                    <option value="">Select Position</option>
+                    <option value="engineer">Engineer</option>
+                    <option value="designer">Designer</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="sales">Sales</option>
+                    <option value="operations">Operations</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="careersExperience">Years of Experience</label>
+                  <select id="careersExperience" name="experience">
+                    <option value="">Select Experience</option>
+                    <option value="0-2">0-2 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="6-10">6-10 years</option>
+                    <option value="10+">10+ years</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="careersCV">Attach CV *</label>
+                  <div class="file-upload">
+                    <input type="file" id="careersCV" name="cv" accept=".pdf,.doc,.docx" required />
+                    <label for="careersCV" class="file-upload-label">Choose File</label>
+                  </div>
+                  <div class="file-name" id="fileName">No file chosen</div>
+                </div>
+                <div class="form-group">
+                  <label for="careersMessage">Cover Letter</label>
+                  <textarea id="careersMessage" name="message"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overseas Partnership Form -->
+      <div class="form-page" x-show="currentPage === 'overseas'" x-transition aria-label="Overseas Partnership Form">
+        <div class="form-header">
+          <h1 class="form-title">Overseas <span class="highlight">Partnership</span></h1>
+          <p class="form-subtitle">Expand RIVOT's global presence as our international distribution partner</p>
+          <a href="#" class="reselect-link" @click.prevent="goBackToSelection()" aria-label="Back to selection">Back</a>
+        </div>
+        <div class="form-content">
+          <p class="form-description">
+            We're seeking established international partners to distribute RIVOT electric vehicles in global markets. Join us in bringing sustainable mobility solutions to customers worldwide.
+          </p>
+          <div class="form-row">
+            <div class="form-left-column">
+              <div class="form-image"><img src="Story_page/15.webp" alt="Overseas Partnership" /></div>
+              <div class="form-features">
+                <h3>Benefits of International Partnership</h3>
+                <ul class="feature-list">
+                  <li><i class="fas fa-check-circle"></i> Exclusive distribution rights in your region</li>
+                  <li><i class="fas fa-check-circle"></i> Comprehensive training and marketing support</li>
+                  <li><i class="fas fa-check-circle"></i> Competitive pricing and favorable terms</li>
+                  <li><i class="fas fa-check-circle"></i> Access to innovative electric mobility products</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-container">
+              <div class="success-message" id="overseasSuccess">
+                Thank you for your overseas partnership inquiry! Our international team will review your application and contact you soon.
+              </div>
+              <form id="overseasForm" @submit.prevent="submitForm('overseas')">
+                <div class="form-group">
+                  <label for="overseasCompany">Company Name *</label>
+                  <input type="text" id="overseasCompany" name="company" required />
+                </div>
+                <div class="form-group">
+                  <label for="overseasContact">Contact Person *</label>
+                  <input type="text" id="overseasContact" name="contact" required />
+                </div>
+                <div class="form-group">
+                  <label for="overseasEmail">Email Address *</label>
+                  <input type="email" id="overseasEmail" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="overseasPhone">Phone Number *</label>
+                  <input type="tel" id="overseasPhone" name="phone" required />
+                </div>
+                <div class="form-group">
+                  <label for="overseasCountry">Country *</label>
+                  <select id="overseasCountry" name="country" required>
+                    <option value="">Select Country</option>
+                    <option value="usa">United States</option>
+                    <option value="canada">Canada</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="germany">Germany</option>
+                    <option value="france">France</option>
+                    <option value="australia">Australia</option>
+                    <option value="japan">Japan</option>
+                    <option value="singapore">Singapore</option>
+                    <option value="uae">UAE</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="overseasBusiness">Type of Business *</label>
+                  <select id="overseasBusiness" name="business" required>
+                    <option value="">Select Business Type</option>
+                    <option value="distributor">Distributor</option>
+                    <option value="retailer">Retailer</option>
+                    <option value="dealer">Dealership Network</option>
+                    <option value="importer">Importer</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="overseasExperience">Years in Automotive Business</label>
+                  <select id="overseasExperience" name="experience">
+                    <option value="">Select Experience</option>
+                    <option value="0-2">0-2 years</option>
+                    <option value="3-5">3-5 years</option>
+                    <option value="6-10">6-10 years</option>
+                    <option value="10+">10+ years</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="overseasMessage">Tell us about your business</label>
+                  <textarea id="overseasMessage" name="message"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India</p>
+      </div>
+    </footer>
+
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <script>
+      const connections = [
+        { id: "vendor", name: "Vendors", description: "Partner with us as a supplier", icon: "fas fa-handshake", image: "greenscooty/0001.webp" },
+        { id: "dealer", name: "Dealers", description: "Become an authorized dealer", icon: "fas fa-road", image: "grayscooty/0001.webp" },
+        { id: "media", name: "Media", description: "Press and media inquiries", icon: "fas fa-newspaper", image: "greenscooty/0040.webp" },
+        { id: "investor", name: "Investors", description: "Investment opportunities", icon: "fas fa-chart-line", image: "grayscooty/0040.webp" },
+        { id: "careers", name: "Careers", description: "Join our team", icon: "fas fa-briefcase", image: "greenscooty/0001.webp" },
+        { id: "overseas", name: "Overseas Partnership", description: "International distribution opportunities", icon: "fas fa-users", image: "grayscooty/0002.webp" },
+      ];
+
+      function rivotConnect() {
+        return {
+          currentPage: "selection",
+          connections: connections,
+
+          init() {
+            this.handleDeepLink();
+            window.addEventListener("hashchange", () => this.handleDeepLink());
+          },
+
+          // ✅ FIX: hash open হলে একদম top থেকে শুরু করবে
+          handleDeepLink() {
+            const hash = (window.location.hash || "").toLowerCase();
+
+            if (hash === "#career-opportunities") {
+              this.currentPage = "careers";
+
+              this.$nextTick(() => {
+                // ✅ Always go top first
+                window.scrollTo({ top: 0, behavior: "auto" });
+
+                // ✅ Then align to section with header offset
+                setTimeout(() => {
+                  const header = document.querySelector("header");
+                  const headerH = header ? header.offsetHeight : 0;
+
+                  const el = document.getElementById("career-opportunities");
+                  if (!el) return;
+
+                  const top = el.getBoundingClientRect().top + window.pageYOffset - headerH;
+                  window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+                }, 50);
+              });
+
+              return;
+            }
+          },
+
+          goToForm(connectionId) {
+            this.currentPage = connectionId;
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          },
+
+          goBackToSelection() {
+            this.currentPage = "selection";
+            // hash clear
+            if (window.location.hash) {
+              history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          },
+
+          submitForm(formType) {
+            console.log("Submitting form type:", formType);
+
+            const form = document.getElementById(`${formType}Form`);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+
+            submitBtn.textContent = "Sending...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            formData.append("formType", formType);
+
+            fetch("/send_contact_email.php", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.text())
+              .then((text) => {
+                let data;
+                try {
+                  data = JSON.parse(text);
+                } catch (e) {
+                  throw new Error("Invalid response from server");
+                }
+
+                if (data.success) {
+                  document.getElementById(`${formType}Success`).style.display = "block";
+                  document.getElementById(`${formType}Success`).scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+
+                  setTimeout(() => {
+                    form.reset();
+                    if (formType === "careers") {
+                      document.getElementById("fileName").textContent = "No file chosen";
+                    }
+
+                    setTimeout(() => {
+                      document.getElementById(`${formType}Success`).style.display = "none";
+                      submitBtn.textContent = originalBtnText;
+                      submitBtn.disabled = false;
+                    }, 5000);
+                  }, 1000);
+                } else {
+                  alert("Failed to submit form: " + data.message);
+                  submitBtn.textContent = originalBtnText;
+                  submitBtn.disabled = false;
+                }
+              })
+              .catch((error) => {
+                console.error("Fetch error:", error);
+                alert("An error occurred while submitting the form. Please check the console for details.");
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+              });
+          },
+        };
+      }
+
+      $(document).ready(function () {
+        $(".menu-toggle2").click(function () {
+          $(this).toggleClass("open");
+          $(".nav-menu2").toggleClass("active");
+        });
+
+        $(".has-submenu2 > a").click(function (e) {
+          if ($(window).width() <= 768) {
+            window.location.href = $(this).attr("href");
+          }
+        });
+
+        $(".submenu-toggle").click(function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const $this = $(this);
+          const $submenu = $this.next(".submenu2");
+          $(".submenu2").not($submenu).removeClass("active");
+          $(".submenu-toggle").not($this).removeClass("active");
+          const isActive = $submenu.hasClass("active");
+          $submenu.toggleClass("active");
+          $this.toggleClass("active", !isActive);
+        });
+
+        $(document).click(function (e) {
+          if (!$(e.target).closest(".navbar2").length) {
+            $(".nav-menu2").removeClass("active");
+            $(".submenu2").removeClass("active");
+            $(".menu-toggle2").removeClass("open");
+            $(".submenu-toggle").removeClass("active");
+          }
+        });
+
+        // File upload display for careers
+        $("#careersCV").change(function () {
+          const fileName = $(this).val().split("\\").pop();
+          $("#fileName").text(fileName ? fileName : "No file chosen");
+        });
+      });
+
+      function showStoryOverlay() {
+        document.getElementById("storyOverlayFull").style.display = "block";
+        document.getElementById("storyFrame").src = "story.html";
+        document.getElementById("storyCloseBtn").style.opacity = "1";
+        document.getElementById("storyCloseBtn").style.pointerEvents = "auto";
+      }
+
+      // Phone number validation - limit to 10 digits
+      document.addEventListener("DOMContentLoaded", function () {
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+
+        phoneInputs.forEach((input) => {
+          input.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "");
+            if (this.value.length > 10) {
+              this.value = this.value.slice(0, 10);
+            }
+          });
+
+          input.addEventListener("paste", function (e) {
+            e.preventDefault();
+            const pastedData = (e.clipboardData || window.clipboardData).getData("text");
+            const sanitizedData = pastedData.replace(/\D/g, "").slice(0, 10);
+            document.execCommand("insertText", false, sanitizedData);
+          });
+        });
+      });
+    </script>
+
+    <!-- Story Overlay -->
+    <div
+      id="storyOverlayFull"
+      style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.95); z-index: 4000;"
+    >
+      <iframe id="storyFrame" src="story.html" style="width: 100%; height: 100%; border: none;"></iframe>
+      <button
+        id="storyCloseBtn"
+        style="position: absolute; top: 20px; right: 30px; font-size: 32px; color: white; background: none; border: none; cursor: pointer; z-index: 10001; pointer-events: auto;"
+        aria-label="Close Story Overlay"
+      >
+        ×
+      </button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Refund Policy | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000;
+      color: white;
+      min-height: 100vh;
+    }
+    p {
+      color: #FFFFFF;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .main-menu ul li a[href="RefundPolicy.html"] {
+      color: #FF9010;
+    }
+    .terms-content {
+      max-width: 1450px;
+      margin: 0 auto;
+      padding: 150px 20px 100px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 1.5s ease-out;
+    }
+    .terms-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .terms-section {
+      margin-bottom: 80px;
+    }
+    .section-title {
+      font-size: 40px;
+      font-weight: 500;
+      color: #CE6723;
+      margin-bottom: 65px;
+      text-align: center;
+    }
+    .terms-section h3 {
+      font-size: 26px;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+    .terms-section p, .terms-section li {
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .terms-section ul {
+      padding-left: 20px;
+    }
+    .terms-section li {
+      list-style-type: disc;
+    }
+
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      /* Menu Icon for Mobile */
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+
+      .menu-toggle2.open::before {
+        content: '✕'; /* Close icon (X) */
+      }
+
+      .menu-toggle2:not(.open)::before {
+        content: '☰'; /* Hamburger icon */
+      }
+
+      /* Menu Styling */
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%; /* Center the menu */
+        transform: translateX(-50%); /* Center the menu */
+        background-color: #333;
+        width: 90%;
+        max-width: 300px; /* Optional: Limit the width for better appearance */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease; /* Only opacity transition */
+      }
+
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-menu2 li {
+        position: relative;
+      }
+
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+
+
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+
+      /* Submenu Styling */
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .submenu2 li {
+        margin: 0;
+      }
+
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+
+      /* Submenu Indicator */
+      .has-submenu2 {
+        position: relative;
+      }
+
+      .has-submenu2 > a {
+        padding-right: 40px; /* Space for the + icon */
+        display: block;
+      }
+
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10; /* Ensure clickable */
+        line-height: 1; /* Ensure consistent vertical alignment */
+      }
+
+      .submenu-toggle::before {
+        content: '+'; /* Plus icon by default */
+      }
+
+      .submenu-toggle.active::before {
+        content: '−'; /* Minus icon when submenu is active */
+      }
+
+      .nav-menu2 li:last-child a {
+      border: 0;
+    }
+    
+    .nav-menu2 li:last-child ul li {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    }
+
+    /* Content Area - Box Type Design for Mobile */
+    .content {
+      padding: 20px;
+    }
+
+    .content-box {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      .content-box {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      height: 330px;
+      position: relative;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+    @media (max-width: 991px) {
+      .section-title { font-size: 32px; }
+      .terms-section h3 { font-size: 22px; }
+      .terms-section p, .terms-section li { font-size: 14px; }
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 28px; }
+      .terms-section h3 { font-size: 20px; }
+      .footer-content { flex-direction: column; gap: 30px; }
+      .footer-column { min-width: 100%; }
+      .footer-text { max-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+<!-- Header -->
+  <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  <!-- Refund Policy Content -->
+  <div class="terms-content">
+    <div class="terms-section">
+      <h2 class="section-title">Refund Policy</h2>
+      <p>RIVOT MOTORS India Private Limited, a company incorporated under the Companies Act, 1956 and having its registered address at Fifth Floor, Oneness, 1st Cross, 1st Main, Sadashivnagar, Belagavi, Karnataka - 590001 (hereinafter referred to as “RIVOT®” or “We” or “Our” or “Us”) provides this Refund Policy for customers (hereinafter referred to as “Customer” or “You” or “Your”) who have made a booking or purchased a RIVOT branded electric two-wheeled vehicle (“Vehicle”) either directly through RIVOT or through its authorized retail partners (“Retail Partner”).</p>
+      <p>Please read this Refund Policy carefully before proceeding with a booking or purchase. By engaging with RIVOT or its Retail Partners, You agree to be bound by this Refund Policy and other applicable policies published on RIVOT’s website from time to time.</p><br>
+
+      <h3>1. Booking Refund</h3>
+      <p>The booking amount paid by You for reserving a RIVOT Vehicle is fully refundable, subject to the conditions outlined below:</p>
+      <ul>
+        <li>The booking amount is treated as a non-interest-bearing security deposit and is refundable upon Your request, provided the request is made before the delivery process is initiated.</li>
+        <li>To initiate a refund, You must submit a refund request through RIVOT’s official website or contact our customer support at support@rivot.com. The request must include Your booking details, such as the booking ID and registered email address.</li>
+        <li>Refunds will be processed within 7-14 business days from the date of approval of the refund request, provided all required information is submitted correctly.</li>
+        <li>Refunds will be issued to the original payment method used for the booking, or via bank transfer if the original method is unavailable.</li>
+        <li>In case of payment disputes, RIVOT and its Retail Partners are not liable for any delays caused by third-party payment gateways or financial institutions.</li>
+      </ul><br>
+
+      <h3>2. Cancellation of Purchase</h3>
+      <ul>
+        <li>If You cancel Your purchase after the Vehicle has been allocated for delivery but before the final delivery, the booking amount will be refunded, subject to a deduction of any applicable processing fees as communicated by RIVOT or its Retail Partner.</li>
+        <li>Once the Vehicle has been delivered, no refunds will be issued unless the Vehicle is found to have manufacturing defects that cannot be repaired or replaced, as determined by RIVOT’s quality assurance team.</li>
+        <li>In the event of a cancellation due to RIVOT’s inability to deliver the Vehicle within the estimated delivery period, You are entitled to a full refund of the booking amount without any deductions.</li>
+        <li>Any government subsidies or incentives applied to the purchase price will not be included in the refund amount if such subsidies have already been claimed or processed.</li>
+      </ul><br>
+
+      <h3>3. Non-Refundable Scenarios</h3>
+      <p>Refunds will not be provided in the following cases:</p>
+      <ul>
+        <li>If You fail to complete the payment of the balance amount within the timeline specified in the delivery intimation email sent by RIVOT or its Retail Partner.</li>
+        <li>If the Vehicle has been customized as per Your specifications, and production has already commenced.</li>
+        <li>For any accessories, merchandise, or additional services purchased alongside the Vehicle, unless explicitly stated otherwise in the product terms.</li>
+        <li>In case of misuse, damage, or unauthorized modifications to the Vehicle after delivery.</li>
+      </ul><br>
+
+      <h3>4. Contact for Refund Queries</h3>
+      <p>For any questions or assistance regarding refunds, please contact our customer support team at:</p>
+      <ul>
+        <li>Email: support@rivot.com</li>
+        <li>Phone: +91-9876543210</li>
+        <li>Address: Fifth Floor, Oneness, 1st Cross, 1st Main, Sadashivnagar, Belagavi, Karnataka - 590001</li>
+      </ul>
+      <p>RIVOT reserves the right to modify this Refund Policy at any time without prior notice. The updated policy will be published on RIVOT’s website, and it is Your responsibility to review it periodically.</p>
+    </div>
+  </div>
+
+<footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+      </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+
+  <!-- Scripts -->
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      // Intersection Observer for terms-content animation
+      const termsContent = document.querySelector('.terms-content');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      if (termsContent) {
+        observer.observe(termsContent);
+      }
+
+      function showStoryOverlay() {
+        console.log("Story overlay requested");
+      }
+
+      // Toggle mobile menu
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+
+      // Handle navigation on menu item click for mobile
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          // Navigate to the href directly without preventing default
+          window.location.href = $(this).attr('href');
+        }
+      });
+
+      // Toggle submenu and icon when clicking the "+" or "−" icon
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+
+        // Close all other submenus
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+
+        // Toggle current submenu
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+
+      // Close menu when clicking outside
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

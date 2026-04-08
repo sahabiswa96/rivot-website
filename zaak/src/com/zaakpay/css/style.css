@@ -1,0 +1,38 @@
+.customtable,.customtable-all{border-collapse:collapse;border-spacing:0;width:100%;display:table}.customtable-all{border:1px solid #ccc}
+
+.w3-bordered tr,.customtable-all tr{border-bottom:1px solid #ddd}.w3-striped tbody tr:nth-child(even){background-color:#f1f1f1}
+
+.customtable-all tr:nth-child(odd){background-color:#fff}.customtable-all tr:nth-child(even){background-color:#f1f1f1}
+
+.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ccc}.w3-centered tr th,.w3-centered tr td{text-align:center}
+
+.customtable td,.customtable th,.customtable-all td,.customtable-all th{padding:8px 8px;display:table-cell;text-align:left;vertical-align:top}
+
+.customtable th:first-child,.customtable td:first-child,.customtable-all th:first-child,.customtable-all td:first-child{padding-left:16px}
+
+
+.message {
+            color: limegreen;
+            text-align: center;
+        }
+
+
+.card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+        }
+
+
+.card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        
+.container {
+            padding: 2px 16px;
+        }
+
+td {
+	word-break: break-word;
+}

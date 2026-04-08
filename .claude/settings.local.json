@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -l:*)",
+      "Read(//var/log/apache2/**)",
+      "Bash(php /var/www/html/site_admin/items/index.php)",
+      "Bash(apache2ctl -S 2>&1)",
+      "Bash(apache2ctl configtest 2>&1)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

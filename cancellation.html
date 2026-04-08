@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Cancellation/Refund | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <link rel="stylesheet" href="css/slick.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000;
+      color: white;
+      min-height: 100vh;
+    }
+    p {
+      color: #FFFFFF;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .main-menu ul li a[href="cancellation.html"] {
+      color: #FF9010;
+    }
+    .terms-content {
+      max-width: 1450px;
+      margin: 0 auto;
+      padding: 150px 20px 100px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 1.5s ease-out;
+    }
+    .terms-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .terms-section {
+      margin-bottom: 80px;
+    }
+    .section-title {
+      font-size: 40px;
+      font-weight: 500;
+      color: #CE6723;
+      margin-bottom: 65px;
+      text-align: center;
+    }
+    .terms-section h3 {
+      font-size: 26px;
+      font-weight: 500;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+    .terms-section p, .terms-section li {
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .terms-section ul {
+      padding-left: 20px;
+    }
+    .terms-section li {
+      list-style-type: disc;
+    }
+
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+
+      .menu-toggle2.open::before {
+        content: '✕';
+      }
+
+      .menu-toggle2:not(.open)::before {
+        content: '☰';
+      }
+
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        width: 90%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-menu2 li {
+        position: relative;
+      }
+
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+
+
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .submenu2 li {
+        margin: 0;
+      }
+
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+
+      .has-submenu2 {
+        position: relative;
+      }
+
+      .has-submenu2 > a {
+        padding-right: 40px;
+        display: block;
+      }
+
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+        line-height: 1;
+      }
+
+      .submenu-toggle::before {
+        content: '+';
+      }
+
+      .submenu-toggle.active::before {
+        content: '−';
+      }
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+      
+      .nav-menu2 li:last-child ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+
+
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .content-box {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    @media screen and (max-width: 768px) {
+      .content-box {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+      height: 330px;
+      position: relative;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+    .footer-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      max-width: 250px;
+    }
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #444;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+    @media (max-width: 991px) {
+      .section-title { font-size: 32px; }
+      .terms-section h3 { font-size: 22px; }
+      .terms-section p, .terms-section li { font-size: 14px; }
+    }
+    @media (max-width: 768px) {
+      .section-title { font-size: 28px; }
+      .terms-section h3 { font-size: 20px; }
+      .footer-content { flex-direction: column; gap: 30px; }
+      .footer-column { min-width: 100%; }
+      .footer-text { max-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  <div class="terms-content">
+    <div class="terms-section">
+      <h2 class="section-title">Cancellation/Refund</h2>
+      <p>RIVOT MOTORS India Private Limited, a company incorporated under the Companies Act, 1956 and having its registered address at Fifth Floor, Oneness, 1st Cross, 1st Main, Sadashivnagar, Belagavi, Karnataka - 590001 (hereinafter referred to as “RIVOT®” or “We” or “Our” or “Us”) offers booking of the RIVOT branded electric two-wheeled vehicles (“Vehicle”) to customers (hereinafter referred to as “Customer” or “You” or “Your”) either by itself or through its authorized retail partners (“Retail Partner”), subject to these RIVOT Branded Electric Vehicles Booking Terms (“Terms”).</p>
+      <p>Please read and understand these Terms carefully. In the event these Terms are not acceptable to You, or You are a person who is not competent under the applicable laws to enter into these Terms, please do not proceed with the Booking. Subject to these Terms, impliedly or expressly accepting these Terms, You also accept and agree to be bound by applicable policies published by RIVOT on its website (from time to time).</p><br>
+
+      <h3>1. Booking</h3>
+      <p>By placing this Booking, You express an interest to purchase the Vehicle and pay applicable amount (“Amount”), towards placing such Booking.</p>
+      <ul>
+        <li>In case payment is made via credit/debit card, it is recommended that You make necessary enquiry about the charges or fees payable against the credit/debit card used from credit card or the debit card service provider i.e. the respective bank.</li>
+        <li>The credit card/debit card information supplied at the time of making the payment is processed by the payment gateway of the service provider and is not supplied to RIVOT or its Retail Partner. It is Your sole responsibility to ensure that the information entered in the relevant fields are correct. It is recommended that You take and retain a copy of the transaction for record keeping purposes, which might assist in resolution of any disputes that may arise out of such payment.</li>
+        <li>You agree, understand and confirm that Your personal data, including without limitation, details relating to debit card/credit card/net banking transmitted over the internet may be susceptible to misuse, hacking, theft and/or fraud and that RIVOT or its Retail Partner or the payment service provider(s) have no control over such matters.</li>
+        <li>The payment towards the Booking shall be made through the payment gateway service provider through a secure website. However, neither the payment gateway service provider nor RIVOT and its Retail Partner gives any assurance, that the information so provided online by You is secured or may be read or intercepted by any third party. RIVOT and its Retail Partner does not accept or assume any liability in the event of such unauthorized interception, hacking or other unauthorized access to information provided by You in the process of making the Amount payment.</li>
+        <li>In case the payment is made through issuance of cheque, You will ensure that the cheque issued to RIVOT or the Retail Partner is duly honored and You accept and acknowledge that in case the cheque issued is dishonored, You will be liable under the applicable laws including but not limited to Negotiable Instruments Act,1881 as amended from time to time. In such cases RIVOT or the Retail Partner will be entitled to initiate legal proceedings against You under the applicable laws.</li>
+      </ul><br>
+
+      <h3>2. Vehicle Purchase</h3>
+      <ul>
+        <li>The Amount which shall be payable by You towards the Booking is fully refundable and shall be treated as a non-interest-bearing security deposit amount which shall be adjusted against the full payment which shall include RTO charges, insurance, taxes as applicable and government subsidy if any (“Final Price”), to be made by You at the time of purchase of the Vehicle. The Parties hereby acknowledge that the price of the Vehicle is dependent on many factors and is subject to change from time to time. The Final Price as quoted shall be inclusive of all applicable taxes.</li>
+        <li>RIVOT or its Retail Partner shall intimate You when the Vehicle is ready for delivery by raising a demand of the balance amount of the Vehicle in the form of an intimation email to You (“Intimation”) and You shall be required to pay the balance amount of the Vehicle as per the timeline (“Timeline”) as communicated by RIVOT in such Intimation. In case of failure on Your part to complete the payment within such Timeline, RIVOT or its Retail Partner reserves the right to sell the booked Vehicle to any other customer and refund the Amount.</li>
+        <li>Notwithstanding anything contained in these Terms, it is hereby clarified that the Final Price of the Vehicle shall be the price applicable on the date of Intimation and not the price that is prevailing at the time of acceptance of these Terms.</li>
+      </ul><br>
+
+      <h3>3. Delivery Schedule</h3>
+      <p>RIVOT or our Retail Partner may communicate the estimated delivery period for the Vehicle and shall make all commercially reasonable efforts to deliver the Vehicle within the specified delivery period as provided for on RIVOT’s website or as communicated by RIVOT or its Retail Partner at the time of accepting these Terms. Any change or delay in the delivery period shall be notified to You by Us or our Retail Partner as the case may be. We or Retail Partner will not be liable for any claims, damages, losses, costs or expenses incurred/suffered by You due to delay in delivery of the Vehicle for any reason whatsoever. Parties hereby agree that time is not of essence in these Terms. If You are unable to take delivery within the specified period, Your booked Vehicle may be made available for sale to other customers. The Vehicle shall be delivered to You only upon completion of the formalities and receipt of Final Price of the Vehicle.</p><br>
+
+      <h3>4. Cancellation/Refund</h3>
+      <p>You may cancel the Booking at any time prior to making full payment of the Final Price of the Vehicle. We or our Retail Partner reserve the right to unilaterally cancel Your Booking at any time without prior notice. For the sake of clarity, it is stated that We or Retail Partner may cancel Your Booking for reasons, including but not limited to, the following:</p>
+      <ul>
+        <li>We or our Retail Partner decide not to sell the Vehicle in Your city/location;</li>
+        <li>We or our Retail Partner discontinue the Vehicle feature or option after the time You place Your Booking;</li>
+        <li>We or our Retail Partner believe that the Booking has been made with a view toward resale of the Vehicle, for use as part of any business activity or commercial undertaking, or that has otherwise been made in bad faith.</li>
+      </ul>
+      <p>Once You make the full payment for Your Vehicle, You will not be able to cancel Your purchase or claim any refund of the purchase amount (including Amount).</p>
+      <p>RIVOT or its Retail Partner will endeavor to process refund of the Amount (if any) to You within fifteen (15) working days from (i) the date of receipt of request for cancellation (if cancelled by You) or (ii) the date of notification of cancellation sent (if cancelled by RIVOT/Retail Partner).</p>
+      <p>In case of a cancellation of the Booking by You or by RIVOT or its Retail Partner on grounds of a breach of these Terms by You and where Vehicle charging equipment has been installed pursuant to these Terms, RIVOT or its Retail Partner shall not refund the Amount and shall, at its discretion, set off the Amount against the amount invoiced to You for such charging equipment installation and You shall be liable to pay the balance amount post set-off, if any.</p><br>
+
+      <h3>5. Assignment or Transfer</h3>
+      <p>The Booking is for the sale of Vehicle only to You and You shall not transfer or assign any rights associated or granted to You under these Terms to any third party. RIVOT and its Retail Partner shall have a right to assign any or all of its rights and obligations under these Terms to any of its affiliated entities without obtaining Your prior written consent.</p><br>
+
+      <h3>6. Inspection</h3>
+      <p>Post Booking, RIVOT or its Retail Partner or its authorized representatives may conduct an inspection at the location provided by You, for installation of the Vehicle charging equipment if specifically requested by You. The installation of the Vehicle charging equipment may entail additional costs to You, as may be determined by RIVOT or its Retail Partner and informed to You, during such inspection or at the time of installation. You shall be responsible to procure all permissions, permits and/or any other requirements under applicable law, including requirements under apartment association byelaws, housing society rules etc., for the installation of the Vehicle charging equipment at such location.</p><br>
+
+      <h3>7. Collection of Information</h3>
+      <p>RIVOT or its Retail Partner may require certain information and documents from You for processing Your Booking, complying with statutory requirements, and/or conducting a site inspection for installation of the Vehicle charging equipment. You represent and warrant that all such information and documents will be true, complete, and accurate. You will promptly notify Us or our Retail Partner of any change in the information provided by You to allow Us or our Retail Partner to update Our or Retail Partner records. All collection, storage, use and disclosure of any information provided by You and/or shared by third party will be in accordance with Our Privacy Policy available at <a href="privacypolicy.html">https://www.rivotmotors.com/policy</a>. RIVOT’s Privacy Policy is incorporated by reference and will be a part of these Terms in the form published on its website or notified otherwise to the You.</p><br>
+
+      <h3>8. Purchase Terms</h3>
+      <p>These Terms are only applicable to Booking of the Vehicle. You acknowledge that purchase of the Vehicle will be subject to such additional terms and conditions as may be provided by RIVOT (collectively, “Purchase Terms”). You shall be required to agree to such Purchase Terms prior to making full payment of the Vehicle.</p><br>
+
+      <h3>9. Limitation of Liability</h3>
+      <p>In the event of failure of delivery as per the Delivery Schedule communicated to You, RIVOT or its Retail Partner will be liable only up to the extent of the Booking Amount. RIVOT or its Retail Partner will not be liable for any indirect, special, incidental or consequential damages arising out of or in connection with these Terms. Your sole and exclusive remedy and Our or Retail Partner’s aggregate and cumulative liability for any breach under these Terms will be limited to a refund of the Amount only.</p><br>
+
+      <h3>10. Disclaimer</h3>
+      <p>The Vehicle will in all material aspects be similar to the Vehicle presented or advertised in marketing or promotional campaigns. However, in view of Our endeavors to continuously innovate and improve Our products, RIVOT reserves the right to modify or alter the specifications, features and/or design of the Vehicle without prior notice and without any liability.</p><br>
+
+      <h3>11. Miscellaneous</h3>
+      <ul>
+        <li>You hereby agree to receive communication including but not limited to email communication/newsletters (promotional and marketing emails), WhatsApp messages, mobile SMS, call etc. from RIVOT or its Retail Partner from time to time. You further expressly waive Do Not Call (DNC)/Do Not Disturb (DND) registrations on Your phone/mobile numbers for contacting You for such promotional/marketing purposes.</li>
+        <li>RIVOT or its Retail Partner will not be liable for any failure or delay in performing any of the obligations under these Terms, in whole or in part, or for any losses incurred or suffered by the other Party by reason of such failure or delay, if and so far as such failure or delay is directly attributable to a Force Majeure Event. For the purpose of this clause, a force majeure event includes civil commotion, sabotage, lockout, strikes or labour disturbances, fire, flood, earthquakes, any other acts of God, explosion, break out of communicable disease, epidemic, pandemic, war, acts of public enemies, quarantine restrictions, any action of the Governmental Authority or absence of usual means of communication or transportation, or any other cause whether of the same or of a different nature, unavoidable or beyond the control of RIVOT or its Retail Partner (each a “Force Majeure Event”).</li>
+        <li>Prior agreements, oral statements, negotiations, communications, or representations about the Vehicle are superseded by these Terms. Terms relating to the Booking not expressly contained herein are not binding.</li>
+        <li>In the event any provision of these Terms is held invalid or unenforceable, the legality and enforceability of remaining provisions will not be affected or impaired thereby. Notwithstanding the foregoing, the Parties shall thereafter negotiate in good faith to agree upon a mutually satisfactory provision to be substituted for the provision so found to be void, illegal or unenforceable.</li>
+        <li>These Terms shall be governed by and construed in accordance with the laws of India. The Parties submit themselves to the exclusive jurisdiction of the Courts at Bengaluru, Karnataka.</li>
+        <li>Nothing in these Terms shall be construed as establishing or implying any partnership or joint venture arrangement between the Parties, nor shall it be deemed to constitute either of the Parties as the agent of the other Party and no employment or any other relationship shall be construed or created between the Parties.</li>
+        <li>Except as expressly provided herein, the rights, powers and remedies provided in these Terms are cumulative and not exclusive of any rights, powers and remedies provided by Law.</li>
+        <li>RIVOT or its Retail Partner currently deliver the Vehicle only in the territories where RIVOT offers its products and services.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      const termsContent = document.querySelector('.terms-content');
+
+      // Trigger animation immediately on mobile
+      if (window.innerWidth <= 768) {
+        termsContent.classList.add('visible');
+      } else {
+        // Use IntersectionObserver for desktop
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        if (termsContent) {
+          observer.observe(termsContent);
+        }
+      }
+
+      function showStoryOverlay() {
+        console.log("Story overlay requested");
+      }
+
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width <= 768) {
+          window.location.href = $(this).attr('href');
+        }
+      });
+
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

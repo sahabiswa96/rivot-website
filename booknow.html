@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Book Now | RIVOT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/meanmenu.css" />
+
+  <style>
+    html {
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    p {
+      color: #fff;
+    }
+
+    .book-container {
+      display: flex;
+      min-height: calc(100vh - 200px);
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .book-left {
+      width: 55%;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+      position: relative;
+    }
+
+    #viewer {
+      width: 100%;
+      height: 88vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: ew-resize;
+      touch-action: none;
+    }
+
+    img#sequenceImage {
+      max-width: 120%;
+      max-height: 100%;
+      object-fit: contain;
+      pointer-events: auto;
+      user-select: none;
+      margin-top: 40px;
+    }
+
+    #loaderOverlay {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    @keyframes bounceLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    #loaderLogo {
+      width: 60px;
+      margin-bottom: 20px;
+      animation: bounceLogo 1s infinite;
+    }
+
+    #progressBar {
+      width: 180px;
+      height: 10px;
+      background: #222;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    #progressFill {
+      height: 100%;
+      width: 0%;
+      background: #CE6723;
+      transition: width 0.2s;
+    }
+
+    #progressText {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .book-right {
+      width: 45%;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.8);
+      overflow-y: auto;
+      animation: slideFadeUp 1s ease-out forwards;
+    }
+
+    @keyframes slideFadeUp {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .model-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .model-btns button {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      color: white;
+      font-family: "Montserrat", sans-serif;
+      transition: background 0.3s, border 0.3s;
+    }
+
+    .model-btns button.active {
+      background: #CE6723;
+      color: white;
+      border: none;
+    }
+
+    .color-section {
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+
+    .color-label {
+      margin-right: 10px;
+      color: #fff;
+    }
+
+    .color-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .color-dots span {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.3s, transform 0.3s;
+    }
+
+    .color-dots span.active {
+      border-color: #fff;
+      transform: scale(1.1);
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .form-row.full-width {
+      flex-direction: column;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 0;
+      margin-bottom: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #444;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      font-family: "Montserrat", sans-serif;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #CE6723;
+      box-shadow: 0 0 5px rgba(206, 103, 35, 0.5);
+    }
+
+    .form-group select {
+      background:
+        rgba(255, 255, 255, 0.1)
+        url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e")
+        no-repeat;
+      background-position: right 15px center;
+      background-size: 20px;
+      appearance: none;
+      padding-right: 40px;
+    }
+
+    .form-group select:disabled {
+      background-color: rgba(255, 255, 255, 0.05);
+      cursor: not-allowed;
+    }
+
+    .form-group select option {
+      background: #000;
+      color: white;
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+    }
+
+    .error-message {
+      color: #ff4444;
+      font-size: 12px;
+      margin-top: 5px;
+      margin-left: 10px;
+      display: none;
+    }
+
+    .terms {
+      font-size: 17px;
+      margin: 15px 0;
+      color: #fff;
+      display: inline-block;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .terms a {
+      color: #CE6723;
+      text-decoration: none;
+    }
+
+    .terms a:hover {
+      text-decoration: underline;
+    }
+
+    .booking-amount {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #fff;
+      text-align: left;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #CE6723;
+      color: white;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #e07a3a;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .testride-title {
+      font-size: 48px;
+      font-weight: 300;
+      margin-bottom: 20px;
+      font-family: "Montserrat", sans-serif;
+      color: #fff;
+    }
+
+    .testride-title .highlight {
+      color: #CE6723;
+    }
+
+    .main-menu ul li a[href="booknow.html"] {
+      color: #FF9010;
+    }
+
+    footer {
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      padding: 40px 0 0;
+      border-top: 1px solid #333;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .footer-heading {
+      color: #CE6723;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #CE6723;
+    }
+
+    .contact-info {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      color: #ccc;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #CE6723;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .menu-toggle2, .nav-menu2 {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .main-menu {
+        display: none;
+      }
+
+      .menu-toggle2 {
+        display: block;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: -45px;
+      }
+
+      .menu-toggle2.open::before {
+        content: '✕';
+      }
+
+      .menu-toggle2:not(.open)::before {
+        content: '☰';
+      }
+
+      .nav-menu2 {
+        list-style: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        width: 90%;
+        max-width: 300px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .nav-menu2.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-menu2 li {
+        position: relative;
+      }
+
+      .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+
+      .nav-menu2 a:hover {
+        background-color: #555;
+      }
+
+      .submenu2 {
+        position: static;
+        width: 100%;
+        background-color: #555;
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        list-style: none;
+      }
+
+      .submenu2.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .submenu2 li {
+        margin: 0;
+      }
+
+      .submenu2 a {
+        padding: 10px;
+        font-size: 16px;
+        padding-left: 30px;
+      }
+
+      .has-submenu2 {
+        position: relative;
+      }
+
+      .has-submenu2 > a {
+        padding-right: 40px;
+        display: block;
+      }
+
+      .submenu-toggle {
+        position: absolute;
+        right: 15px;
+        top: 25px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+        line-height: 1;
+      }
+
+      .submenu-toggle::before {
+        content: '+';
+      }
+
+      .submenu-toggle.active::before {
+        content: '−';
+      }
+
+      .book-container {
+        flex-direction: column;
+      }
+
+      .book-left, .book-right {
+        width: 100%;
+        padding: 20px;
+      }
+
+      #viewer {
+        height: 50vh;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .footer-column {
+        min-width: 100%;
+      }
+
+      #sequenceImage.mobile-image {
+        max-width: 150%;
+        max-height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        user-select: none;
+        margin-top: 50px;
+      }
+
+      #sequenceImage:not(.mobile-image) {
+        display: none;
+      }
+
+      .color-section {
+        justify-content: flex-start;
+        margin: 20px 0;
+      }
+
+      .nav-menu2 li:last-child a {
+        border: 0;
+      }
+
+      .nav-menu2 li:last-child ul li {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+    }
+
+    @media (min-width: 769px) {
+      #sequenceImage.mobile-image {
+        display: none;
+      }
+
+      #sequenceImage:not(.mobile-image) {
+        display: block;
+      }
+    }
+
+    #viewer {
+      position: relative;
+    }
+
+    .rotation-icon-container {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      text-align: center;
+      display: block;
+    }
+
+    .rotation-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rotation-icon img {
+      width: 35px;
+      height: 35px;
+      animation: pulse 2s infinite;
+      padding: 0 !important;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 767px) {
+      .rotation-icon-container {
+        display: none !important;
+      }
+    }
+
+    .form-group input:-webkit-autofill,
+    .form-group input:-webkit-autofill:hover,
+    .form-group input:-webkit-autofill:focus,
+    .form-group input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset !important;
+      -webkit-text-fill-color: white !important;
+      transition: background-color 5000s ease-in-out 0s;
+      background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .form-group select:-webkit-autofill,
+    .form-group select:-webkit-autofill:hover,
+    .form-group select:-webkit-autofill:focus,
+    .form-group select:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.1) inset !important;
+      -webkit-text-fill-color: white !important;
+      transition: background-color 5000s ease-in-out 0s;
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 15px center !important;
+      background-size: 20px !important;
+    }
+
+    .form-group select option {
+      background-color: #000 !important;
+      color: white !important;
+    }
+
+    .form-group input,
+    .form-group select {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      color: white !important;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      color: white !important;
+    }
+  </style>
+</head>
+<body>
+  <header class="header-menu">
+    <div id="header-sticky" class="main-menu-area">
+      <div class="container-fluid">
+        <div class="topheader">
+          <div class="row">
+            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+              <div class="logo">
+                <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+              </div>
+            </div>
+            <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+              <div class="main-menu">
+                <nav>
+                  <ul class="navbar-collapse">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li><a href="products.html">Products</a>
+                      <ul class="submenu">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Buy</a>
+                      <ul class="submenu">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="community.html">Community</a>
+                      <ul class="submenu">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="#">Reach us</a>
+                      <ul class="submenu">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <nav class="navbar2">
+                <div class="menu-toggle2"></div>
+                <ul class="nav-menu2">
+                  <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                  <li class="has-submenu2">
+                    <a href="products.html">Products</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="classic.html">Classic</a></li>
+                      <li><a href="pro.html">Pro</a></li>
+                      <li><a href="max.html">Max</a></li>
+                      <li><a href="sports.html">Sports</a></li>
+                      <li><a href="offlander.html">Offlander</a></li>
+                      <li><a href="compare.html">Compare Models</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu2">
+                    <a href="#">Buy</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="testride.html">Test Ride</a></li>
+                      <li><a href="booknow.html">Book Now</a></li>
+                    </ul>
+                  </li>
+                  <li class="has-submenu2">
+                    <a href="community.html">Community</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="blog.html">Blog</a></li>
+                      <li><a href="forum.html">Forum</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="merchandise.html">Merchandise</a></li>
+                  <li><a href="careers.html">Careers</a></li>
+                  <li class="has-submenu2">
+                    <a href="#">Reach us</a>
+                    <span class="submenu-toggle"></span>
+                    <ul class="submenu2">
+                      <li><a href="connect.html">Connect</a></li>
+                      <li><a href="support.html">Support</a></li>
+                      <li><a href="where.html">Where</a></li>
+                      <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="book-container">
+    <div class="book-left">
+      <div id="loaderOverlay">
+        <img id="loaderLogo" src="img/logo.png" alt="Loading Logo" />
+        <div id="progressBar">
+          <div id="progressFill"></div>
+        </div>
+        <div id="progressText">Loading...</div>
+      </div>
+
+      <div id="viewer">
+        <img id="sequenceImage" src="" alt="Scooty View" />
+        <img id="sequenceImage" class="mobile-image" src="grayscooty/0005.webp" alt="Scooty Static View" />
+        <div class="rotation-icon-container">
+          <div class="rotation-icon">
+            <img src="img/360-rotation.png" alt="360° Rotation">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-right">
+      <h1 class="testride-title">Book Your <span class="highlight">nx100</span></h1>
+      <p>Choose your model</p>
+
+      <div class="model-btns">
+        <button type="button" class="model-btn active" data-model="classic" aria-label="Select Classic model">Classic</button>
+        <button type="button" class="model-btn" data-model="pro" aria-label="Select Pro model">Pro</button>
+        <button type="button" class="model-btn" data-model="max" aria-label="Select Max model">Max</button>
+        <button type="button" class="model-btn" data-model="sports" aria-label="Select Sports model">Sports</button>
+        <button type="button" class="model-btn" data-model="offlander" aria-label="Select Offlander model">Offlander</button>
+      </div>
+
+      <div class="color-section">
+        <span class="color-label">Color:</span>
+        <div class="color-dots" id="colorOptions" role="radiogroup" aria-label="Select color"></div>
+      </div>
+
+      <p>Please enter your personal details below to book your nx100.</p>
+
+      <form id="bookingForm" action="/process_payment/src/com/zaakpay/api/Payment.php" method="post" novalidate>
+        <input type="hidden" id="price" name="price" value="499" aria-label="price" aria-required="true">
+        <input type="hidden" id="model" name="model" value="" aria-label="model" aria-required="true">
+        <input type="hidden" id="color" name="color" value="" aria-label="color" aria-required="true">
+        <input type="hidden" id="product_name" name="product_name" value="nx100" aria-label="product name" aria-required="true">
+        <input type="hidden" id="orderId" name="product1Description" value="" aria-label="orderId" aria-required="true">
+
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="First Name" required aria-label="First Name" aria-required="true">
+            <div class="error-message" id="nameError">Please enter a valid name</div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" aria-label="Last Name">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <input type="tel" id="mobile" name="mobile" placeholder="Mobile" required aria-label="Mobile Number" aria-required="true">
+            <div class="error-message" id="mobileError">Please enter a valid 10-digit mobile number</div>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email Address" aria-required="true">
+            <div class="error-message" id="emailError">Please enter a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-row full-width">
+          <div class="form-group">
+            <input type="text" id="address" name="address" placeholder="Address" aria-label="Address">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" id="country" name="country" placeholder="Country" aria-label="Country">
+          </div>
+          <div class="form-group">
+            <input type="text" id="pincode" name="pincode" placeholder="Pincode *" required aria-label="Pincode" aria-required="true" maxlength="6" inputmode="numeric">
+            <div class="error-message" id="pincodeError">Please enter a valid 6-digit pincode</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <select id="stateSelect" name="state" required aria-label="Select State" aria-required="true">
+              <option value="">Choose State</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Ladakh">Ladakh</option>
+              <option value="Lakshadweep">Lakshadweep</option>
+              <option value="Puducherry">Puducherry</option>
+            </select>
+            <div class="error-message" id="stateError">Please select a state</div>
+          </div>
+
+          <div class="form-group">
+            <select id="citySelect" name="city" required aria-label="Select City" aria-required="true" disabled>
+              <option value="">Choose City</option>
+            </select>
+            <div class="error-message" id="cityError">Please select a city</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <select id="sourceSelect" name="source" required aria-label="Where did you hear about RIVOT?" aria-required="true">
+              <option value="">Where did you hear about RIVOT? *</option>
+              <option value="Google">Google</option>
+              <option value="YouTube">YouTube</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Others">Others</option>
+            </select>
+            <div class="error-message" id="sourceError">Please select one option</div>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="referralCode" name="referralCode" placeholder="Referral Code" aria-label="Referral Code">
+          </div>
+        </div>
+
+        <div class="terms">
+          <input type="checkbox" id="terms" name="terms" required aria-label="Agree to Terms and Conditions" aria-required="true">
+          I agree to the <a href="termsAndConditions.html">Terms & Conditions</a> for this booking.
+          <div class="error-message" id="termsError">Please accept the terms and conditions</div>
+        </div>
+
+        <div class="booking-amount">
+          <small>Booking Amount: ₹499 Fully Refundable</small>
+          <p style="font-size:8px; color:#aaa; margin-top:8px; margin-bottom:14px;">
+            Zaakpay may show the amount in paise format. ₹49900 means ₹499.00 only.
+          </p>
+        </div>
+
+        <button type="submit" class="submit-btn" aria-label="Proceed to Next Step">Next →</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h5 class="footer-heading">Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="refundpolicy.html">Refund Policy</a></li>
+          <li><a href="subscriptions.html">Subscriptions</a></li>
+          <li><a href="license.html">License</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h5 class="footer-heading">Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+          <li><a href="privacypolicy.html">Privacy Policy</a></li>
+          <li><a href="cancellation.html">Cancellation/Refund</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h5 class="footer-heading">Contact Us</h5>
+        <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+        <p class="contact-info">Email: support@rivotmotors.com</p>
+        <p class="contact-info">Phone: +91 8988984646</p>
+      </div>
+      <div class="footer-column">
+        <h5 class="footer-heading">Social</h5>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/rivotmotors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India</p>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.meanmenu.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('.menu-toggle2').click(function() {
+        $(this).toggleClass('open');
+        $('.nav-menu2').toggleClass('active');
+      });
+
+      $('.has-submenu2 > a').click(function(e) {
+        if ($(window).width() <= 768) {
+          window.location.href = $(this).attr('href');
+        }
+      });
+
+      $('.submenu-toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const $this = $(this);
+        const $submenu = $this.next('.submenu2');
+        $('.submenu2').not($submenu).removeClass('active');
+        $('.submenu-toggle').not($this).removeClass('active');
+        const isActive = $submenu.hasClass('active');
+        $submenu.toggleClass('active');
+        $this.toggleClass('active', !isActive);
+      });
+
+      $(document).click(function(e) {
+        if (!$(e.target).closest('.navbar2').length) {
+          $('.nav-menu2').removeClass('active');
+          $('.submenu2').removeClass('active');
+          $('.menu-toggle2').removeClass('open');
+          $('.submenu-toggle').removeClass('active');
+        }
+      });
+    });
+
+    const modelButtons = document.querySelectorAll('.model-btn');
+    const sequenceImage = document.querySelector('#sequenceImage:not(.mobile-image)');
+    const mobileImage = document.querySelector('#sequenceImage.mobile-image');
+    const progressBar = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const loaderOverlay = document.getElementById('loaderOverlay');
+    const viewer = document.getElementById('viewer');
+    const colorOptions = document.getElementById('colorOptions');
+    const stateSelect = document.getElementById('stateSelect');
+    const citySelect = document.getElementById('citySelect');
+    const bookingForm = document.getElementById('bookingForm');
+
+    const modelInput = document.getElementById('model');
+    const colorInput = document.getElementById('color');
+    const orderIdInput = document.getElementById('orderId');
+    const productInput = document.getElementById('product_name');
+    const pincodeInput = document.getElementById('pincode');
+    const sourceSelect = document.getElementById('sourceSelect');
+    const termsCheckbox = document.getElementById('terms');
+
+    const toTitle = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+
+    function prettyColorName(folder) {
+      return toTitle((folder || '').replace(/scooty$/,'').replace(/[-_]/g,''));
+    }
+
+    const totalFrames = 120;
+    let currentFrame = 1;
+    let currentFolder = 'grayscooty';
+    let isDragging = false;
+    let lastX = 0;
+    const dragSpeed = 0.25;
+    let framePending = false;
+    let currentColorIndex = 0;
+
+    const modelFolders = {
+      classic: 'grayscooty',
+      pro: 'grayscooty',
+      max: 'grayscooty',
+      sports: 'grayscooty',
+      offlander: 'grayscooty'
+    };
+
+    const modelColors = {
+      classic: [
+        { color: '#000000', folder: 'grayscooty' },
+        { color: '#FFFFFF', folder: 'grayscooty' },
+        { color: '#808080', folder: 'grayscooty' },
+        { color: '#964B00', folder: 'grayscooty' }
+      ],
+      pro: [
+        { color: '#000000', folder: 'grayscooty' },
+        { color: '#FFFFFF', folder: 'grayscooty' },
+        { color: '#FF0000', folder: 'grayscooty' },
+        { color: '#00FF00', folder: 'grayscooty' },
+        { color: '#0000FF', folder: 'grayscooty' },
+        { color: '#FFFF00', folder: 'grayscooty' },
+        { color: '#FFA500', folder: 'grayscooty' }
+      ],
+      max: [
+        { color: '#000000', folder: 'grayscooty' },
+        { color: '#FFFFFF', folder: 'grayscooty' },
+        { color: '#FF0000', folder: 'grayscooty' },
+        { color: '#00FF00', folder: 'grayscooty' },
+        { color: '#0000FF', folder: 'grayscooty' },
+        { color: '#FFFF00', folder: 'grayscooty' },
+        { color: '#FFA500', folder: 'grayscooty' },
+        { color: '#800080', folder: 'grayscooty' },
+        { color: '#FFC0CB', folder: 'grayscooty' }
+      ],
+      sports: [
+        { color: '#FF0000', folder: 'grayscooty' }
+      ],
+      offlander: [
+        { color: '#000000', folder: 'grayscooty' }
+      ]
+    };
+
+    const stateCities = {
+      "Andhra Pradesh": ["Visakhapatnam","Vijayawada","Guntur","Nellore","Kurnool","Tirupati","Rajahmundry","Kakinada","Anantapur","Kadapa"],
+      "Arunachal Pradesh": ["Itanagar","Naharlagun","Pasighat","Tawang","Ziro","Bomdila","Along","Tezu"],
+      "Assam": ["Guwahati","Silchar","Dibrugarh","Jorhat","Nagaon","Tinsukia","Tezpur","Bongaigaon","Karimganj"],
+      "Bihar": ["Patna","Gaya","Bhagalpur","Muzaffarpur","Darbhanga","Purnia","Bihar Sharif","Arrah","Begusarai","Katihar"],
+      "Chhattisgarh": ["Raipur","Bhilai","Bilaspur","Korba","Durg","Jagdalpur","Raigarh","Ambikapur","Rajnandgaon"],
+      "Goa": ["Panaji","Margao","Vasco da Gama","Mapusa","Ponda","Bicholim","Curchorem"],
+      "Gujarat": ["Ahmedabad","Surat","Vadodara","Rajkot","Gandhinagar","Bhavnagar","Jamnagar","Junagadh","Anand","Bharuch"],
+      "Haryana": ["Faridabad","Gurgaon","Hisar","Rohtak","Panipat","Karnal","Sonipat","Yamunanagar","Ambala","Kurukshetra"],
+      "Himachal Pradesh": ["Shimla","Dharamshala","Solan","Mandi","Kullu","Hamirpur","Bilaspur","Chamba","Una"],
+      "Jharkhand": ["Ranchi","Jamshedpur","Dhanbad","Bokaro","Deoghar","Hazaribagh","Giridih","Ramgarh","Phusro"],
+      "Karnataka": ["Bengaluru","Mysuru","Mangalore","Hubli","Belagavi","Davangere","Bellary","Tumkur","Shivamogga","Gulbarga"],
+      "Kerala": ["Thiruvananthapuram","Kochi","Kozhikode","Thrissur","Kollam","Kannur","Alappuzha","Palakkad","Malappuram","Kottayam"],
+      "Madhya Pradesh": ["Bhopal","Indore","Gwalior","Jabalpur","Ujjain","Sagar","Rewa","Satna","Ratlam","Dewas"],
+      "Maharashtra": ["Mumbai","Pune","Nagpur","Nashik","Aurangabad","Thane","Solapur","Kolhapur","Amravati","Navi Mumbai"],
+      "Manipur": ["Imphal","Thoubal","Bishnupur","Churachandpur","Kakching","Ukhrul","Senapati"],
+      "Meghalaya": ["Shillong","Tura","Jowai","Nongstoin","Williamnagar","Baghmara"],
+      "Mizoram": ["Aizawl","Lunglei","Champhai","Saiha","Kolasib","Serchhip"],
+      "Nagaland": ["Kohima","Dimapur","Mokokchung","Tuensang","Wokha","Mon","Zunheboto"],
+      "Odisha": ["Bhubaneswar","Cuttack","Rourkela","Berhampur","Sambalpur","Puri","Balasore","Bargarh","Bhadrak"],
+      "Punjab": ["Ludhiana","Amritsar","Jalandhar","Patiala","Bathinda","Mohali","Hoshiarpur","Moga","Pathankot"],
+      "Rajasthan": ["Jaipur","Jodhpur","Udaipur","Kota","Ajmer","Bikaner","Alwar","Sikar","Bhilwara","Pali"],
+      "Sikkim": ["Gangtok","Namchi","Gyalshing","Mangan","Jorethang"],
+      "Tamil Nadu": ["Chennai","Coimbatore","Madurai","Salem","Tiruchirappalli","Tirunelveli","Erode","Vellore","Thoothukudi","Dindigul"],
+      "Telangana": ["Hyderabad","Warangal","Nizamabad","Karimnagar","Khammam","Ramagundam","Mahbubnagar","Nalgonda"],
+      "Tripura": ["Agartala","Udaipur","Dharmanagar","Ambassa","Kailasahar"],
+      "Uttar Pradesh": ["Lucknow","Kanpur","Varanasi","Agra","Meerut","Prayagraj","Ghaziabad","Noida","Moradabad","Aligarh"],
+      "Uttarakhand": ["Dehradun","Haridwar","Nainital","Rishikesh","Haldwani","Roorkee","Kashipur","Rudrapur"],
+      "West Bengal": ["Kolkata","Howrah","Durgapur","Siliguri","Asansol","Bardhaman","Malda","Jalpaiguri","Kharagpur"],
+      "Andaman and Nicobar Islands": ["Port Blair","Car Nicobar","Mayabunder","Diglipur"],
+      "Chandigarh": ["Chandigarh"],
+      "Dadra and Nagar Haveli and Daman and Diu": ["Daman","Diu","Silvassa"],
+      "Delhi": ["New Delhi","North Delhi","South Delhi","East Delhi","West Delhi"],
+      "Jammu and Kashmir": ["Srinagar","Jammu","Anantnag","Baramulla","Kathua","Sopore","Udhampur"],
+      "Ladakh": ["Leh","Kargil"],
+      "Lakshadweep": ["Kavaratti","Minicoy","Andrott"],
+      "Puducherry": ["Puducherry","Karaikal","Mahe","Yanam"]
+    };
+
+    function formatFrame(num) {
+      return String(num).padStart(4, "0");
+    }
+
+    function updateImage(frame, folder) {
+      if (window.innerWidth > 768) {
+        sequenceImage.src = `${folder}/${formatFrame(frame)}.webp`;
+      } else {
+        mobileImage.src = `${folder}/0005.webp`;
+      }
+    }
+
+    function updateFrame() {
+      if (framePending) {
+        updateImage(currentFrame, currentFolder);
+        framePending = false;
+      }
+    }
+
+    async function preloadImages(folder) {
+      if (window.innerWidth <= 768) {
+        loaderOverlay.style.display = "none";
+        viewer.style.display = "flex";
+        mobileImage.src = `${folder}/0005.webp`;
+        return;
+      }
+
+      let loaded = 0;
+      const urls = [];
+      const maxConcurrentLoads = 10;
+
+      for (let i = 1; i <= totalFrames; i++) {
+        urls.push(`${folder}/${formatFrame(i)}.webp`);
+      }
+
+      const loadBatch = async (batch) => {
+        await Promise.all(batch.map(url =>
+          new Promise((resolve) => {
+            const img = new Image();
+            img.src = url;
+            img.onload = img.onerror = () => {
+              loaded++;
+              const percent = (loaded / urls.length) * 100;
+              progressBar.style.width = `${percent}%`;
+              progressText.textContent = `Loading... ${Math.round(percent)}%`;
+              resolve();
+            };
+          })
+        ));
+      };
+
+      for (let i = 0; i < urls.length; i += maxConcurrentLoads) {
+        await loadBatch(urls.slice(i, i + maxConcurrentLoads));
+      }
+    }
+
+    function updateColorOptions(model) {
+      colorOptions.innerHTML = '';
+      const colors = modelColors[model];
+
+      colors.forEach((colorObj, index) => {
+        const dot = document.createElement('span');
+        dot.style.backgroundColor = colorObj.color;
+        dot.title = prettyColorName(colorObj.folder);
+        dot.setAttribute('aria-label', `Color ${colorObj.color}`);
+        dot.setAttribute('role', 'radio');
+        dot.setAttribute('aria-checked', index === currentColorIndex ? 'true' : 'false');
+        dot.classList.toggle('active', index === currentColorIndex);
+
+        dot.addEventListener('click', () => {
+          document.querySelectorAll('.color-dots span').forEach(d => {
+            d.classList.remove('active');
+            d.setAttribute('aria-checked', 'false');
+          });
+
+          dot.classList.add('active');
+          dot.setAttribute('aria-checked', 'true');
+
+          currentColorIndex = index;
+          currentFolder = colorObj.folder;
+          currentFrame = 1;
+
+          colorInput.value = prettyColorName(currentFolder);
+          assignOrderId();
+
+          loaderOverlay.style.display = 'flex';
+          viewer.style.display = 'none';
+
+          preloadImages(currentFolder).then(() => {
+            loaderOverlay.style.display = 'none';
+            viewer.style.display = 'flex';
+            updateImage(currentFrame, currentFolder);
+          });
+        });
+
+        colorOptions.appendChild(dot);
+      });
+    }
+
+    function updateCityOptions(state) {
+      citySelect.innerHTML = '<option value="">Choose City</option>';
+      citySelect.disabled = !state;
+
+      if (state && stateCities[state]) {
+        stateCities[state].forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = city;
+          citySelect.appendChild(option);
+        });
+      }
+    }
+
+    function setModel(model) {
+      modelButtons.forEach(b => b.classList.remove('active'));
+      const button = document.querySelector(`.model-btn[data-model="${model}"]`);
+      if (button) button.classList.add('active');
+
+      currentFolder = modelFolders[model];
+      currentColorIndex = 0;
+
+      modelInput.value = toTitle(model);
+      colorInput.value = prettyColorName(modelColors[model][0].folder);
+      assignOrderId();
+
+      updateImage(1, currentFolder);
+      updateColorOptions(model);
+
+      loaderOverlay.style.display = "flex";
+      preloadImages(currentFolder).then(() => {
+        loaderOverlay.style.display = "none";
+        viewer.style.display = "flex";
+      });
+    }
+
+    function validateForm() {
+      let isValid = true;
+
+      const name = document.getElementById('name').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pincode = document.getElementById('pincode').value.trim();
+      const state = stateSelect.value;
+      const city = citySelect.value;
+      const source = sourceSelect.value;
+      const terms = termsCheckbox.checked;
+
+      const nameError = document.getElementById('nameError');
+      if (name.length < 2) {
+        nameError.style.display = 'block';
+        isValid = false;
+      } else {
+        nameError.style.display = 'none';
+      }
+
+      const mobileError = document.getElementById('mobileError');
+      const mobileRegex = /^[0-9]{10}$/;
+      if (!mobileRegex.test(mobile)) {
+        mobileError.style.display = 'block';
+        isValid = false;
+      } else {
+        mobileError.style.display = 'none';
+      }
+
+      const emailError = document.getElementById('emailError');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        emailError.style.display = 'block';
+        isValid = false;
+      } else {
+        emailError.style.display = 'none';
+      }
+
+      const pincodeError = document.getElementById('pincodeError');
+      const pincodeRegex = /^[1-9][0-9]{5}$/;
+      if (!pincodeRegex.test(pincode)) {
+        pincodeError.style.display = 'block';
+        isValid = false;
+      } else {
+        pincodeError.style.display = 'none';
+      }
+
+      const stateError = document.getElementById('stateError');
+      if (!state) {
+        stateError.style.display = 'block';
+        isValid = false;
+      } else {
+        stateError.style.display = 'none';
+      }
+
+      const cityError = document.getElementById('cityError');
+      if (!city) {
+        cityError.style.display = 'block';
+        isValid = false;
+      } else {
+        cityError.style.display = 'none';
+      }
+
+      const sourceError = document.getElementById('sourceError');
+      if (!source) {
+        sourceError.style.display = 'block';
+        isValid = false;
+      } else {
+        sourceError.style.display = 'none';
+      }
+
+      const termsError = document.getElementById('termsError');
+      if (!terms) {
+        termsError.style.display = 'block';
+        isValid = false;
+      } else {
+        termsError.style.display = 'none';
+      }
+
+      return isValid;
+    }
+
+    const fmt = (s = '') => (s + '')
+      .trim()
+      .replace(/\s+/g, '')
+      .replace(/[^A-Za-z0-9]/g, '')
+      .toUpperCase();
+
+    const rnd8 = () => String(Math.floor(Math.random() * 1e8)).padStart(8, '0');
+
+    function buildOrderId() {
+      const product = fmt(productInput?.value || 'PRODUCT');
+      const model = fmt(modelInput?.value || toTitle(document.querySelector('.model-btn.active')?.dataset.model || 'classic'));
+      const color = fmt(colorInput?.value || prettyColorName(currentFolder));
+      return `${product}-${model}-${color}-${rnd8()}`;
+    }
+
+    function assignOrderId() {
+      if (orderIdInput) {
+        orderIdInput.value = buildOrderId();
+      }
+    }
+
+    modelButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const model = this.getAttribute('data-model');
+        setModel(model);
+      });
+    });
+
+    stateSelect.addEventListener('change', function () {
+      updateCityOptions(this.value);
+      document.getElementById('stateError').style.display = this.value ? 'none' : 'block';
+      document.getElementById('cityError').style.display = 'none';
+    });
+
+    citySelect.addEventListener('change', function () {
+      document.getElementById('cityError').style.display = this.value ? 'none' : 'block';
+    });
+
+    sourceSelect.addEventListener('change', function () {
+      document.getElementById('sourceError').style.display = this.value ? 'none' : 'block';
+    });
+
+    termsCheckbox.addEventListener('change', function () {
+      document.getElementById('termsError').style.display = this.checked ? 'none' : 'block';
+    });
+
+    pincodeInput.addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 6);
+    });
+
+    pincodeInput.addEventListener('blur', function () {
+      const pincodeRegex = /^[1-9][0-9]{5}$/;
+      document.getElementById('pincodeError').style.display =
+        (this.value.trim() && pincodeRegex.test(this.value.trim())) ? 'none' : 'block';
+    });
+
+    bookingForm.addEventListener('submit', function (e) {
+      if (!modelInput.value) {
+        modelInput.value = toTitle(document.querySelector('.model-btn.active')?.dataset.model || 'classic');
+      }
+
+      if (!colorInput.value) {
+        colorInput.value = prettyColorName(currentFolder);
+      }
+
+      assignOrderId();
+
+      if (!validateForm()) {
+        e.preventDefault();
+      }
+    });
+
+    if (window.innerWidth > 768) {
+      sequenceImage.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        sequenceImage.style.cursor = "grabbing";
+      });
+
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+        sequenceImage.style.cursor = "ew-resize";
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - lastX;
+        const frameChange = Math.round(deltaX * dragSpeed);
+
+        if (frameChange !== 0) {
+          currentFrame = (currentFrame + frameChange) % totalFrames;
+          if (currentFrame <= 0) currentFrame += totalFrames;
+          framePending = true;
+          requestAnimationFrame(updateFrame);
+          lastX = e.clientX;
+        }
+      });
+
+      sequenceImage.addEventListener("touchstart", (e) => {
+        isDragging = true;
+        lastX = e.touches[0].clientX;
+      });
+
+      document.addEventListener("touchend", () => {
+        isDragging = false;
+      });
+
+      document.addEventListener("touchmove", (e) => {
+        if (!isDragging) return;
+        const deltaX = e.touches[0].clientX - lastX;
+        const frameChange = Math.round(deltaX * dragSpeed);
+
+        if (frameChange !== 0) {
+          currentFrame = (currentFrame + frameChange) % totalFrames;
+          if (currentFrame <= 0) currentFrame += totalFrames;
+          framePending = true;
+          requestAnimationFrame(updateFrame);
+          lastX = e.touches[0].clientX;
+        }
+      });
+    }
+
+    sequenceImage.addEventListener("dragstart", (e) => e.preventDefault());
+    mobileImage.addEventListener("dragstart", (e) => e.preventDefault());
+
+    function showStoryOverlay() {
+      console.log("Story overlay requested");
+    }
+
+    setModel('classic');
+    updateCityOptions('');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(assignOrderId, 0);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparison | RIVOT</title>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/meanmenu.css" />
+    <link rel="stylesheet" href="css/slick.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/meanmenu.css" />
+
+    <!-- Inline CSS -->
+    <style>
+      body, html {
+        font-family: sans-serif;
+        background: #000;
+        color: #fff;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        scrollbar-width: thin;
+      }
+
+      html::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      html::-webkit-scrollbar-track {
+        background: #333;
+      }
+
+      html::-webkit-scrollbar-thumb {
+        background: #CE6723;
+        border-radius: 4px;
+      }
+
+      .main-content {
+	    overflow: hidden;
+      }
+      
+      /* Header Styles */
+      .main-menu ul li a {
+        color: #fff;
+        transition: color 0.3s ease;
+      }
+
+      .main-menu ul li a[href="compare.html"] {
+        color: #CE6723;
+      }
+
+      .main-menu ul li a:hover {
+        color: #CE6723;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding-top: 80px;
+        min-height: calc(100vh - 100px);
+        background: #000;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Page Display Control */
+      [x-cloak] {
+        display: none !important;
+      }
+
+      .selection-page,
+      .comparison-page {
+        transition: opacity 0.3s ease;
+        background: #000;
+        animation: slideFadeUp 1s ease-out forwards;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      @keyframes slideFadeUp {
+        0% { opacity: 0; transform: translateY(50px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      .selection-page[style*="display: none"],
+      .comparison-page[style*="display: none"] {
+        display: none !important;
+      }
+
+      /* Selection Page Styles */
+      .selection-page {
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 48px;
+        font-weight: 300;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .header h1 .highlight {
+        color: #CE6723;
+      }
+
+      .header p {
+        font-size: 18px;
+        color: #ccc;
+        margin-bottom: 40px;
+      }
+
+      .selection-counter {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #444;
+        border-radius: 4px;
+        padding: 1rem 2rem;
+        margin-bottom: 3rem;
+        display: inline-block;
+      }
+
+      .selection-counter h3 {
+        color: #CE6723;
+        font-size: 18px;
+        margin-bottom: 0.3rem;
+      }
+
+      .selection-counter p {
+        color: #ccc;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .models-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+
+      .model-card {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid #444;
+        border-radius: 4px;
+        padding: 2rem 1.5rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .model-card:hover {
+        border-color: #CE6723;
+        transform: translateY(-4px);
+      }
+
+      .model-card.selected {
+        border-color: #CE6723;
+        background: rgba(206, 103, 35, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .model-image {
+        width: 144%;
+        height: 200px;
+        object-fit: contain;
+        margin-bottom: 1.5rem;
+        position: relative;
+        left: -20%;
+        transform: translateY(12%);
+      }
+
+      .model-name {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.8rem;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #ffffff;
+        margin-bottom: 0.3rem;
+      }
+
+      .compare-btn {
+        background: #CE6723;
+        color: #fff;
+        border: 1px solid #444;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .compare-btn:hover:not(:disabled) {
+        background: #e07a3a;
+      }
+
+      .compare-btn:disabled {
+        background: #44444400;
+        cursor: not-allowed;
+      }
+
+      /* Comparison Page Styles */
+      .comparison-page {
+        min-height: calc(100vh - 100px);
+        padding-top: 0; /* Adjusted to start from top */
+      }
+
+      .comparison-header {
+        text-align: center;
+        padding: 2rem 0 1rem 0;
+        border-bottom: 1px solid #444;
+        margin-bottom: 2rem;
+        border-color: #CE6723;
+      }
+
+      .comparison-title {
+        font-size: 48px;
+        font-weight: 300;
+        color: #fff;
+      }
+
+      .reselect-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #CE6723;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+      }
+
+      .reselect-link:hover {
+        color: #e07a3a;
+        text-decoration: underline;
+      }
+
+      .comparison-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .models-comparison {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        justify-content: center;
+      }
+
+      .model-column {
+        flex: 1;
+        min-width: 280px;
+        max-width: 400px;
+        text-align: center;
+        border: 1px solid #444;
+        padding: 1rem;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .model-dropdown {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #444;
+        background: #000000;
+        color: #ffffff;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .model-dropdown:focus {
+        outline: none;
+        border-color: #CE6723;
+      }
+
+      .comparison-model-image {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+      }
+
+      .color-options {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .color-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #444;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .color-dot.selected {
+        border-color: #CE6723;
+      }
+
+      .color-dot.white { background: #ffffff; }
+      .color-dot.silver { background: #c0c0c0; }
+      .color-dot.grey { background: #6c757d; }
+      .color-dot.black { background: #212529; }
+      .color-dot.red { background: #dc3545; }
+      .color-dot.blue { background: #007bff; }
+      .color-dot.purple { background: #800080; }
+      .color-dot.pink { background: #ff69b4; }
+      .color-dot.mineral-green { background: #2e8b57; }
+      .color-dot.pista { background: #98fb98; }
+      .color-dot.sports-orange-plus-white { background: #ff4500; }
+      .color-dot.desert-sand { background: #c2b280; }
+
+      .specifications-section {
+        margin-top: 2rem;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 300;
+        color: #fff;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #f77b4cf7;
+        padding-bottom: 0.5rem;
+      }
+
+      .spec-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        color: #ccc;
+        table-layout: fixed;
+      }
+
+      .spec-table th,
+      .spec-table td {
+        padding: 0.95rem 1rem;
+        text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .spec-table th {
+        background: rgba(0, 0, 0, 0.5);
+        font-weight: bold;
+        color: #fff;
+        width: 25%;
+      }
+
+      .spec-table td {
+        color: #ccc;
+        width: 25%;
+      }
+
+      .spec-table tr:hover {
+        background: rgba(206, 103, 35, 0.1);
+      }
+
+      .menu-toggle2, .nav-menu2 {
+        display: none;
+      }
+
+      .navbar2 {
+        position: relative;
+      }
+
+      @media screen and (max-width: 768px) {
+        .menu-toggle2 {
+          display: block;
+          font-size: 24px;
+          color: white;
+          cursor: pointer;
+          position: absolute;
+          right: 35px;
+          top: -45px;
+        }
+
+        .menu-toggle2.open::before {
+          content: '✕';
+        }
+
+        .menu-toggle2:not(.open)::before {
+          content: '☰';
+        }
+
+        .nav-menu2 {
+          list-style: none;
+          flex-direction: column;
+          position: absolute;
+          top: 5px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #333;
+          width: 90%;
+          max-width: 300px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+          border-radius: 8px;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        .nav-menu2.active {
+          display: flex;
+          opacity: 1;
+        }
+
+        .nav-menu2 li {
+          position: relative;
+        }
+
+       .nav-menu2 a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        display: block;
+        border-bottom: 1px solid #444;
+      }
+
+
+        .nav-menu2 a:hover {
+          background-color: #555;
+        }
+
+        .submenu2 {
+          position: static;
+          width: 100%;
+          background-color: #555;
+          display: none;
+          opacity: 0;
+          transform: translateX(20px);
+          transition: opacity 0.4s ease, transform 0.4s ease;
+          list-style: none;
+        }
+
+        .submenu2.active {
+          display: block;
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .submenu2 li {
+          margin: 0;
+        }
+
+        .submenu2 a {
+          padding: 10px;
+          font-size: 16px;
+          padding-left: 30px;
+        }
+
+        .has-submenu2 {
+          position: relative;
+        }
+
+        .has-submenu2 > a {
+          padding-right: 40px;
+          display: block;
+        }
+
+        .submenu-toggle {
+          position: absolute;
+          right: 15px;
+          top: 25px;
+          transform: translateY(-50%);
+          font-size: 14px;
+          color: white;
+          cursor: pointer;
+          padding: 10px;
+          z-index: 10;
+          line-height: 1;
+        }
+
+        .submenu-toggle::before {
+          content: '+';
+        }
+
+        .submenu-toggle.active::before {
+          content: '−';
+        }
+
+        .main-menu {
+          display: none;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        .models-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .models-comparison {
+          flex-direction: column;
+        }
+
+        .model-column {
+          min-width: 100%;
+          max-width: 100%;
+        }
+
+        .comparison-model-image {
+          height: 150px;
+        }
+
+        .spec-table th,
+        .spec-table td {
+          padding: 0.5rem;
+          font-size: 14px;
+        }
+
+        .header h1 {
+          font-size: 36px;
+        }
+
+        .header p {
+          font-size: 16px;
+        }
+
+        .model-name {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 20px;
+        }
+
+        .nav-menu2 li:last-child a {
+          border: 0;
+        }
+        
+        .nav-menu2 li:last-child ul li {
+          border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .content-box {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      @media screen and (max-width: 768px) {
+        .content-box {
+          margin: 10px;
+          padding: 15px;
+        }
+      }
+
+      footer {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 40px 0 0;
+        border-top: 1px solid #333;
+        margin-top: auto;
+        height: 330px;
+        position: relative;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 20px;
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 20px;
+      }
+
+      .footer-logo {
+        width: 120px;
+        margin-bottom: 15px;
+      }
+
+      .footer-text {
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        max-width: 250px;
+      }
+
+      .footer-heading {
+        color: #CE6723;
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 14px;
+      }
+
+      .footer-links a:hover {
+        color: #CE6723;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #444;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .contact-info {
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .social-icons a {
+        color: #ccc;
+        font-size: 20px;
+        transition: color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: #CE6723;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        margin-top: 20px;
+        border-top: 1px solid #333;
+        color: #777;
+        font-size: 12px;
+      }
+
+      .footer-content .footer-column:nth-child(2),
+      .footer-content .footer-column:nth-child(3) {
+        margin-left: 10px;
+      }
+
+      .footer-content .footer-column:first-child,
+      .footer-content .footer-column:last-child {
+        margin-right: 30px;
+      }
+
+      .footer-content .footer-column:nth-child(3) {
+        margin-right: 40px;
+      }
+
+      #storyCloseBtn {
+        display: none !important;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.meanmenu.min.js"></script>
+    <script src="js/slick.min.js"></script>
+  </head>
+  <body>
+    <header class="header-menu">
+      <div id="header-sticky" class="main-menu-area">
+        <div class="container-fluid">
+          <div class="topheader">
+            <div class="row">
+              <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                <div class="logo">
+                  <a href="index.html"><img class="img-fluid" src="img/logo.png" alt="Rivot Model" /></a>
+                </div>
+              </div>
+              <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11">
+                <div class="main-menu">
+                  <nav>
+                    <ul class="navbar-collapse">
+                      <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                      <li><a href="products.html">Products</a>
+                        <ul class="submenu">
+                          <li><a href="classic.html">Classic</a></li>
+                          <li><a href="pro.html">Pro</a></li>
+                          <li><a href="max.html">Max</a></li>
+                          <li><a href="sports.html">Sports</a></li>
+                          <li><a href="offlander.html">Offlander</a></li>
+                          <li><a href="compare.html">Compare Models</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Buy</a>
+                        <ul class="submenu">
+                          <li><a href="testride.html">Test Ride</a></li>
+                          <li><a href="booknow.html">Book Now</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="community.html">Community</a>
+                        <ul class="submenu">
+                          <li><a href="blog.html">Blog</a></li>
+                          <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="merchandise.html">Merchandise</a></li>
+                      <li><a href="careers.html">Careers</a></li>
+                      <li><a href="#">Reach us</a>
+                        <ul class="submenu">
+                          <li><a href="connect.html">Connect</a></li>
+                          <li><a href="support.html">Support</a></li>
+                          <li><a href="where.html">Where</a></li>
+                          <li><a href="faqs.html">FAQs</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12">
+                <nav class="navbar2">
+                  <div class="menu-toggle2"></div>
+                  <ul class="nav-menu2">
+                    <li><a href="story.html" onclick="showStoryOverlay();">Story</a></li>
+                    <li class="has-submenu2">
+                      <a href="products.html">Products</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="classic.html">Classic</a></li>
+                        <li><a href="pro.html">Pro</a></li>
+                        <li><a href="max.html">Max</a></li>
+                        <li><a href="sports.html">Sports</a></li>
+                        <li><a href="offlander.html">Offlander</a></li>
+                        <li><a href="compare.html">Compare Models</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="#">Buy</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="testride.html">Test Ride</a></li>
+                        <li><a href="booknow.html">Book Now</a></li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu2">
+                      <a href="community.html">Community</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="merchandise.html">Merchandise</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li class="has-submenu2">
+                      <a href="#">Reach us</a>
+                      <span class="submenu-toggle"></span>
+                      <ul class="submenu2">
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="where.html">Where</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content" x-data="rivotCompare()">
+      <div
+        class="selection-page"
+        x-show="currentPage === 'selection'"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        aria-label="Model Selection Page"
+      >
+        <div class="container">
+          <div class="header">
+            <h1>Compare <span class="highlight" style="color: #CE6723;">nx100</span> Models</h1>
+            <p>Select 2 or 3 models to compare their specifications</p>
+          </div>
+
+          <div class="selection-counter">
+            <h3><span x-text="selectedModels.length"></span> models selected</h3>
+            <p>Choose models to see detailed comparison</p>
+          </div>
+
+          <div class="models-grid" role="grid">
+            <template x-for="model in models" :key="model.id">
+              <div
+                class="model-card"
+                :class="{ 'selected': selectedModels.includes(model.id) }"
+                @click="toggleModelSelection(model.id)"
+                @keydown.enter="toggleModelSelection(model.id)"
+                tabindex="0"
+                role="button"
+                :aria-label="'Select ' + model.name"
+                :aria-selected="selectedModels.includes(model.id)"
+              >
+                <img
+                  class="model-image"
+                  :src="model.image"
+                  :alt="model.name"
+                  loading="lazy"
+                />
+                <div class="model-name" x-text="model.name"></div>
+              </div>
+            </template>
+          </div>
+
+          <button
+            class="compare-btn"
+            :disabled="selectedModels.length < 2"
+            @click="goToComparison()"
+            :aria-label="selectedModels.length < 2 ? 'Select at least 2 models to compare' : 'Compare selected models'"
+          >
+            <span x-show="selectedModels.length < 2">Select at least 2 models</span>
+            <span x-show="selectedModels.length >= 2">Compare selected models</span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="comparison-page"
+        x-show="currentPage === 'comparison'"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-1"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-1"
+        x-transition:leave-end="opacity-0"
+        aria-label="Model Comparison Page"
+      >
+        <div class="comparison-header">
+          <h1 class="comparison-title">Compare <span class="highlight" style="color: #CE6723;">nx100</span> Models</h1>
+          <a
+            href="#"
+            class="reselect-link"
+            @click.prevent="goBackToSelection()"
+            aria-label="Reselect models"
+            >Reselect models</a
+          >
+        </div>
+
+        <div class="comparison-content">
+          <div class="models-comparison">
+            <template x-for="(modelId, index) in selectedModels" :key="modelId">
+              <div class="model-column">
+                <select
+                  class="model-dropdown"
+                  :value="modelId"
+                  @change="changeModel(index, $event.target.value)"
+                  :aria-label="'Select model for comparison slot ' + (index + 1)"
+                >
+                  <template x-for="model in getAvailableModelsForDropdown(index)" :key="model.id">
+                    <option
+                      :value="model.id"
+                      :selected="model.id === modelId"
+                      x-text="`nx100 ${model.name}`"
+                    ></option>
+                  </template>
+                </select>
+
+                <img
+                  class="comparison-model-image"
+                  :src="getModelImage(modelId)"
+                  :alt="getModelById(modelId).name + ' in ' + getSelectedColor(modelId)"
+                  loading="lazy"
+                />
+
+                <div
+                  class="color-options"
+                  role="radiogroup"
+                  :aria-label="'Color options for ' + getModelById(modelId).name"
+                >
+                  <template x-for="color in getModelById(modelId).colors" :key="color">
+                    <div
+                      class="color-dot"
+                      :class="[color.toLowerCase().replace(' ', '-').replace('+', '-plus-'), { 'selected': getSelectedColor(modelId) === color }]"
+                      :title="color"
+                      @click="selectColor(modelId, color)"
+                      @keydown.enter="selectColor(modelId, color)"
+                      tabindex="0"
+                      role="radio"
+                      :aria-checked="getSelectedColor(modelId) === color"
+                      :aria-label="'Select color ' + color"
+                    ></div>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <div class="specifications-section">
+            <h2 class="section-title">Performance</h2>
+            <table class="spec-table" aria-label="Performance Specifications">
+              <tr>
+                <th scope="col">Power (peak)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.performance.power"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Max torque (Motor)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.performance.maxTorque"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Top speed (kmph)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.performance.topSpeed"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Acceleration (0-40 km/h)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.performance.acceleration"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Gradeability at peak power</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.performance.gradeability"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Motor Type</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.performance.motorType"></td>
+                </template>
+              </tr>
+            </table>
+          </div>
+
+          <div class="specifications-section">
+            <h2 class="section-title">Range & Battery</h2>
+            <table class="spec-table" aria-label="Range and Battery Specifications">
+              <tr>
+                <th scope="col">Real Range</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.range.realRange"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Installed Capacity</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.battery.capacity"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Battery Type</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.battery.type"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Nominal Voltage</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.battery.voltage"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Home Charging time (0-100%)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.charging.homeChargeTime"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">RIVOT flashCharge time (0-100%)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.charging.flashChargeTime"></td>
+                </template>
+              </tr>
+            </table>
+          </div>
+
+          <div class="specifications-section">
+            <h2 class="section-title">Wheels & Brakes</h2>
+            <table class="spec-table" aria-label="Wheels and Brakes Specifications">
+              <tr>
+                <th scope="col">Wheel type</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.wheels.type"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Wheel size (front)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.wheels.frontSize"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Wheel size (rear)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.wheels.rearSize"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Braking system</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.brakes.system"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Disc size (front)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.brakes.frontDiscSize"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Disc size (rear)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.brakes.rearDiscSize"></td>
+                </template>
+              </tr>
+            </table>
+          </div>
+
+          <div class="specifications-section">
+            <h2 class="section-title">Dimensions & Weight</h2>
+            <table class="spec-table" aria-label="Dimensions and Weight Specifications">
+              <tr>
+                <th scope="col">Length</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.dimensions.length"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Width</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.dimensions.width"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Height</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.dimensions.height"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Wheelbase</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.dimensions.wheelbase"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Ground clearance</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.dimensions.groundClearance"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Seat height</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.dimensions.seatHeight"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Kerb weight (Kg)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.dimensions.kerbWeight"></td>
+                </template>
+              </tr>
+            </table>
+          </div>
+
+          <div class="specifications-section">
+            <h2 class="section-title">Features</h2>
+            <table class="spec-table" aria-label="Features Specifications">
+              <tr>
+                <th scope="col">Reverse Mode</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.reverseMode ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Side Stand Sensor</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.sideStandSensor ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Boot Storage</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.bootStorage"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">RIVOT rideCam (Dashcam)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.rideCam ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">RIVOT comfortKey (Keyless fob)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.comfortKey ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">RIVOT comfortBoot (Swipe to open boot)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.comfortBoot ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">RIVOT rollProtect (Protect the roll back on slope)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.rollProtect ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Center Stand</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.centerStand ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">BOOST</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.features.boost ? 'Yes' : 'No'"></td>
+                </template>
+              </tr>
+            </table>
+          </div>
+
+          <div class="specifications-section">
+            <h2 class="section-title">Warranty & Price</h2>
+            <table class="spec-table" aria-label="Warranty and Price Specifications">
+              <tr>
+                <th scope="col">Vehicle warranty</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.warranty.vehicle"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Battery warranty</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.warranty.battery"></td>
+                </template>
+              </tr>
+              <tr>
+                <th scope="col">Price (Ex-Showroom)</th>
+                <template x-for="modelId in selectedModels">
+                  <td x-text="getModelById(modelId).specs.price"></td>
+                </template>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="refundpolicy.html">Refund Policy</a></li>
+            <li><a href="subscriptions.html">Subscriptions</a></li>
+            <li><a href="license.html">License</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="termsAndConditions.html">Terms and Conditions</a></li>
+            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="cancellation.html">Cancellation/Refund</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="contact-info">1st Cross, 1st Main, Sadashiv Nagar, Belagavi India</p>
+          <p class="contact-info">Email: support@rivotmotors.com</p>
+          <p class="contact-info">Phone: +91 8988984646</p>
+        </div>
+        <div class="footer-column">
+          <h5 class="footer-heading">Social</h5>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/rivotmotors"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/rivotmotors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/rivotmotors/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/rivotmotors"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rivotmotors"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2025 RIVOT Motors (INDIA) Pvt Ltd, all rights reserved | Designed in Belagavi, Made in India
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/jquery.meanmenu.min.js"></script>
+
+    <script>
+      const models = [
+        {
+          id: "classic",
+          name: "Classic",
+          series: "Street Rider",
+          image: "greenscooty/0001.webp",
+          colors: ["Purple", "Black", "White", "Pista"],
+          colorImages: {
+            "Purple": "greenscooty/0040.webp",
+            "Black": "greenscooty/0001.webp",
+            "White": "greenscooty/0040.webp",
+            "Pista": "greenscooty/0001.webp"
+          },
+          specs: {
+            performance: {
+              power: "6KW",
+              maxTorque: "45.5NM",
+              topSpeed: "100KMph",
+              acceleration: "3 Sec",
+              gradeability: "18 Degrees",
+              motorType: "IPM-SynRM"
+            },
+            range: {
+              realRange: "100KM"
+            },
+            battery: {
+              capacity: "1.92KWh",
+              type: "LIMFP",
+              voltage: "72V"
+            },
+            charging: {
+              homeChargeTime: "2 Hours",
+              flashChargeTime: "45 Mins"
+            },
+            wheels: {
+              type: "Steel Rim",
+              frontSize: "90/90R12",
+              rearSize: "90/90R12"
+            },
+            brakes: {
+              system: "CBS and Regenerative Braking",
+              frontDiscSize: "220mm",
+              rearDiscSize: "180mm"
+            },
+            dimensions: {
+              length: "1940 mm",
+              width: "695 mm",
+              height: "1188 mm",
+              wheelbase: "1377 mm",
+              groundClearance: "162 mm",
+              seatHeight: "870 mm",
+              kerbWeight: "105 Kg"
+            },
+            features: {
+              reverseMode: true,
+              sideStandSensor: false,
+              bootStorage: "45 Litres",
+              rideCam: false,
+              comfortKey: false,
+              comfortBoot: false,
+              rollProtect: false,
+              centerStand: false,
+              boost: false
+            },
+            warranty: {
+              vehicle: "50,000 KM or 5 Years",
+              battery: "Unlimited or 5 years whichever is earlier"
+            },
+            price: "₹ 89,000"
+          }
+        },
+        {
+          id: "pro",
+          name: "Pro",
+          series: "Street Rider",
+          image: "grayscooty/0001.webp",
+          colors: ["Purple", "Pink", "Mineral Green", "Black", "White", "Pista", "Blue"],
+          colorImages: {
+            "Purple": "grayscooty/0040.webp",
+            "Pink": "grayscooty/0001.webp",
+            "Mineral Green": "grayscooty/0040.webp",
+            "Black": "grayscooty/0001.webp",
+            "White": "grayscooty/0040.webp",
+            "Pista": "grayscooty/0001.webp",
+            "Blue": "grayscooty/0040.webp"
+          },
+          specs: {
+            performance: {
+              power: "6KW",
+              maxTorque: "45.5NM",
+              topSpeed: "110KMph",
+              acceleration: "3 Sec",
+              gradeability: "18 Degrees",
+              motorType: "IPM-SynRM"
+            },
+            range: {
+              realRange: "200KM"
+            },
+            battery: {
+              capacity: "3.84KWh",
+              type: "LIMFP",
+              voltage: "72V"
+            },
+            charging: {
+              homeChargeTime: "4 Hours",
+              flashChargeTime: "1.5 Hours"
+            },
+            wheels: {
+              type: "Alloy Wheel",
+              frontSize: "110/80R12",
+              rearSize: "110/80R12"
+            },
+            brakes: {
+              system: "CBS and Regenerative Braking",
+              frontDiscSize: "220mm",
+              rearDiscSize: "180mm"
+            },
+            dimensions: {
+              length: "1940 mm",
+              width: "695 mm",
+              height: "1188 mm",
+              wheelbase: "1377 mm",
+              groundClearance: "162 mm",
+              seatHeight: "870 mm",
+              kerbWeight: "115 Kg"
+            },
+            features: {
+              reverseMode: true,
+              sideStandSensor: true,
+              bootStorage: "45 Litres",
+              rideCam: true,
+              comfortKey: true,
+              comfortBoot: true,
+              rollProtect: true,
+              centerStand: true,
+              boost: true
+            },
+            warranty: {
+              vehicle: "50,000 KM or 5 Years",
+              battery: "Unlimited or 5 years whichever is earlier"
+            },
+            price: "₹ 1,29,000"
+          }
+        },
+        {
+          id: "max",
+          name: "Max",
+          series: "Street Rider",
+          image: "greenscooty/0001.webp",
+          colors: ["Purple", "Pink", "Mineral Green", "Black", "White", "Pista", "Blue", "Silver", "Red"],
+          colorImages: {
+            "Purple": "greenscooty/0040.webp",
+            "Pink": "greenscooty/0001.webp",
+            "Mineral Green": "greenscooty/0040.webp",
+            "Black": "greenscooty/0001.webp",
+            "White": "greenscooty/0040.webp",
+            "Pista": "greenscooty/0001.webp",
+            "Blue": "greenscooty/0040.webp",
+            "Silver": "greenscooty/0001.webp",
+            "Red": "greenscooty/0040.webp"
+          },
+          specs: {
+            performance: {
+              power: "6KW",
+              maxTorque: "45.5NM",
+              topSpeed: "110KMph",
+              acceleration: "3 Sec",
+              gradeability: "18 Degrees",
+              motorType: "IPM-SynRM"
+            },
+            range: {
+              realRange: "300KM"
+            },
+            battery: {
+              capacity: "5.7KWh",
+              type: "LIMFP",
+              voltage: "72V"
+            },
+            charging: {
+              homeChargeTime: "6 Hours",
+              flashChargeTime: "3.5 Hours"
+            },
+            wheels: {
+              type: "Alloy Wheel",
+              frontSize: "110/80R12",
+              rearSize: "110/80R12"
+            },
+            brakes: {
+              system: "CBS and Regenerative Braking",
+              frontDiscSize: "220mm",
+              rearDiscSize: "180mm"
+            },
+            dimensions: {
+              length: "1940 mm",
+              width: "695 mm",
+              height: "1188 mm",
+              wheelbase: "1377 mm",
+              groundClearance: "162 mm",
+              seatHeight: "870 mm",
+              kerbWeight: "125 Kg"
+            },
+            features: {
+              reverseMode: true,
+              sideStandSensor: true,
+              bootStorage: "45 Litres",
+              rideCam: true,
+              comfortKey: true,
+              comfortBoot: true,
+              rollProtect: true,
+              centerStand: true,
+              boost: true
+            },
+            warranty: {
+              vehicle: "50,000 KM or 5 Years",
+              battery: "Unlimited or 5 years whichever is earlier"
+            },
+            price: "₹ 1,59,000"
+          }
+        },
+        {
+          id: "sports",
+          name: "Sports",
+          series: "Sports",
+          image: "grayscooty/0001.webp",
+          colors: ["Sports Orange + White"],
+          colorImages: {
+            "Sports Orange + White": "grayscooty/0040.webp"
+          },
+          specs: {
+            performance: {
+              power: "6KW",
+              maxTorque: "45.5NM",
+              topSpeed: "110KMph",
+              acceleration: "3 Sec",
+              gradeability: "18 Degrees",
+              motorType: "IPM-SynRM"
+            },
+            range: {
+              realRange: "200KM"
+            },
+            battery: {
+              capacity: "3.84KWh",
+              type: "LIMFP",
+              voltage: "72V"
+            },
+            charging: {
+              homeChargeTime: "4 Hours",
+              flashChargeTime: "1.5 Hours"
+            },
+            wheels: {
+              type: "Alloy Wheel",
+              frontSize: "110/80R12",
+              rearSize: "110/80R12"
+            },
+            brakes: {
+              system: "CBS and Regenerative Braking",
+              frontDiscSize: "220mm",
+              rearDiscSize: "180mm"
+            },
+            dimensions: {
+              length: "1940 mm",
+              width: "695 mm",
+              height: "1188 mm",
+              wheelbase: "1377 mm",
+              groundClearance: "162 mm",
+              seatHeight: "870 mm",
+              kerbWeight: "115 Kg"
+            },
+            features: {
+              reverseMode: true,
+              sideStandSensor: true,
+              bootStorage: "45 Litres",
+              rideCam: true,
+              comfortKey: true,
+              comfortBoot: true,
+              rollProtect: true,
+              centerStand: true,
+              boost: true
+            },
+            warranty: {
+              vehicle: "50,000 KM or 5 Years",
+              battery: "Unlimited or 5 years whichever is earlier"
+            },
+            price: "₹ 1,39,000"
+          }
+        },
+        {
+          id: "offlander",
+          name: "Offlander",
+          series: "Offlander",
+          image: "greenscooty/0001.webp",
+          colors: ["Desert Sand"],
+          colorImages: {
+            "Desert Sand": "greenscooty/0001.webp"
+          },
+          specs: {
+            performance: {
+              power: "6KW",
+              maxTorque: "45.5NM",
+              topSpeed: "110KMph",
+              acceleration: "3 Sec",
+              gradeability: "18 Degrees",
+              motorType: "IPM-SynRM"
+            },
+            range: {
+              realRange: "300KM"
+            },
+            battery: {
+              capacity: "5.7KWh",
+              type: "LIMFP",
+              voltage: "72V"
+            },
+            charging: {
+              homeChargeTime: "6 Hours",
+              flashChargeTime: "3.5 Hours"
+            },
+            wheels: {
+              type: "Alloy Wheel",
+              frontSize: "110/80R12",
+              rearSize: "110/80R12"
+            },
+            brakes: {
+              system: "CBS and Regenerative Braking",
+              frontDiscSize: "220mm",
+              rearDiscSize: "180mm"
+            },
+            dimensions: {
+              length: "1940 mm",
+              width: "695 mm",
+              height: "1188 mm",
+              wheelbase: "1377 mm",
+              groundClearance: "162 mm",
+              seatHeight: "870 mm",
+              kerbWeight: "130 Kg"
+            },
+            features: {
+              reverseMode: true,
+              sideStandSensor: true,
+              bootStorage: "45 Litres",
+              rideCam: true,
+              comfortKey: true,
+              comfortBoot: true,
+              rollProtect: true,
+              centerStand: true,
+              boost: true
+            },
+            warranty: {
+              vehicle: "50,000 KM or 5 Years",
+              battery: "Unlimited or 5 years whichever is earlier"
+            },
+            price: "₹ 1,89,000"
+          }
+        }
+      ];
+
+      function rivotCompare() {
+        return {
+          currentPage: "selection",
+          selectedModels: [],
+          selectedColors: {},
+          models: models,
+
+          init() {
+            this.models.forEach((model) => {
+              this.selectedColors[model.id] = model.colors[0];
+            });
+          },
+
+          toggleModelSelection(modelId) {
+            if (this.selectedModels.includes(modelId)) {
+              this.selectedModels = this.selectedModels.filter(
+                (id) => id !== modelId
+              );
+            } else if (this.selectedModels.length < 3) {
+              this.selectedModels.push(modelId);
+            }
+          },
+
+          getModelById(modelId) {
+            return this.models.find((model) => model.id === modelId) || {};
+          },
+
+          getAvailableModelsForDropdown(index) {
+            const selectedOtherModels = this.selectedModels.filter(
+              (_, i) => i !== index
+            );
+            return this.models.filter(
+              (model) => !selectedOtherModels.includes(model.id)
+            );
+          },
+
+          getModelImage(modelId) {
+            const model = this.getModelById(modelId);
+            const selectedColor = this.getSelectedColor(modelId);
+            return model.colorImages && model.colorImages[selectedColor]
+              ? model.colorImages[selectedColor]
+              : model.image;
+          },
+
+          goToComparison() {
+            if (this.selectedModels.length >= 2) {
+              this.currentPage = "comparison";
+              window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on comparison
+            }
+          },
+
+          goBackToSelection() {
+            this.currentPage = "selection";
+          },
+
+          changeModel(index, newModelId) {
+            this.selectedModels[index] = newModelId;
+            const model = this.getModelById(newModelId);
+            this.selectedColors[newModelId] = model.colors[0];
+          },
+
+          selectColor(modelId, color) {
+            this.selectedColors[modelId] = color;
+          },
+
+          getSelectedColor(modelId) {
+            return (
+              this.selectedColors[modelId] ||
+              this.getModelById(modelId).colors[0]
+            );
+          }
+        };
+      }
+
+      $(document).ready(function() {
+        $('.menu-toggle2').click(function() {
+          $(this).toggleClass('open');
+          $('.nav-menu2').toggleClass('active');
+        });
+
+        $('.has-submenu2 > a').click(function(e) {
+          if ($(window).width() <= 768) {
+            window.location.href = $(this).attr('href');
+          }
+        });
+
+        $('.submenu-toggle').click(function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const $this = $(this);
+          const $submenu = $this.next('.submenu2');
+
+          $('.submenu2').not($submenu).removeClass('active');
+          $('.submenu-toggle').not($this).removeClass('active');
+
+          const isActive = $submenu.hasClass('active');
+          $submenu.toggleClass('active');
+          $this.toggleClass('active', !isActive);
+        });
+
+        $(document).click(function(e) {
+          if (!$(e.target).closest('.navbar2').length) {
+            $('.nav-menu2').removeClass('active');
+            $('.submenu2').removeClass('active');
+            $('.menu-toggle2').removeClass('open');
+            $('.submenu-toggle').removeClass('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
